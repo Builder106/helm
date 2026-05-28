@@ -23,7 +23,9 @@
     "test:e2e": "playwright test --config=e2e/playwright.config.ts",
     "test:demo": "DEMO=1 playwright test --config=e2e/playwright.demo.config.ts",
     "data:generate": "tsx data/generators/index.ts",
-    "measure": "tsx data/measurements/run-all.ts"
+    "data:render-pdf": "tsx data/render-pdf/index.ts",
+    "measure": "tsx data/measurements/run-all.ts",
+    "measure:invoice-ocr": "tsx data/measurements/invoice-ocr.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
@@ -31,6 +33,7 @@
     "playwright-bdd": "^7.5.0",
     "prettier": "^3.4.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "zod": "^4.4.3"
   }
 }

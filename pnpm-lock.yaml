@@ -26,6 +26,9 @@ importers:
       typescript:
         specifier: ^5.7.0
         version: 5.9.3
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
 
 packages:
 
@@ -458,6 +461,9 @@ packages:
     resolution: {integrity: sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==}
     engines: {node: '>=8.0'}
 
+  zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+
 snapshots:
 
   '@colors/colors@1.5.0':
@@ -815,3 +821,5 @@ snapshots:
   uuid@9.0.1: {}
 
   xmlbuilder@15.1.1: {}
+
+  zod@4.4.3: {}

@@ -141,8 +141,8 @@ _Recorded walkthroughs land here once the dashboard renders end-to-end. The reco
 | Phase | Status |
 |---|---|
 | Scaffold | ✅ |
-| Synthetic-data generators | ⬜ |
-| Sub-feature 1 — AP Invoice OCR | ⬜ |
+| Synthetic-data generators (seed=1 committed) | ✅ |
+| Sub-feature 1 — AP Invoice OCR | 🟡 mock pipeline runnable end-to-end; real-Claude extractor pending |
 | Sub-feature 2 — Creator Payout Reconciler | ⬜ |
 | Sub-feature 3 — Tier-1 CS Responder | ⬜ |
 | Sub-feature 4 — Cross-Company KPI Q&A | ⬜ |

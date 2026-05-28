@@ -17,6 +17,6 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["data/**/*.ts"],
+  "include": ["data/**/*.ts", "back/src/**/*.ts"],
   "exclude": ["node_modules", "dist", "build", "front", "back", "mcp"]
 }
