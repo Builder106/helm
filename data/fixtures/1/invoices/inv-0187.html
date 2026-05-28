@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; padding: 40px; max-width: 800px; }
+    .top { display: flex; gap: 48px; margin-bottom: 40px; }
+    .top > div { flex: 1; }
+    h1 { font-size: 28px; margin: 0 0 8px; font-weight: 300; letter-spacing: 0.02em; }
+    .label { font-size: 11px; text-transform: uppercase; color: #777; letter-spacing: 0.1em; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 12px 8px 8px; font-size: 11px; text-transform: uppercase; color: #555; border-bottom: 1px solid #ccc; }
+    td { padding: 10px 8px; border-bottom: 1px solid #eee; font-size: 14px; }
+    .totals { margin-top: 24px; margin-left: auto; width: 300px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+    .totals .grand { font-size: 20px; font-weight: 600; border-top: 2px solid #1a1a1a; margin-top: 12px; padding-top: 14px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Ironwood Office Mart</strong></div>
+        <div>15 Industrial Park Rd</div>
+        <div>Manchester, NH 03109</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>IOM-316015</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-04-04</div>
+        <div><div class="label">Due Date</div><div>2026-05-04</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Whiteboard markers, pack of 12 (assorted)</td>
+        <td style="text-align: right;">7</td>
+        <td style="text-align: right;">$14.75</td>
+        <td style="text-align: right;">$103.25</td>
+      </tr>
+      <tr>
+        <td>Wireless USB receipt printer</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$165.00</td>
+        <td style="text-align: right;">$825.00</td>
+      </tr>
+      <tr>
+        <td>Black gel pens, box of 24</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$18.00</td>
+        <td style="text-align: right;">$18.00</td>
+      </tr>
+      <tr>
+        <td>Wireless USB receipt printer</td>
+        <td style="text-align: right;">2</td>
+        <td style="text-align: right;">$165.00</td>
+        <td style="text-align: right;">$330.00</td>
+      </tr>
+      <tr>
+        <td>Whiteboard markers, pack of 12 (assorted)</td>
+        <td style="text-align: right;">2</td>
+        <td style="text-align: right;">$14.75</td>
+        <td style="text-align: right;">$29.50</td>
+      </tr>
+      <tr>
+        <td>Whiteboard markers, pack of 12 (assorted)</td>
+        <td style="text-align: right;">3</td>
+        <td style="text-align: right;">$14.75</td>
+        <td style="text-align: right;">$44.25</td>
+      </tr>
+      <tr>
+        <td>Heavy-duty stapler</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$32.00</td>
+        <td style="text-align: right;">$32.00</td>
+      </tr>
+      <tr>
+        <td>Wireless USB receipt printer</td>
+        <td style="text-align: right;">2</td>
+        <td style="text-align: right;">$165.00</td>
+        <td style="text-align: right;">$330.00</td>
+      </tr>
+      <tr>
+        <td>Mid-back ergonomic task chair</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$289.00</td>
+        <td style="text-align: right;">$1445.00</td>
+      </tr>
+      <tr>
+        <td>Whiteboard markers, pack of 12 (assorted)</td>
+        <td style="text-align: right;">3</td>
+        <td style="text-align: right;">$14.75</td>
+        <td style="text-align: right;">$44.25</td>
+      </tr>
+      <tr>
+        <td>Letter-size copy paper, case (10 reams)</td>
+        <td style="text-align: right;">4</td>
+        <td style="text-align: right;">$48.50</td>
+        <td style="text-align: right;">$194.00</td>
+      </tr>
+      <tr>
+        <td>Mid-back ergonomic task chair</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$289.00</td>
+        <td style="text-align: right;">$289.00</td>
+      </tr>
+      <tr>
+        <td>Black gel pens, box of 24</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$18.00</td>
+        <td style="text-align: right;">$90.00</td>
+      </tr>
+      <tr>
+        <td>Whiteboard markers, pack of 12 (assorted)</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$14.75</td>
+        <td style="text-align: right;">$73.75</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$3848.00</span></div>
+      <div class="row"><span>Tax (0.00%)</span><span>$0.00</span></div>
+      <div class="row grand"><span>Total Due</span><span>$3848.00</span></div>
+    </div>
+  </body>
+</html>

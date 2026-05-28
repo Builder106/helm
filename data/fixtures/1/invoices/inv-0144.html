@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; padding: 48px; max-width: 760px; }
+    h1 { font-size: 32px; letter-spacing: -0.01em; margin: 0 0 24px; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    th { text-align: left; border-bottom: 2px solid #1a1a1a; padding: 8px 4px; font-size: 12px; }
+    td { padding: 10px 4px; border-bottom: 1px solid #ddd; font-size: 14px; }
+    .totals { margin-left: auto; width: 280px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 6px 0; }
+    .totals .grand { font-weight: bold; border-top: 2px solid #1a1a1a; margin-top: 8px; padding-top: 12px; font-size: 18px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Harbor Components LLC</strong></div>
+        <div>744 Dockside Rd</div>
+        <div>Long Beach, CA 90802</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>HCL-825279</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-04-24</div>
+        <div><div class="label">Due Date</div><div>2026-06-08</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Plain craft label, 4&quot; × 6&quot;, roll of 500</td>
+        <td style="text-align: right;">4</td>
+        <td style="text-align: right;">$17.25</td>
+        <td style="text-align: right;">$69.00</td>
+      </tr>
+      <tr>
+        <td>High-density foam insert, 12&quot; × 18&quot;</td>
+        <td style="text-align: right;">4</td>
+        <td style="text-align: right;">$7.40</td>
+        <td style="text-align: right;">$29.60</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$98.60</span></div>
+      <div class="row"><span>Tax (9.75%)</span><span>$9.61</span></div>
+      <div class="row grand"><span>Total Due</span><span>$108.21</span></div>
+    </div>
+  </body>
+</html>

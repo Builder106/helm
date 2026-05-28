@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; padding: 48px; max-width: 760px; }
+    h1 { font-size: 32px; letter-spacing: -0.01em; margin: 0 0 24px; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    th { text-align: left; border-bottom: 2px solid #1a1a1a; padding: 8px 4px; font-size: 12px; }
+    td { padding: 10px 4px; border-bottom: 1px solid #ddd; font-size: 14px; }
+    .totals { margin-left: auto; width: 280px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 6px 0; }
+    .totals .grand { font-weight: bold; border-top: 2px solid #1a1a1a; margin-top: 8px; padding-top: 12px; font-size: 18px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Beacon Creative Studio</strong></div>
+        <div>2424 N Federal Hwy</div>
+        <div>Fort Lauderdale, FL 33305</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>BCS-692864</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-01-04</div>
+        <div><div class="label">Due Date</div><div>2026-02-18</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Meta paid social — managed ad spend</td>
+        <td style="text-align: right;">3</td>
+        <td style="text-align: right;">$4500.00</td>
+        <td style="text-align: right;">$13500.00</td>
+      </tr>
+      <tr>
+        <td>Influencer placement — mid-tier</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$3500.00</td>
+        <td style="text-align: right;">$3500.00</td>
+      </tr>
+      <tr>
+        <td>Creative production — :30 video asset</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$2400.00</td>
+        <td style="text-align: right;">$12000.00</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$29000.00</span></div>
+      <div class="row"><span>Tax (7.00%)</span><span>$2030.00</span></div>
+      <div class="row grand"><span>Total Due</span><span>$31030.00</span></div>
+    </div>
+  </body>
+</html>

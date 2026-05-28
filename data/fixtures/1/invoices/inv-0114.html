@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; padding: 48px; max-width: 760px; }
+    h1 { font-size: 32px; letter-spacing: -0.01em; margin: 0 0 24px; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    th { text-align: left; border-bottom: 2px solid #1a1a1a; padding: 8px 4px; font-size: 12px; }
+    td { padding: 10px 4px; border-bottom: 1px solid #ddd; font-size: 14px; }
+    .totals { margin-left: auto; width: 280px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 6px 0; }
+    .totals .grand { font-weight: bold; border-top: 2px solid #1a1a1a; margin-top: 8px; padding-top: 12px; font-size: 18px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Greylock Packaging Supply</strong></div>
+        <div>88 Industrial Loop</div>
+        <div>Reno, NV 89506</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>GPS-760856</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-01-31</div>
+        <div><div class="label">Due Date</div><div>2026-03-02</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Plain craft label, 4&quot; × 6&quot;, roll of 500</td>
+        <td style="text-align: right;">4</td>
+        <td style="text-align: right;">$17.25</td>
+        <td style="text-align: right;">$69.00</td>
+      </tr>
+      <tr>
+        <td>Stainless connector, M8 × 30mm, bag of 50</td>
+        <td style="text-align: right;">4</td>
+        <td style="text-align: right;">$18.25</td>
+        <td style="text-align: right;">$73.00</td>
+      </tr>
+      <tr>
+        <td>Bubble wrap, 12&quot; × 100 ft roll</td>
+        <td style="text-align: right;">10</td>
+        <td style="text-align: right;">$28.50</td>
+        <td style="text-align: right;">$285.00</td>
+      </tr>
+      <tr>
+        <td>High-density foam insert, 12&quot; × 18&quot;</td>
+        <td style="text-align: right;">11</td>
+        <td style="text-align: right;">$7.40</td>
+        <td style="text-align: right;">$81.40</td>
+      </tr>
+      <tr>
+        <td>Branded poly mailer, large, case of 300</td>
+        <td style="text-align: right;">10</td>
+        <td style="text-align: right;">$138.00</td>
+        <td style="text-align: right;">$1380.00</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$1888.40</span></div>
+      <div class="row"><span>Tax (8.25%)</span><span>$155.79</span></div>
+      <div class="row grand"><span>Total Due</span><span>$2044.19</span></div>
+    </div>
+  </body>
+</html>

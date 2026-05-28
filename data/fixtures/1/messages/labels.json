@@ -1,0 +1,2102 @@
+[
+  {
+    "message_id": "msg-00001",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00002",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00003",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00004",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00005",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00006",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00007",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00008",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00009",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00010",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00011",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00012",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00013",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00014",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00015",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00016",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00017",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00018",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00019",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00020",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00021",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00022",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00023",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00024",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00025",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00026",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00027",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00028",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00029",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00030",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00031",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00032",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00033",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00034",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00035",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00036",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00037",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00038",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00039",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00040",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00041",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00042",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00043",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00044",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00045",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00046",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00047",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00048",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00049",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00050",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00051",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00052",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00053",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00054",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00055",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00056",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00057",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00058",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00059",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00060",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00061",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00062",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00063",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00064",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00065",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00066",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00067",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00068",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00069",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00070",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00071",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00072",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00073",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00074",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00075",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00076",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00077",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00078",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00079",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00080",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00081",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00082",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00083",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00084",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00085",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00086",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00087",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00088",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00089",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00090",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00091",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00092",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00093",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00094",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00095",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00096",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00097",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00098",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00099",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00100",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00101",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00102",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00103",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00104",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00105",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00106",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00107",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00108",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00109",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00110",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00111",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00112",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00113",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00114",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00115",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00116",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00117",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00118",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00119",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00120",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00121",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00122",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00123",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00124",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00125",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00126",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00127",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00128",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00129",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00130",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00131",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00132",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00133",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00134",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00135",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00136",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00137",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00138",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00139",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00140",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00141",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00142",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00143",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00144",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00145",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00146",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00147",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00148",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00149",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00150",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00151",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00152",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00153",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00154",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00155",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00156",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00157",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00158",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00159",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00160",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00161",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00162",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00163",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00164",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00165",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00166",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00167",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00168",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00169",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00170",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00171",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00172",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00173",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00174",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00175",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00176",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00177",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00178",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00179",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00180",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00181",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00182",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00183",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00184",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00185",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00186",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00187",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00188",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00189",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00190",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00191",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00192",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00193",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00194",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00195",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00196",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00197",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00198",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00199",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00200",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00201",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00202",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00203",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00204",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00205",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00206",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00207",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00208",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00209",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00210",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00211",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00212",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00213",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00214",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00215",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00216",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00217",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00218",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00219",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00220",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00221",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00222",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00223",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00224",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00225",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00226",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00227",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00228",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00229",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00230",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00231",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00232",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00233",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00234",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00235",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00236",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00237",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00238",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "chargeback threat"
+  },
+  {
+    "message_id": "msg-00239",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00240",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00241",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00242",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00243",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00244",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00245",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00246",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00247",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00248",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00249",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00250",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00251",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00252",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00253",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00254",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00255",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00256",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00257",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00258",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00259",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00260",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00261",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00262",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00263",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00264",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00265",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00266",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00267",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00268",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00269",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00270",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00271",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00272",
+    "intent": "cancellation",
+    "canonical_kb_id": "cancellations",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00273",
+    "intent": "product_question",
+    "canonical_kb_id": "sizing",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00274",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00275",
+    "intent": "account_help",
+    "canonical_kb_id": "account",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00276",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00277",
+    "intent": "return_request",
+    "canonical_kb_id": "returns",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00278",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00279",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "fraud claim"
+  },
+  {
+    "message_id": "msg-00280",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "legal / IP threat"
+  },
+  {
+    "message_id": "msg-00281",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00282",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00283",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00284",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00285",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00286",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00287",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "multi-issue complaint"
+  },
+  {
+    "message_id": "msg-00288",
+    "intent": "shipping_change",
+    "canonical_kb_id": "shipping",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00289",
+    "intent": "complaint",
+    "canonical_kb_id": "returns",
+    "expected_action": "review",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00290",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00291",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "safety / liability"
+  },
+  {
+    "message_id": "msg-00292",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00293",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00294",
+    "intent": "refund_status",
+    "canonical_kb_id": "refunds",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00295",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00296",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00297",
+    "intent": "order_status",
+    "canonical_kb_id": "shipping",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00298",
+    "intent": "product_question",
+    "canonical_kb_id": "warranty",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  },
+  {
+    "message_id": "msg-00299",
+    "intent": "needs_human",
+    "canonical_kb_id": null,
+    "expected_action": "escalate",
+    "needs_human_reason": "chargeback threat"
+  },
+  {
+    "message_id": "msg-00300",
+    "intent": "product_question",
+    "canonical_kb_id": "international",
+    "expected_action": "auto_send",
+    "needs_human_reason": null
+  }
+]

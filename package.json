@@ -17,7 +17,8 @@
     "dev": "pnpm --parallel --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" dev",
     "build": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" build",
     "lint": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" lint",
-    "typecheck": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" typecheck",
+    "typecheck": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" typecheck && pnpm typecheck:data",
+    "typecheck:data": "tsc --noEmit -p tsconfig.json",
     "test": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" test",
     "test:e2e": "playwright test --config=e2e/playwright.config.ts",
     "test:demo": "DEMO=1 playwright test --config=e2e/playwright.demo.config.ts",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
+    "@types/node": "^25.9.1",
     "playwright-bdd": "^7.5.0",
     "prettier": "^3.4.0",
     "tsx": "^4.19.0",

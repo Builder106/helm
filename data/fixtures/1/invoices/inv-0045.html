@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: Verdana, sans-serif; color: #2a2a2a; padding: 0; margin: 0; max-width: 780px; }
+    .accent { background: #1a3a5c; color: white; padding: 32px 48px; }
+    .accent h1 { margin: 0; font-size: 28px; font-weight: bold; }
+    .body { padding: 32px 48px; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .label { font-size: 11px; text-transform: uppercase; color: #1a3a5c; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    th { text-align: left; background: #1a3a5c; color: white; padding: 10px 8px; font-size: 12px; }
+    td { padding: 10px 8px; border-bottom: 1px solid #ddd; font-size: 13px; }
+    .totals { margin-left: auto; width: 280px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 6px 0; }
+    .totals .grand { font-weight: bold; background: #1a3a5c; color: white; margin-top: 8px; padding: 10px 12px; font-size: 16px; }
+  </style>
+</head>
+<body><div class="accent"><h1>Invoice</h1></div><div class="body">
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Harbor Components LLC</strong></div>
+        <div>744 Dockside Rd</div>
+        <div>Long Beach, CA 90802</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>HCL-990347</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-02-22</div>
+        <div><div class="label">Due Date</div><div>2026-04-08</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Bubble wrap, 12&quot; × 100 ft roll</td>
+        <td style="text-align: right;">8</td>
+        <td style="text-align: right;">$28.50</td>
+        <td style="text-align: right;">$228.00</td>
+      </tr>
+      <tr>
+        <td>Stainless connector, M8 × 30mm, bag of 50</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$18.25</td>
+        <td style="text-align: right;">$18.25</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$246.25</span></div>
+      <div class="row"><span>Tax (9.75%)</span><span>$24.01</span></div>
+      <div class="row grand"><span>Total Due</span><span>$270.26</span></div>
+    </div>
+  </div></body>
+</html>

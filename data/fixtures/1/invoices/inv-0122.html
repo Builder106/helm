@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; color: #222; padding: 32px; max-width: 680px; font-size: 13px; }
+    h1 { font-size: 20px; margin: 0 0 16px; font-weight: 600; }
+    .header-row { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .label { font-size: 10px; text-transform: uppercase; color: #888; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th { text-align: left; background: #f5f5f5; padding: 6px 8px; font-size: 11px; }
+    td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+    .totals { margin-left: auto; width: 240px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 4px 0; }
+    .totals .grand { font-weight: 600; border-top: 1px solid #222; margin-top: 4px; padding-top: 8px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Westside Paper &amp; Pack Co.</strong></div>
+        <div>418 Linden Ave</div>
+        <div>Portland, OR 97214</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>WPP-633073</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-03-21</div>
+        <div><div class="label">Due Date</div><div>2026-04-20</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Letter-size envelopes, box of 500</td>
+        <td style="text-align: right;">7</td>
+        <td style="text-align: right;">$41.25</td>
+        <td style="text-align: right;">$288.75</td>
+      </tr>
+      <tr>
+        <td>Manila file folders, box of 100</td>
+        <td style="text-align: right;">10</td>
+        <td style="text-align: right;">$22.50</td>
+        <td style="text-align: right;">$225.00</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$513.75</span></div>
+      <div class="row"><span>Tax (0.00%)</span><span>$0.00</span></div>
+      <div class="row grand"><span>Total Due</span><span>$513.75</span></div>
+    </div>
+  </body>
+</html>

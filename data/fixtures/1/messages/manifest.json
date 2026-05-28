@@ -1,0 +1,17 @@
+{
+  "seed": "1:messages",
+  "count": 300,
+  "intentCounts": {
+    "needs_human": 50,
+    "account_help": 18,
+    "order_status": 56,
+    "product_question": 39,
+    "shipping_change": 28,
+    "return_request": 30,
+    "cancellation": 23,
+    "refund_status": 26,
+    "complaint": 30
+  },
+  "kbArticleCount": 10,
+  "generatedAt": "2026-05-28T20:40:35.229Z"
+}

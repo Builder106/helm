@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: 'Inter', -apple-system, sans-serif; color: #111; padding: 56px; max-width: 720px; font-weight: 400; }
+    h1 { font-size: 36px; margin: 0 0 40px; font-weight: 200; letter-spacing: -0.02em; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 48px; font-size: 13px; }
+    .label { font-size: 10px; text-transform: uppercase; color: #999; letter-spacing: 0.12em; margin-bottom: 4px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+    th { text-align: left; padding: 12px 0; border-bottom: 1px solid #111; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+    td { padding: 12px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+    .totals { margin-left: auto; width: 260px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
+    .totals .grand { font-size: 22px; font-weight: 500; border-top: 1px solid #111; margin-top: 12px; padding-top: 16px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Foundry Office Furniture</strong></div>
+        <div>4012 Riverside Dr</div>
+        <div>Austin, TX 78741</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>FOF-879443</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-01-22</div>
+        <div><div class="label">Due Date</div><div>2026-02-21</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Letter-size copy paper, case (10 reams)</td>
+        <td style="text-align: right;">7</td>
+        <td style="text-align: right;">$48.50</td>
+        <td style="text-align: right;">$339.50</td>
+      </tr>
+      <tr>
+        <td>Black gel pens, box of 24</td>
+        <td style="text-align: right;">2</td>
+        <td style="text-align: right;">$18.00</td>
+        <td style="text-align: right;">$36.00</td>
+      </tr>
+      <tr>
+        <td>Manila file folders, box of 100</td>
+        <td style="text-align: right;">6</td>
+        <td style="text-align: right;">$22.50</td>
+        <td style="text-align: right;">$135.00</td>
+      </tr>
+      <tr>
+        <td>Letter-size envelopes, box of 500</td>
+        <td style="text-align: right;">7</td>
+        <td style="text-align: right;">$41.25</td>
+        <td style="text-align: right;">$288.75</td>
+      </tr>
+      <tr>
+        <td>Standing-desk converter, 32&quot;</td>
+        <td style="text-align: right;">8</td>
+        <td style="text-align: right;">$199.00</td>
+        <td style="text-align: right;">$1592.00</td>
+      </tr>
+      <tr>
+        <td>4-drawer lateral filing cabinet</td>
+        <td style="text-align: right;">9</td>
+        <td style="text-align: right;">$645.00</td>
+        <td style="text-align: right;">$5805.00</td>
+      </tr>
+      <tr>
+        <td>Mid-back ergonomic task chair</td>
+        <td style="text-align: right;">4</td>
+        <td style="text-align: right;">$289.00</td>
+        <td style="text-align: right;">$1156.00</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$9352.25</span></div>
+      <div class="row"><span>Tax (8.25%)</span><span>$771.56</span></div>
+      <div class="row grand"><span>Total Due</span><span>$10123.81</span></div>
+    </div>
+  </body>
+</html>

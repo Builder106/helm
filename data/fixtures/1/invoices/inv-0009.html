@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; padding: 40px; max-width: 800px; }
+    .top { display: flex; gap: 48px; margin-bottom: 40px; }
+    .top > div { flex: 1; }
+    h1 { font-size: 28px; margin: 0 0 8px; font-weight: 300; letter-spacing: 0.02em; }
+    .label { font-size: 11px; text-transform: uppercase; color: #777; letter-spacing: 0.1em; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 12px 8px 8px; font-size: 11px; text-transform: uppercase; color: #555; border-bottom: 1px solid #ccc; }
+    td { padding: 10px 8px; border-bottom: 1px solid #eee; font-size: 14px; }
+    .totals { margin-top: 24px; margin-left: auto; width: 300px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+    .totals .grand { font-size: 20px; font-weight: 600; border-top: 2px solid #1a1a1a; margin-top: 12px; padding-top: 14px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Harbor Components LLC</strong></div>
+        <div>744 Dockside Rd</div>
+        <div>Long Beach, CA 90802</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>HCL-634047</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-04-20</div>
+        <div><div class="label">Due Date</div><div>2026-06-04</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Plain craft label, 4&quot; × 6&quot;, roll of 500</td>
+        <td style="text-align: right;">7</td>
+        <td style="text-align: right;">$17.25</td>
+        <td style="text-align: right;">$120.75</td>
+      </tr>
+      <tr>
+        <td>Stainless connector, M8 × 30mm, bag of 50</td>
+        <td style="text-align: right;">6</td>
+        <td style="text-align: right;">$18.25</td>
+        <td style="text-align: right;">$109.50</td>
+      </tr>
+      <tr>
+        <td>High-density foam insert, 12&quot; × 18&quot;</td>
+        <td style="text-align: right;">11</td>
+        <td style="text-align: right;">$7.40</td>
+        <td style="text-align: right;">$81.40</td>
+      </tr>
+      <tr>
+        <td>Pallet wrap, 18&quot; × 1500 ft</td>
+        <td style="text-align: right;">7</td>
+        <td style="text-align: right;">$41.00</td>
+        <td style="text-align: right;">$287.00</td>
+      </tr>
+      <tr>
+        <td>Branded poly mailer, large, case of 300</td>
+        <td style="text-align: right;">6</td>
+        <td style="text-align: right;">$138.00</td>
+        <td style="text-align: right;">$828.00</td>
+      </tr>
+      <tr>
+        <td>Bubble wrap, 12&quot; × 100 ft roll</td>
+        <td style="text-align: right;">4</td>
+        <td style="text-align: right;">$28.50</td>
+        <td style="text-align: right;">$114.00</td>
+      </tr>
+      <tr>
+        <td>Reinforced cardboard mailer, case of 200</td>
+        <td style="text-align: right;">3</td>
+        <td style="text-align: right;">$92.00</td>
+        <td style="text-align: right;">$276.00</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$1816.65</span></div>
+      <div class="row"><span>Tax (9.75%)</span><span>$177.12</span></div>
+      <div class="row grand"><span>Total Due</span><span>$1993.77</span></div>
+    </div>
+  </body>
+</html>

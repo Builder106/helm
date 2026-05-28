@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; padding: 40px; max-width: 800px; }
+    .top { display: flex; gap: 48px; margin-bottom: 40px; }
+    .top > div { flex: 1; }
+    h1 { font-size: 28px; margin: 0 0 8px; font-weight: 300; letter-spacing: 0.02em; }
+    .label { font-size: 11px; text-transform: uppercase; color: #777; letter-spacing: 0.1em; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 12px 8px 8px; font-size: 11px; text-transform: uppercase; color: #555; border-bottom: 1px solid #ccc; }
+    td { padding: 10px 8px; border-bottom: 1px solid #eee; font-size: 14px; }
+    .totals { margin-top: 24px; margin-left: auto; width: 300px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+    .totals .grand { font-size: 20px; font-weight: 600; border-top: 2px solid #1a1a1a; margin-top: 12px; padding-top: 14px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Stratum DevTools</strong></div>
+        <div>500 Boylston St</div>
+        <div>Boston, MA 02116</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>SD-673289</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-05-01</div>
+        <div><div class="label">Due Date</div><div>2026-05-31</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>API overage, per 100k requests</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$12.50</td>
+        <td style="text-align: right;">$62.50</td>
+      </tr>
+      <tr>
+        <td>Premium add-on — analytics dashboard</td>
+        <td style="text-align: right;">10</td>
+        <td style="text-align: right;">$99.00</td>
+        <td style="text-align: right;">$990.00</td>
+      </tr>
+      <tr>
+        <td>Premium add-on — single sign-on</td>
+        <td style="text-align: right;">10</td>
+        <td style="text-align: right;">$250.00</td>
+        <td style="text-align: right;">$2500.00</td>
+      </tr>
+      <tr>
+        <td>Data egress, per GB</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$0.09</td>
+        <td style="text-align: right;">$0.09</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$3552.59</span></div>
+      <div class="row"><span>Tax (6.25%)</span><span>$222.04</span></div>
+      <div class="row grand"><span>Total Due</span><span>$3774.63</span></div>
+    </div>
+  </body>
+</html>

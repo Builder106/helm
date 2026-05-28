@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice</title>
+<style>
+    body { font-family: 'Inter', -apple-system, sans-serif; color: #111; padding: 56px; max-width: 720px; font-weight: 400; }
+    h1 { font-size: 36px; margin: 0 0 40px; font-weight: 200; letter-spacing: -0.02em; }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 48px; font-size: 13px; }
+    .label { font-size: 10px; text-transform: uppercase; color: #999; letter-spacing: 0.12em; margin-bottom: 4px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+    th { text-align: left; padding: 12px 0; border-bottom: 1px solid #111; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+    td { padding: 12px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+    .totals { margin-left: auto; width: 260px; }
+    .totals .row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
+    .totals .grand { font-size: 22px; font-weight: 500; border-top: 1px solid #111; margin-top: 12px; padding-top: 16px; }
+  </style>
+</head>
+<body><h1>Invoice</h1>
+    <div class="meta-grid">
+      <div>
+        <div class="label">Bill From</div>
+        <div><strong>Pacific Power &amp; Light</strong></div>
+        <div>700 NW Wall St</div>
+        <div>Bend, OR 97703</div>
+      </div>
+      <div>
+        <div class="label">Invoice Number</div>
+        <div>PPL-036238</div>
+        <div class="label" style="margin-top: 12px;">Invoice Date</div>
+        <div>2026-02-17</div>
+        <div><div class="label">Due Date</div><div>2026-03-10</div></div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th style="text-align: right;">Qty</th><th style="text-align: right;">Unit Price</th><th style="text-align: right;">Line Total</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Sewer service — per CCF × 68 CCF</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$6.20</td>
+        <td style="text-align: right;">$6.20</td>
+      </tr>
+      <tr>
+        <td>Electric service — base charge</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$35.00</td>
+        <td style="text-align: right;">$35.00</td>
+      </tr>
+      <tr>
+        <td>Water service — base charge</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$22.00</td>
+        <td style="text-align: right;">$22.00</td>
+      </tr>
+      <tr>
+        <td>Electric usage — per kWh × 4,210 kWh</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$0.14</td>
+        <td style="text-align: right;">$0.71</td>
+      </tr>
+      <tr>
+        <td>Demand charge — peak kW</td>
+        <td style="text-align: right;">1</td>
+        <td style="text-align: right;">$18.50</td>
+        <td style="text-align: right;">$18.50</td>
+      </tr>
+      <tr>
+        <td>Water usage — per CCF × 68 CCF</td>
+        <td style="text-align: right;">5</td>
+        <td style="text-align: right;">$4.85</td>
+        <td style="text-align: right;">$24.25</td>
+      </tr></tbody>
+    </table>
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$106.66</span></div>
+      <div class="row"><span>Tax (0.00%)</span><span>$0.00</span></div>
+      <div class="row grand"><span>Total Due</span><span>$106.66</span></div>
+    </div>
+  </body>
+</html>
