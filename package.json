@@ -1,0 +1,34 @@
+{
+  "name": "helm",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Claude + MCP executive co-pilot for small-and-mid-market business operations. Four back-office workflows, measured per task.",
+  "license": "MIT",
+  "author": "Yinka Vaughan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Builder106/Helm.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "pnpm --parallel --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" dev",
+    "build": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" build",
+    "lint": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" lint",
+    "typecheck": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" typecheck",
+    "test": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" test",
+    "test:e2e": "playwright test --config=e2e/playwright.config.ts",
+    "test:demo": "DEMO=1 playwright test --config=e2e/playwright.demo.config.ts",
+    "data:generate": "tsx data/generators/index.ts",
+    "measure": "tsx data/measurements/run-all.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "playwright-bdd": "^7.5.0",
+    "prettier": "^3.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

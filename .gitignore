@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.pnp.*
+
+# Build output
+dist/
+build/
+.vite/
+.next/
+.turbo/
+out/
+
+# TypeScript incremental
+*.tsbuildinfo
+
+# Env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+logs/
+
+# Test artifacts
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+e2e/demo/output/*.webm
+e2e/demo/output/*.mp4
+!e2e/demo/output/.gitkeep
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.recommended.json
+
+# Generated synthetic data — keep generators, not large outputs
+data/fixtures/**/*.pdf
+data/fixtures/**/*.png
+data/fixtures/**/*.jpg
+data/fixtures/**/large/
+!data/fixtures/**/labels.json
+!data/fixtures/**/manifest.json
+
+# Supabase local
+supabase/.temp/
+supabase/.branches/
+
+# Vercel
+.vercel/
