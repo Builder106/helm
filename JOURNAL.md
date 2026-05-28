@@ -4,6 +4,10 @@
 > things happen — retrospectives need this raw material to land.
 > Reverse-chronological; one paragraph max per entry.
 
+## 2026-05-28 — Synthetic-data generators landed (seed=1 committed) #milestone #decision
+
+Three generators built and seed=1 fixture committed (commit `aa5e9d5`). Architectural call worth flagging: the creator-payout policy lives in **two** files — `orders/policy.md` (the natural-language version Claude reads) and `orders/policy.ts` (the programmatic mirror that produces ground-truth payouts for measurement). They must move together; the deterministic re-computer in policy.ts IS the ground truth Claude is scored against. Caught one generator bug mid-verification: the duplicate-invoice-number anomaly was collapsing all six duplicates onto the same source number (one invoice number appearing seven times). Fixed by picking randomly from the issued-list rather than always reusing the first issue. Lesson: verify fixture distribution, not just fixture counts — the count looked right but the underlying structure was wrong.
+
 ## 2026-05-28 — Project kickoff #milestone #decision
 
 Helm claims AI_ML slot 1 of 3. Scoped against five Handshake postings (Smart Circle, FHI Heat, Source Creative, BIOMED, Equitar); Helm directly targets the first three, which all describe the same SMB-back-office shape. Locked the four sub-features as the contract (AP invoice OCR, creator payout reconciler, Tier-1 customer service, cross-company KPI Q&A). Lane committed: agent/automation, not applied ML — that's slot 2's job (GLP-1 outcomes predictor). Stack locked to Node + Express + React + Chart.js + Anthropic SDK + MCP, matching the FHI Heat posting verbatim. Repo named *Helm* for the ship-steering metaphor and to match the user's existing single-word naming style (Halberd, Quarry, EconOS).
