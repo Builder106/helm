@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm --filter @helm/front build",
+  "outputDirectory": "front/dist",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": null,
+  "github": {
+    "silent": true
+  }
+}
