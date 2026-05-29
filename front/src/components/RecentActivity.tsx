@@ -1,44 +1,48 @@
 import { report, formatPercent, formatUsd, formatMs } from '../lib/report.ts';
 import type { ReportRecord } from '../lib/report.ts';
 
-// Most-recent 14 invoice records, sorted by file_id. The "real" log
-// will be live-tailed when the back/ Express layer ships; for now
-// this is a deterministic snapshot of the measurement output.
+// Ledger-style activity log — monospace, alternating row tints, signal
+// flags for status. Last 14 invoice records, sorted by file_id. When
+// the back/ Express layer ships this becomes a live tail; for now it's
+// a deterministic snapshot of the committed measurement.
 const VISIBLE = 14;
 const recent = [...report.records].slice(-VISIBLE).reverse();
 
 export function RecentActivity() {
   return (
-    <div className="overflow-hidden rounded-lg border border-helm-border bg-helm-panel">
-      <div className="flex items-center justify-between border-b border-helm-border px-5 py-3">
+    <div className="relative overflow-hidden border border-helm-rule bg-helm-panel/60 backdrop-blur">
+      <CornerMarks />
+
+      <div className="flex items-end justify-between gap-6 border-b border-helm-rule px-7 py-5">
         <div>
-          <div className="text-xs font-bold uppercase tracking-[0.18em] text-helm-faint">
-            Recent activity
-          </div>
-          <div className="text-sm text-helm-muted">
-            Last {VISIBLE} invoices through the pipeline.
-          </div>
+          <div className="eyebrow">Log · Recent</div>
+          <h3
+            className="italic-display mt-1 text-[26px] leading-tight text-helm-vellum"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Most-recent <span className="text-helm-brass-bright">{VISIBLE}</span> invoices
+          </h3>
         </div>
-        <div className="text-[11px] uppercase tracking-[0.14em] text-helm-faint">
-          {report.records.length} total
+        <div className="text-right font-mono text-[10.5px] uppercase tracking-[0.18em] text-helm-vellum-faint">
+          {report.records.length} total · seed {report.seed}
         </div>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="w-full">
           <thead>
-            <tr className="border-b border-helm-border text-left text-[10px] uppercase tracking-[0.14em] text-helm-faint">
-              <th className="px-5 py-2 font-semibold">Invoice</th>
-              <th className="px-3 py-2 font-semibold">Anomaly (truth)</th>
-              <th className="px-3 py-2 font-semibold">Status</th>
-              <th className="px-3 py-2 text-right font-semibold">Field acc.</th>
-              <th className="px-3 py-2 text-right font-semibold">Latency</th>
-              <th className="px-5 py-2 text-right font-semibold">Cost</th>
+            <tr className="border-b border-helm-rule">
+              <Th>Invoice</Th>
+              <Th>Anomaly (truth)</Th>
+              <Th>Status</Th>
+              <Th align="right">Field acc.</Th>
+              <Th align="right">Latency</Th>
+              <Th align="right" className="pr-7">Cost</Th>
             </tr>
           </thead>
           <tbody>
-            {recent.map((r) => (
-              <Row key={r.file_id} r={r} />
+            {recent.map((r, i) => (
+              <Row key={r.file_id} r={r} striped={i % 2 === 0} />
             ))}
           </tbody>
         </table>
@@ -47,31 +51,54 @@ export function RecentActivity() {
   );
 }
 
-function Row({ r }: { r: ReportRecord }) {
-  const isClean = r.reconciliation.status === 'clean';
-  const anomalyLabel = r.ground_truth_anomaly === 'none' ? '—' : r.ground_truth_anomaly;
+function Th({
+  children,
+  align,
+  className = '',
+}: {
+  children: React.ReactNode;
+  align?: 'right';
+  className?: string;
+}) {
+  return (
+    <th
+      className={`px-3 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-helm-vellum-faint first:pl-7 ${
+        align === 'right' ? 'text-right' : 'text-left'
+      } ${className}`}
+    >
+      {children}
+    </th>
+  );
+}
+
+function Row({ r, striped }: { r: ReportRecord; striped: boolean }) {
+  const anomalyLabel = r.ground_truth_anomaly === 'none' ? '—' : r.ground_truth_anomaly.replace(/-/g, ' ');
 
   return (
-    <tr className="border-b border-helm-border/50 last:border-b-0 hover:bg-helm-panel-2/60">
-      <td className="px-5 py-2 font-mono text-xs text-helm-text">{r.file_id}</td>
-      <td className="px-3 py-2 text-xs text-helm-muted">{anomalyLabel}</td>
-      <td className="px-3 py-2">
-        <StatusBadge status={r.reconciliation.status} flags={r.reconciliation.flags} parsed={r.extraction.parsed} />
+    <tr
+      className={`group border-b border-helm-rule/40 last:border-b-0 transition-colors duration-200 hover:bg-helm-brass/5 ${
+        striped ? 'bg-helm-bg-2/30' : ''
+      }`}
+    >
+      <td className="px-3 py-2.5 font-mono text-[12px] text-helm-vellum first:pl-7">{r.file_id}</td>
+      <td className="px-3 py-2.5 font-mono text-[11px] text-helm-vellum-muted">{anomalyLabel}</td>
+      <td className="px-3 py-2.5">
+        <StatusFlag status={r.reconciliation.status} flags={r.reconciliation.flags} parsed={r.extraction.parsed} />
       </td>
-      <td className="px-3 py-2 text-right tabular text-xs text-helm-text">
+      <td className="px-3 py-2.5 text-right tabular font-mono text-[12px] text-helm-vellum">
         {r.extraction.parsed ? formatPercent(r.extraction.field_accuracy) : '—'}
       </td>
-      <td className="px-3 py-2 text-right tabular text-xs text-helm-muted">
+      <td className="px-3 py-2.5 text-right tabular font-mono text-[12px] text-helm-vellum-muted">
         {formatMs(r.extraction.latency_ms)}
       </td>
-      <td className="px-5 py-2 text-right tabular text-xs text-helm-muted">
+      <td className="px-3 py-2.5 pr-7 text-right tabular font-mono text-[12px] text-helm-vellum-muted">
         {formatUsd(r.extraction.cost_usd)}
       </td>
     </tr>
   );
 }
 
-function StatusBadge({
+function StatusFlag({
   status,
   flags,
   parsed,
@@ -82,24 +109,52 @@ function StatusBadge({
 }) {
   if (!parsed) {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded border border-helm-danger/40 bg-helm-danger/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-helm-danger">
-        <span className="size-1.5 rounded-full bg-helm-danger" /> Failed
-      </span>
+      <FlagPill tone="danger" label="Failed" />
     );
   }
   if (status === 'clean') {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded border border-helm-accent/30 bg-helm-accent/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-helm-accent">
-        <span className="size-1.5 rounded-full bg-helm-accent" /> Auto-approved
-      </span>
+      <FlagPill tone="brass" label="Auto-approved" />
     );
   }
   return (
+    <FlagPill tone="warn" label="Needs review" title={flags.join(', ')} />
+  );
+}
+
+function FlagPill({
+  tone,
+  label,
+  title,
+}: {
+  tone: 'brass' | 'warn' | 'danger';
+  label: string;
+  title?: string;
+}) {
+  const palette =
+    tone === 'brass'
+      ? 'border-helm-brass/40 text-helm-brass-bright'
+      : tone === 'warn'
+        ? 'border-helm-warn/40 text-helm-warn'
+        : 'border-helm-danger/40 text-helm-danger';
+  const dot =
+    tone === 'brass' ? 'bg-helm-brass' : tone === 'warn' ? 'bg-helm-warn' : 'bg-helm-danger';
+  return (
     <span
-      className="inline-flex items-center gap-1.5 rounded border border-helm-warn/40 bg-helm-warn/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-helm-warn"
-      title={flags.join(', ')}
+      className={`inline-flex items-center gap-1.5 border ${palette} px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.16em]`}
+      title={title}
     >
-      <span className="size-1.5 rounded-full bg-helm-warn" /> Needs review
+      <span className={`size-1.5 ${dot}`} />
+      {label}
     </span>
+  );
+}
+
+function CornerMarks() {
+  return (
+    <>
+      <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-3 border-r border-t border-helm-brass/70" />
+      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 size-3 border-b border-l border-helm-brass/70" />
+    </>
   );
 }
