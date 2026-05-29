@@ -22,10 +22,10 @@
     "test": "pnpm --recursive --filter \"./front\" --filter \"./back\" --filter \"./mcp/*\" test",
     "test:e2e": "playwright test --config=e2e/playwright.config.ts",
     "test:demo": "DEMO=1 playwright test --config=e2e/playwright.demo.config.ts",
-    "data:generate": "tsx data/generators/index.ts",
-    "data:render-png": "tsx data/render-png/index.ts",
-    "measure": "tsx data/measurements/run-all.ts",
-    "measure:invoice-ocr": "tsx data/measurements/invoice-ocr.ts"
+    "data:generate": "tsx --env-file-if-exists=.env data/generators/index.ts",
+    "data:render-png": "tsx --env-file-if-exists=.env data/render-png/index.ts",
+    "measure": "tsx --env-file-if-exists=.env data/measurements/run-all.ts",
+    "measure:invoice-ocr": "tsx --env-file-if-exists=.env data/measurements/invoice-ocr.ts"
   },
   "devDependencies": {
     "@libsql/client": "^0.17.3",
