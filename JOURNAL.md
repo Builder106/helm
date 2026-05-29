@@ -4,7 +4,11 @@
 > things happen — retrospectives need this raw material to land.
 > Reverse-chronological; one paragraph max per entry.
 
-## 2026-05-29 — Dashboard live on Vercel at helm-jade.vercel.app #milestone
+## 2026-05-29 — Canonical URL is helm-bridge.vercel.app #decision
+
+The auto-assigned `helm-jade.vercel.app` had no semantic tie to the project. Switched to `helm-bridge.vercel.app` — the bridge of a ship is where steering happens (Helm's metaphor), and "bridge" also lands the MCP angle (Helm bridges the LLM to four mock business systems via MCP servers). `helm-ops.vercel.app` was the first pick but already taken on Vercel's namespace. Removed the jade alias to keep a single canonical URL.
+
+## 2026-05-29 — Dashboard live on Vercel at helm-bridge.vercel.app #milestone
 
 First deploy landed. Scope: `sankofa-forge` (matching the other portfolio repos — clearhash, quarry, celestial-sanctum). Project name: `helm`. Vercel auto-assigned the alias `helm-jade.vercel.app`. Configuration was the tricky bit — pnpm-workspace + Vite SPA + a JSON import that crosses workspace boundaries needed an explicit `vercel.json` at the repo root with `buildCommand: pnpm --filter @helm/front build`, `outputDirectory: front/dist`, and `framework: null` so Vercel didn't try to auto-detect a wrong preset. First `vercel deploy --yes` attempt failed because Vercel inferred the project name from the directory path which contains parens and uppercase letters; fix was `vercel project add helm` → `vercel link --project helm` → `vercel deploy`. Build time on Vercel: ~19 s. The committed mock measurement under `data/measurements/output/seed-1/invoice-ocr/report.json` ships in the bundle, so the dashboard renders the same numbers locally and in prod. The MOCK DATA badge is honest in the URL footer; the next Groq run rewrites that to MEASURED.
 

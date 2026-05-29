@@ -7,7 +7,7 @@
 </picture>
 
 [![CI](https://github.com/Builder106/Helm/actions/workflows/deploy.yml/badge.svg)](https://github.com/Builder106/Helm/actions/workflows/deploy.yml)
-[![Live demo](https://img.shields.io/badge/demo-live-success.svg)](https://helm-jade.vercel.app)
+[![Live demo](https://img.shields.io/badge/demo-live-success.svg)](https://helm-bridge.vercel.app)
 [![Node](https://img.shields.io/badge/Node-22%2B-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react&logoColor=white)](https://react.dev/)
 [![Llama 4](https://img.shields.io/badge/Llama%204%20Scout-vision-0467DF.svg?logo=meta&logoColor=white)](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)
@@ -18,7 +18,7 @@
 
 > **Helm is a Llama 4 + MCP executive co-pilot for small-and-mid-market business operations.** Four back-office workflows — AP-invoice OCR, creator-payout reconciliation, Tier-1 customer-service responses, and cross-company KPI Q&A — running end-to-end with measured cost and accuracy per task. The dashboard is the demo.
 
-**Live dashboard:** [helm-jade.vercel.app](https://helm-jade.vercel.app) — currently rendering the seed=1 mock measurement; the MOCK DATA badge swaps to MEASURED · Llama 4 Scout the next time the Groq cap resets.
+**Live dashboard:** [helm-bridge.vercel.app](https://helm-bridge.vercel.app) — currently rendering the seed=1 mock measurement; the MOCK DATA badge swaps to MEASURED · Llama 4 Scout the next time the Groq cap resets.
 
 ## The headline finding
 
@@ -162,7 +162,7 @@ _Recorded walkthroughs land here once the dashboard renders end-to-end. The reco
 | Banner SVGs + favicon + social card | ✅ |
 | Dashboard SPA (AP panel rendering live measurement) | ✅ |
 | Demo videos | ⬜ |
-| Deployed dashboard | ✅ [helm-jade.vercel.app](https://helm-jade.vercel.app) |
+| Deployed dashboard | ✅ [helm-bridge.vercel.app](https://helm-bridge.vercel.app) |
 
 ## License
 
