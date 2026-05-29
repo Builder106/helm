@@ -38,9 +38,16 @@ async function main(): Promise<void> {
   let done = 0;
 
   async function worker(): Promise<void> {
+    // 1024×1320 viewport @ DSR=1 = a ~1024×1320 px PNG. That's ~210
+    // image tokens for Llama 4 Scout vision (one token per ~80×80
+    // patch), down from ~825 at the original DSR=2 setting. Two
+    // hundred invoices at this size fit under the Groq free-tier
+    // 500 K-tokens-per-day cap with room to spare; the prior 200-run
+    // exhausted the cap after only 80 successful calls because each
+    // call was burning ~6.2 K tokens, mostly the image.
     const context = await browser.newContext({
       viewport: { width: 1024, height: 1320 },
-      deviceScaleFactor: 2,
+      deviceScaleFactor: 1,
     });
     const page = await context.newPage();
     try {
