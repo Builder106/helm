@@ -6,13 +6,13 @@ type Props = {
   sublabel?: ReactNode;
   hint?: ReactNode;
   tone?: 'neutral' | 'good' | 'warn' | 'danger';
-  /** Editorial chapter mark (e.g. "I"). */
+  /** Numeric index (e.g. "01"). Rendered as a mono cell stamp. */
   index?: string;
 };
 
-// Editorial pull-quote — the metric number reads like a magazine stat,
-// not a SaaS card. Brass corner marks frame the cell; a hairline
-// separates the value from the gloss.
+// Single metric tile — terminal-instrument feel. Brass corner marks
+// frame the cell; a 56 px sans-bold tabular number is the hero; a
+// hairline rule separates value from gloss.
 export function MetricCard({ label, value, sublabel, hint, tone = 'neutral', index }: Props) {
   const accent =
     tone === 'good'
@@ -25,19 +25,19 @@ export function MetricCard({ label, value, sublabel, hint, tone = 'neutral', ind
 
   return (
     <div className="group relative flex flex-col gap-3 border border-helm-rule bg-helm-panel/60 p-6 backdrop-blur transition-colors duration-300 hover:border-helm-brass/50">
-      {/* Brass corner marks (NE + SW). Editorial corner detail. */}
-      <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-3 border-r border-t border-helm-brass/70" />
-      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 size-3 border-b border-l border-helm-brass/70" />
+      {/* Brass corner marks (NE + SW). Detail signal. */}
+      <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-2.5 border-r border-t border-helm-brass/70" />
+      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 size-2.5 border-b border-l border-helm-brass/70" />
 
       <div className="flex items-center justify-between">
         <span className="eyebrow">{label}</span>
         {index ? (
-          <span className="italic-display text-helm-brass-dim text-base leading-none">{index}</span>
+          <span className="tabular font-mono text-[10px] text-helm-brass-dim">{index}</span>
         ) : null}
       </div>
 
       <div
-        className={`display tabular text-[64px] leading-[0.95] ${accent}`}
+        className={`tabular text-[52px] font-bold leading-[0.95] tracking-tight ${accent}`}
         style={{ fontFamily: 'var(--font-display)' }}
       >
         {value}

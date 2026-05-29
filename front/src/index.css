@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
 /*
- * Helm — Bridge Instrument theme.
+ * Helm — modern AI-instrument theme.
  *
- * Palette: midnight ocean + brass + vellum. Brass is the warm "instrument"
- * accent that replaces the generic teal; vellum is the warm-cream parchment
- * that headers/numbers sit in. Crimson and signal-coral handle warn/danger.
+ * Type system:
+ *   General Sans (display + body) — characterful grotesque that is
+ *     pointedly NOT Inter. Used for wordmark, headings, paragraphs.
+ *   JetBrains Mono (data) — every number, ID, eyebrow, status pill,
+ *     timestamp. The mono is the "instrument readout" signal that
+ *     this is a data tool, not a magazine.
  *
- * Typography: Instrument Serif for display (italics flagged for headings
- * and pull-quote numbers), JetBrains Mono for data and IDs, General Sans
- * for body copy. No Inter, no system-ui — the type pairing is part of
- * the brand.
+ * Palette: brass + vellum on midnight ocean. Brass is the warm
+ * accent (replaces generic teal); vellum is parchment-warm text;
+ * crimson + signal-coral handle warn/danger. The palette is the
+ * brand — but the type does the AI/ML signaling now.
  */
 @theme {
   --color-helm-bg: #0A1421;
@@ -36,7 +39,7 @@
   --color-helm-danger: #D63B3B;
   --color-helm-good: #6CB28E;
 
-  --font-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-display: "General Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
@@ -50,42 +53,36 @@ body {
   font-feature-settings: "ss01", "cv11";
   background-color: var(--color-helm-bg);
   color: var(--color-helm-text);
-  /* Vignette + warm horizon glow + parchment grain — adds depth without */
-  /* obscuring data. The radial gradient mimics dawn light on the bridge. */
+  /* Vignette + warm horizon glow + grain — adds depth without */
+  /* obscuring data. */
   background-image:
-    radial-gradient(ellipse 110% 60% at 50% -10%, rgba(232, 184, 113, 0.08), transparent 60%),
+    radial-gradient(ellipse 110% 60% at 50% -10%, rgba(232, 184, 113, 0.07), transparent 60%),
     radial-gradient(ellipse 120% 80% at 50% 110%, rgba(11, 20, 33, 0.6), transparent 70%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.9 0 0 0 0 0.75 0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.9 0 0 0 0 0.75 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   background-attachment: fixed, fixed, fixed;
 }
 
-/* Display font defaults: tighter tracking, italic on demand. */
+/* Display = General Sans Bold, very tight tracking — gives weight and confidence. */
 .display {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.0;
 }
 
-.italic-display {
-  font-family: var(--font-display);
-  font-style: italic;
-  letter-spacing: -0.01em;
-}
-
-/* Tabular figures for all data. */
-.tabular {
-  font-variant-numeric: tabular-nums;
-}
-
-/* Editorial section eyebrows — small caps, generous tracking. */
+/* Functional eyebrow strings — mono, generous tracking. */
 .eyebrow {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-helm-vellum-faint);
+}
+
+/* Tabular figures for any data column. */
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Subtle hairline divider used between metric blocks. */
@@ -98,15 +95,6 @@ body {
     transparent
   );
   height: 1px;
-}
-
-/* Bracket marks for editorial corners (used in metric cards). */
-.corner-mark {
-  width: 12px;
-  height: 12px;
-  border-color: var(--color-helm-brass);
-  border-style: solid;
-  border-width: 0;
 }
 
 /* Brass underline accent that grows on hover. */
@@ -127,11 +115,11 @@ body {
   width: 100%;
 }
 
-/* Page-load reveal: a slow rise from below, staggered via inline delay. */
+/* Page-load reveal — restrained rise, staggered via inline delay. */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -139,7 +127,7 @@ body {
   }
 }
 .rise {
-  animation: rise 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 /* Selection in brass — small detail nobody asks for, but it matters. */

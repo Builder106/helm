@@ -1,13 +1,11 @@
-// Chapter-style sidebar. Sub-features read like chapter entries in a
-// captain's log — Roman numeral, italic display title, status line in
-// mono. Per CLAUDE.md "if a sub-feature isn't done, it's not in the
-// dashboard," shipped entries get active treatment; the others sit
-// here as future chapters so the contract is visible without faking
-// progress.
+// Sidebar lists only sub-features that ship in the dashboard. Per
+// CLAUDE.md "if a sub-feature isn't done, it's not in the dashboard."
+// Disabled entries stay visible as `not yet shipped` placeholders so
+// the contract is honest but doesn't fake progress.
 
 type NavItem = {
   id: string;
-  roman: string;
+  index: string;
   label: string;
   status: string;
   active?: boolean;
@@ -15,26 +13,28 @@ type NavItem = {
 };
 
 const items: NavItem[] = [
-  { id: 'invoice-ocr', roman: 'I', label: 'AP Invoice OCR', status: '200 invoices · seed 1', active: true, shipped: true },
-  { id: 'payout-reconciler', roman: 'II', label: 'Creator Payout Reconciler', status: 'Not yet shipped', shipped: false },
-  { id: 'tier1-cs', roman: 'III', label: 'Tier-1 CS Responder', status: 'Not yet shipped', shipped: false },
-  { id: 'kpi-qa', roman: 'IV', label: 'KPI Q&A', status: 'Not yet shipped', shipped: false },
+  { id: 'invoice-ocr', index: '01', label: 'AP Invoice OCR', status: '200 invoices · seed 1', active: true, shipped: true },
+  { id: 'payout-reconciler', index: '02', label: 'Creator Payout Reconciler', status: 'not yet shipped', shipped: false },
+  { id: 'tier1-cs', index: '03', label: 'Tier-1 CS Responder', status: 'not yet shipped', shipped: false },
+  { id: 'kpi-qa', index: '04', label: 'KPI Q&A', status: 'not yet shipped', shipped: false },
 ];
 
 export function Sidebar() {
+  const shipped = items.filter((i) => i.shipped).length;
   return (
     <nav className="relative flex h-full w-72 shrink-0 flex-col border-r border-helm-rule bg-helm-bg/40">
       <div className="px-7 pb-4 pt-7">
         <div className="eyebrow">Sub-features</div>
-        <div className="mt-1 italic-display text-[15px] text-helm-vellum-muted">
-          Four chapters in this voyage
+        <div className="mt-1.5 font-mono text-[11px] text-helm-vellum-muted">
+          <span className="tabular text-helm-vellum">{shipped}</span> shipped ·{' '}
+          <span className="tabular text-helm-vellum">{items.length - shipped}</span> pending
         </div>
       </div>
 
       <ul className="flex flex-col gap-px px-3">
         {items.map((item) => (
           <li key={item.id}>
-            <ChapterRow item={item} />
+            <NavRow item={item} />
           </li>
         ))}
       </ul>
@@ -43,15 +43,15 @@ export function Sidebar() {
         <div className="eyebrow">Stack</div>
         <ul className="mt-2 space-y-1 font-mono text-[11px] text-helm-vellum-muted">
           <li>
-            <span className="text-helm-vellum">Llama 4 Scout</span>
-            <span className="text-helm-vellum-faint"> · Groq</span>
+            <span className="text-helm-vellum">llama-4-scout</span>
+            <span className="text-helm-vellum-faint"> · groq</span>
           </li>
           <li>
             <span className="text-helm-vellum">libsql</span>
-            <span className="text-helm-vellum-faint"> · MCP</span>
+            <span className="text-helm-vellum-faint"> · mcp</span>
           </li>
           <li>
-            <span className="text-helm-vellum">Node · React · Chart.js</span>
+            <span className="text-helm-vellum">node · react · chart.js</span>
           </li>
         </ul>
       </div>
@@ -59,7 +59,7 @@ export function Sidebar() {
   );
 }
 
-function ChapterRow({ item }: { item: NavItem }) {
+function NavRow({ item }: { item: NavItem }) {
   const base =
     'group relative flex w-full items-baseline gap-4 px-4 py-3 text-left transition-colors duration-200';
   const inactive = item.shipped
@@ -74,18 +74,18 @@ function ChapterRow({ item }: { item: NavItem }) {
       ) : null}
 
       <span
-        className={`italic-display w-7 shrink-0 text-[22px] leading-none ${
-          item.active ? 'text-helm-brass' : item.shipped ? 'text-helm-vellum-muted' : 'text-helm-vellum-faint'
+        className={`tabular shrink-0 font-mono text-[11px] leading-none ${
+          item.active ? 'text-helm-brass-bright' : item.shipped ? 'text-helm-vellum-muted' : 'text-helm-vellum-faint'
         }`}
       >
-        {item.roman}
+        {item.index}
       </span>
 
-      <span className="flex flex-1 flex-col gap-0.5 leading-tight">
-        <span className="display text-[18px] tracking-tight">
+      <span className="flex flex-1 flex-col gap-1 leading-tight">
+        <span className="text-[14.5px] font-medium tracking-tight">
           {item.label}
         </span>
-        <span className={`font-mono text-[10px] uppercase tracking-[0.18em] ${
+        <span className={`font-mono text-[10px] uppercase tracking-[0.16em] ${
           item.active ? 'text-helm-brass-bright' : item.shipped ? 'text-helm-vellum-faint' : 'text-helm-faint'
         }`}>
           {item.status}

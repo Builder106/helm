@@ -11,8 +11,8 @@ import { report } from '../lib/report.ts';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-// Bucket per-invoice latencies into 12 bins between min and max so the
-// chart shape reflects the actual distribution.
+// Bucket per-invoice latencies into 12 bins between min and max so
+// the chart shape reflects the actual distribution.
 const BIN_COUNT = 12;
 
 function buildBins() {
@@ -43,12 +43,12 @@ export function LatencyHistogram() {
 
       <div className="mb-5 flex items-end justify-between gap-6">
         <div>
-          <div className="eyebrow">Reading · Latency</div>
+          <div className="eyebrow">latency · per invoice</div>
           <h3
-            className="italic-display mt-1 text-[26px] leading-tight text-helm-vellum"
-            style={{ fontFamily: 'var(--font-display)' }}
+            className="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
+            style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}
           >
-            Per-invoice <span className="text-helm-brass-bright">end-to-end</span>
+            End-to-end <span className="text-helm-brass-bright">distribution</span>
           </h3>
           <p className="mt-1 max-w-md text-[12.5px] leading-snug text-helm-vellum-muted">
             Lower-left tail is fast invoices. Right tail is rate-limit and retry
@@ -105,7 +105,6 @@ export function LatencyHistogram() {
                   font: { family: '"JetBrains Mono"', size: 10 },
                   maxRotation: 0,
                   callback(this, _v, idx) {
-                    // Show every other tick so labels don't crowd.
                     return idx % 2 === 0 ? `${labels[idx]} ms` : '';
                   },
                 },
@@ -143,7 +142,7 @@ function PercentileRail() {
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-vellum-faint">
             {r.label}
           </span>
-          <span className="tabular text-[15px] font-medium text-helm-vellum">{r.value}</span>
+          <span className="tabular font-mono text-[14px] font-medium text-helm-vellum">{r.value}</span>
           <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-helm-vellum-faint">
             ms
           </span>
@@ -156,8 +155,8 @@ function PercentileRail() {
 function CornerMarks() {
   return (
     <>
-      <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-3 border-r border-t border-helm-brass/70" />
-      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 size-3 border-b border-l border-helm-brass/70" />
+      <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-2.5 border-r border-t border-helm-brass/70" />
+      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 size-2.5 border-b border-l border-helm-brass/70" />
     </>
   );
 }

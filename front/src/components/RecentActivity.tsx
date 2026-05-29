@@ -15,12 +15,12 @@ export function RecentActivity() {
 
       <div className="flex items-end justify-between gap-6 border-b border-helm-rule px-7 py-5">
         <div>
-          <div className="eyebrow">Log · Recent</div>
+          <div className="eyebrow">activity · recent</div>
           <h3
-            className="italic-display mt-1 text-[26px] leading-tight text-helm-vellum"
-            style={{ fontFamily: 'var(--font-display)' }}
+            className="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
+            style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}
           >
-            Most-recent <span className="text-helm-brass-bright">{VISIBLE}</span> invoices
+            Last <span className="tabular text-helm-brass-bright">{VISIBLE}</span> invoices
           </h3>
         </div>
         <div className="text-right font-mono text-[10.5px] uppercase tracking-[0.18em] text-helm-vellum-faint">
@@ -32,12 +32,12 @@ export function RecentActivity() {
         <table className="w-full">
           <thead>
             <tr className="border-b border-helm-rule">
-              <Th>Invoice</Th>
-              <Th>Anomaly (truth)</Th>
-              <Th>Status</Th>
-              <Th align="right">Field acc.</Th>
-              <Th align="right">Latency</Th>
-              <Th align="right" className="pr-7">Cost</Th>
+              <Th>invoice</Th>
+              <Th>anomaly · truth</Th>
+              <Th>status</Th>
+              <Th align="right">field acc.</Th>
+              <Th align="right">latency</Th>
+              <Th align="right" className="pr-7">cost</Th>
             </tr>
           </thead>
           <tbody>
@@ -62,7 +62,7 @@ function Th({
 }) {
   return (
     <th
-      className={`px-3 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-helm-vellum-faint first:pl-7 ${
+      className={`px-3 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-helm-vellum-faint first:pl-7 ${
         align === 'right' ? 'text-right' : 'text-left'
       } ${className}`}
     >
@@ -72,7 +72,8 @@ function Th({
 }
 
 function Row({ r, striped }: { r: ReportRecord; striped: boolean }) {
-  const anomalyLabel = r.ground_truth_anomaly === 'none' ? '—' : r.ground_truth_anomaly.replace(/-/g, ' ');
+  const anomalyLabel =
+    r.ground_truth_anomaly === 'none' ? '—' : r.ground_truth_anomaly.replace(/-/g, ' ');
 
   return (
     <tr
@@ -108,18 +109,12 @@ function StatusFlag({
   parsed: boolean;
 }) {
   if (!parsed) {
-    return (
-      <FlagPill tone="danger" label="Failed" />
-    );
+    return <FlagPill tone="danger" label="failed" />;
   }
   if (status === 'clean') {
-    return (
-      <FlagPill tone="brass" label="Auto-approved" />
-    );
+    return <FlagPill tone="brass" label="auto-approved" />;
   }
-  return (
-    <FlagPill tone="warn" label="Needs review" title={flags.join(', ')} />
-  );
+  return <FlagPill tone="warn" label="needs review" title={flags.join(', ')} />;
 }
 
 function FlagPill({
@@ -153,8 +148,8 @@ function FlagPill({
 function CornerMarks() {
   return (
     <>
-      <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-3 border-r border-t border-helm-brass/70" />
-      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 size-3 border-b border-l border-helm-brass/70" />
+      <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-2.5 border-r border-t border-helm-brass/70" />
+      <span aria-hidden className="pointer-events-none absolute bottom-0 left-0 size-2.5 border-b border-l border-helm-brass/70" />
     </>
   );
 }
