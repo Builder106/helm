@@ -56,9 +56,10 @@ data/fixtures/**/large/
 !data/fixtures/**/*.jsonl
 !data/fixtures/**/*.json
 
-# Supabase local
-supabase/.temp/
-supabase/.branches/
+# libsql / SQLite database file (regenerated from fixtures)
+data/helm.db
+data/helm.db-shm
+data/helm.db-wal
 
 # Vercel
 .vercel/

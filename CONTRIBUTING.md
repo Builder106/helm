@@ -7,7 +7,7 @@ Helm is a personal portfolio project, so the "contributor" is usually me-from-ne
 - **Node 22+** (use `nvm use` to pin via `.nvmrc`).
 - **pnpm** for package management. The repo uses pnpm workspaces; npm and yarn will not produce the right `node_modules` layout.
 - **Groq API key** in `.env` as `GROQ_API_KEY`. Free-tier accounts at [console.groq.com](https://console.groq.com/) issue keys instantly; the free tier is rate-limited but adequate for development and measurement runs.
-- **Supabase project** linked via the Supabase CLI for local Postgres + pgvector. The Vercel Marketplace install (`/vercel:bootstrap`) is the path of least resistance.
+- **libsql** runs locally as a single file at `data/helm.db` — no setup required, no account. The dev default in `.env.example` is `LIBSQL_URL=file:./data/helm.db`. For deployment, swap to a Turso Cloud URL (`libsql://<name>.turso.io`) + `LIBSQL_AUTH_TOKEN`; SQL is identical.
 - **Playwright browsers** installed via `pnpm exec playwright install chromium`.
 
 ## First-run commands

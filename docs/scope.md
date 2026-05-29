@@ -47,7 +47,7 @@ A Llama 4 + MCP executive co-pilot that runs four real back-office workflows for
 **Output.** Per message: an intent classification, a drafted reply grounded in a small knowledge-base markdown corpus, a confidence score in `[0,1]`, and an action: `auto_send` (≥ 0.85), `human_review` (0.5–0.85), or `escalate` (< 0.5).
 
 **Workflow.**
-1. Embed the knowledge-base markdown once into pgvector (Supabase).
+1. Embed the knowledge-base markdown once into libsql (the F32_BLOB vector column on a `kb_passages` table; cosine similarity via `vector_distance_cos`).
 2. For each inbound message, retrieve top-k passages; pass message + passages to Llama with a structured-output prompt.
 3. Confidence threshold gates the action.
 
