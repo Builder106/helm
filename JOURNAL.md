@@ -4,6 +4,10 @@
 > things happen — retrospectives need this raw material to land.
 > Reverse-chronological; one paragraph max per entry.
 
+## 2026-05-29 — Dashboard redesigned: bridge-instrument editorial aesthetic #milestone #decision
+
+The first dashboard pass worked but read generic — could have been any AI ops tool. Pushed it hard into a nautical-editorial direction that ties to the project's actual metaphor (Helm = ship's wheel; URL = helm-bridge.vercel.app). Aesthetic commitments: **Instrument Serif** for display (wordmark, hero, big metric numbers, italic accents on key words like "OCR"), **General Sans** for body (Inter is banned), **JetBrains Mono** for data + status pills + eyebrows. Palette swap: brass (`#C9933F`) and vellum (`#F0E5CC`) on midnight ocean (`#0A1421`) — replaces the prior teal-on-navy entirely. Layout moves: chapter-style sidebar with Roman numerals I-IV, editorial chapter mark on the hero ("CHAPTER I — SUB-FEATURE 1 / 4"), brass corner marks on every panel, hairline rules between value-and-gloss in metric cards, a ledger-typed activity log with signal-flag pills. Decorative atmosphere: bathymetric contour rings emanate from the lower-right at 18% opacity, plus a compass-rose mark in the main panel's upper-right and a horizon-glow radial gradient stitched into the body. Staggered page-load reveal (hero → metrics → chart+reconciler → log) via inline `animation-delay`. Production bundle grew 8 KB gzip from font and theme overhead — acceptable cost for the design lift. Live at helm-bridge.vercel.app.
+
 ## 2026-05-29 — Canonical URL is helm-bridge.vercel.app #decision
 
 The auto-assigned `helm-jade.vercel.app` had no semantic tie to the project. Switched to `helm-bridge.vercel.app` — the bridge of a ship is where steering happens (Helm's metaphor), and "bridge" also lands the MCP angle (Helm bridges the LLM to four mock business systems via MCP servers). `helm-ops.vercel.app` was the first pick but already taken on Vercel's namespace. Removed the jade alias to keep a single canonical URL.
