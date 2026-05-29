@@ -159,7 +159,9 @@ _Recorded walkthroughs land here once the dashboard renders end-to-end. The reco
 | Sub-feature 2 — Creator Payout Reconciler | ⬜ |
 | Sub-feature 3 — Tier-1 CS Responder | ⬜ |
 | Sub-feature 4 — Cross-Company KPI Q&A | ⬜ |
-| Banner SVGs + demo videos | ⬜ |
+| Banner SVGs + favicon + social card | ✅ |
+| Dashboard SPA (AP panel rendering live measurement) | ✅ |
+| Demo videos | ⬜ |
 | Deployed dashboard | ⬜ |
 
 ## License

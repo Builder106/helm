@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Brand palette — matches the README banner. */
+@theme {
+  --color-helm-bg: #0A0E1A;
+  --color-helm-panel: #11172A;
+  --color-helm-panel-2: #161D33;
+  --color-helm-border: #1F2840;
+  --color-helm-accent: #4FF8D2;
+  --color-helm-accent-dim: #2BAA8E;
+  --color-helm-warn: #F5A623;
+  --color-helm-danger: #F55036;
+  --color-helm-text: #E5E7EB;
+  --color-helm-muted: #9CA3AF;
+  --color-helm-faint: #6B7280;
+
+  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* Tabular numerals everywhere — metrics shouldn't drift width. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
