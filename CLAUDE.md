@@ -1,34 +1,36 @@
 # Helm — project guide
 
-A Claude-powered, MCP-routed executive co-pilot for small-and-mid-market business operations. Aggregates data across mocked business systems (ERP, CRM, accounting, retail channel) and runs four real workflows end-to-end. The portfolio target is a hiring manager from a back-office AI/automation team who needs to see a working artifact in under thirty seconds.
+A Llama 4 + MCP-routed executive co-pilot for small-and-mid-market business operations. Aggregates data across mocked business systems (ERP, CRM, accounting, retail channel) and runs four real workflows end-to-end. The portfolio target is a hiring manager from a back-office AI/automation team who needs to see a working artifact in under thirty seconds.
 
 This file is the source of truth for *Helm*'s scope, stack, and guardrails. The global guide at `~/.claude/CLAUDE.md` covers cross-repo baseline (README pattern, banner SVGs, JOURNAL.md cadence, Gherkin E2E). Read that too; this file does not repeat it.
 
 ## Lane and audience
 
-**Lane:** agent/automation (per [[ai-ml-scope]] in user memory). *Not* an applied-ML project — no novel model training, no benchmarks against research baselines. The "intelligence" comes from Claude; the engineering contribution is the orchestration, the data plumbing, and the cost/accuracy measurement.
+**Lane:** agent/automation (per [[ai-ml-scope]] in user memory). *Not* an applied-ML project — no novel model training, no benchmarks against research baselines. The "intelligence" comes from Llama; the engineering contribution is the orchestration, the data plumbing, and the cost/accuracy measurement.
 
 **Primary audience for the README:** AI/automation hiring managers at SMB-portfolio companies (the Handshake postings: Smart Circle International, FHI Heat, Source Creative). Secondary audience: any "ops-team-at-a-growing-company" reader who has felt the pain of manual invoice processing.
+
+**Note on the Claude question.** The original scope picked Anthropic Claude because the FHI Heat and Source Creative postings name Claude verbatim. Helm now uses Llama 4 via Groq instead — cheaper to develop against, free tier exists, no API budget required. The `Extractor` / agent interface in `back/src/ap/extraction.ts` is provider-agnostic by design, so a Claude implementation could land alongside the Groq one if the Claude-on-resume signal becomes load-bearing for a specific application.
 
 ## Stack — locked
 
 - **Frontend:** React 19 + Vite + Chart.js + Tailwind CSS. (FHI Heat posting names React + Chart.js explicitly. Vite over Next.js because Helm is an SPA dashboard, not a content site.)
 - **Backend:** Node.js 22 + Express 5. (FHI Heat names this stack verbatim.)
-- **LLM:** Anthropic Claude via `@anthropic-ai/sdk`. Default model: `claude-sonnet-4-6` for steady-state work, `claude-opus-4-7` for the executive Q&A path. **Prompt caching is mandatory** on every multi-turn or long-context call.
-- **Agent layer:** Custom MCP servers (one per data source). The FHI Heat posting calls out MCP by name — this is the differentiator, not boilerplate. See `mcp/` for the per-source servers.
-- **OCR:** Claude vision (multimodal). Do not bolt on Tesseract or AWS Textract — the point is to show that a single Claude call replaces a multi-tool OCR pipeline at a known cost.
+- **LLM:** Llama 4 Scout via Groq's OpenAI-compatible chat-completions API (`groq-sdk`). Default model: `meta-llama/llama-4-scout-17b-16e-instruct` for steady-state work — multimodal, fast, and inexpensive enough to develop against on the free tier. Llama 4 Maverick is the reach option for the executive Q&A path if Scout's reasoning depth proves too shallow.
+- **Agent layer:** Custom MCP servers (one per data source). The FHI Heat posting calls out MCP by name — this is the differentiator, not boilerplate. See `mcp/` for the per-source servers. MCP is provider-agnostic; the Llama-on-Groq side talks to MCP servers the same way any other model would.
+- **OCR:** Llama 4 Scout vision on a PNG render of each invoice. Do not bolt on Tesseract or AWS Textract — the point is to show that a single multimodal-LLM call replaces a multi-tool OCR pipeline at a known cost.
 - **Storage:** Supabase Postgres. pgvector enabled for any embeddings work later. Use the official MCP server when wiring data access.
 - **Deployment:** Vercel for the front end; Vercel Functions for the back end where it fits, fall back to a long-running Node host (Fly.io or Railway) only if a feature genuinely needs it.
-- **Testing:** Playwright + `playwright-bdd` (per global guide). Two suites: fast headless QA + narrated demo recordings.
+- **Testing:** Playwright + `playwright-bdd` (per global guide). Two suites: fast headless QA + narrated demo recordings. Playwright is also Helm's HTML→PNG renderer for invoice fixtures.
 - **CI:** GitHub Actions. One workflow that lints, types, unit-tests, integration-tests, and deploys on push to `main`.
 
 ## Four sub-features — what "done" looks like
 
 Each sub-feature must produce a concrete number that lands in the README. Do not ship a sub-feature without its measurement.
 
-1. **AP Invoice OCR pipeline.** Synthetic-invoice generator → Claude vision extraction → schema validation → anomaly flags → ledger push. **Measurement:** extraction accuracy on a held-out labeled set, cost per invoice in USD, p50/p95 latency.
+1. **AP Invoice OCR pipeline.** Synthetic-invoice generator → Playwright HTML→PNG render → Llama 4 Scout vision extraction → Zod schema validation → anomaly flags → ledger push. **Measurement:** extraction accuracy on a held-out labeled set, cost per invoice in USD, p50/p95 latency.
 
-2. **Creator Payout Reconciler.** TikTok-Shop-style CSV of creator orders + a commission-rule policy → Claude reasons across rules → payout statement per creator with discrepancies flagged. **Measurement:** rule-coverage rate, total payouts reconciled, time vs. a spreadsheet baseline.
+2. **Creator Payout Reconciler.** TikTok-Shop-style CSV of creator orders + a commission-rule policy → Llama reasons across rules → payout statement per creator with discrepancies flagged. **Measurement:** rule-coverage rate, total payouts reconciled, time vs. a spreadsheet baseline.
 
 3. **Tier-1 Customer Service Responder.** Inbound message classifier → drafted reply with confidence score → auto-send above threshold, escalate below. **Measurement:** auto-response rate, escalation precision/recall on a held-out labeled set.
 
@@ -36,11 +38,11 @@ Each sub-feature must produce a concrete number that lands in the README. Do not
 
 ## README headline finding — the bar
 
-The README has one job: convince a stranger in ten seconds that this works. The headline number must be specific, defensible, and ideally surprising. Draft target:
+The README has one job: convince a stranger in ten seconds that this works. The headline number must be specific, defensible, and ideally surprising. Draft target shape:
 
-> *Processed 5,000 synthetic invoices with 96% line-item extraction accuracy at $0.04 per invoice. At a $25/hr loaded wage and 6 min/invoice manual baseline, the system recovers 480 labor-hours/month equivalent — a 156× cost reduction.*
+> *Processed N synthetic invoices with X% line-item extraction accuracy at $Y per invoice. At a $25/hr loaded wage and 6 min/invoice manual baseline, the system recovers Z labor-hours/month equivalent — an R× cost reduction.*
 
-Numbers are placeholders until measured. Do not claim a number you have not run. **The README banner finding is a contract: the project is not "done" until the measurement supports it.**
+Numbers are placeholders until measured. Do not claim a number you have not run. **The README banner finding is a contract: the project is not "done" until the measurement supports it.** When running with `--extractor=mock`, the cost/accuracy/latency numbers are simulated and carry a warning banner in the generated `summary.md`. Only `--extractor=groq` numbers are allowed in the README headline.
 
 ## Schedule (rough)
 
@@ -59,7 +61,7 @@ Numbers are placeholders until measured. Do not claim a number you have not run.
 The global guide covers the general "anti-AI-slop" posture. These are project-specific tells to avoid:
 
 - **No "let me imagine a dataset." Generators are real code with seeds.** The data has to be inspectable, reproducible, and versioned.
-- **No LLM-as-a-judge for the measurements.** Accuracy is computed against hand-labeled fixtures, not "Claude rated the answer 8/10."
+- **No LLM-as-a-judge for the measurements.** Accuracy is computed against hand-labeled fixtures, not "the model rated the answer 8/10."
 - **No "demo mode" toggles that fake the result.** If a sub-feature isn't done, it's not in the dashboard.
 - **No four-paragraph docstrings.** This project is a working SaaS-style app, not a tutorial. Comments only when WHY is non-obvious (per global guide).
 - **No "powered by AI" marketing language in the UI.** The dashboard reads like an internal tool, not a landing page.

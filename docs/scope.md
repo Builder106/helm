@@ -4,26 +4,26 @@ This document freezes what Helm is and is not. See [`CLAUDE.md`](../CLAUDE.md) a
 
 ## One-line pitch
 
-A Claude + MCP executive co-pilot that runs four real back-office workflows for a small-and-mid-market business, with measured cost and accuracy per workflow.
+A Llama 4 + MCP executive co-pilot that runs four real back-office workflows for a small-and-mid-market business, with measured cost and accuracy per workflow.
 
 ## The four sub-features (contract)
 
 ### 1. AP Invoice OCR pipeline
 
-**Input.** A directory of invoice images/PDFs from heterogeneous vendors with varied layouts (synthetic, generated locally).
+**Input.** A directory of invoice PNGs (rendered from synthetic HTML via Playwright) from heterogeneous vendors with varied layouts.
 
 **Output.** A normalized `invoices.jsonl` with one record per invoice: vendor, invoice number, line items (description, qty, unit price, total), subtotal, tax, total, due date. Plus an `anomalies.jsonl` for invoices where the line-item math doesn't reconcile or a field is missing.
 
 **Workflow.**
-1. Watch a folder; for each new file, call Claude vision with a structured-extraction prompt.
+1. Watch a folder; for each new PNG, send it to Llama 4 Scout vision via Groq with a structured-extraction prompt (`response_format: json_object`).
 2. Validate the extracted JSON against a Zod schema.
 3. Compute reconciliation: `sum(line_items) + tax ?= total`. Flag mismatches.
 4. Push valid invoices to a Postgres `ap_invoices` table; emit anomalies to a review queue.
 
 **Measurement.** On a 200-invoice labeled holdout:
 - **Line-item accuracy** (exact match per field, micro-averaged): target ≥ 95%.
-- **Cost per invoice** in USD (Anthropic input + output tokens × current pricing).
-- **p50 / p95 latency** end-to-end (file landed → row in DB).
+- **Cost per invoice** in USD (Groq input + output tokens × published Llama 4 Scout pricing).
+- **p50 / p95 latency** end-to-end (PNG landed → row in DB).
 
 ### 2. Creator Payout Reconciler
 
@@ -32,23 +32,23 @@ A Claude + MCP executive co-pilot that runs four real back-office workflows for 
 **Output.** A `payouts.csv` with one row per creator: gross, deductions itemized by rule, net payout, currency-normalized USD net. Plus a `discrepancies.md` markdown report flagging cases where the policy is ambiguous.
 
 **Workflow.**
-1. Claude reads `policy.md` once with prompt caching (the policy is the stable prefix).
-2. For each creator, Claude applies the cached policy to that creator's order rows and produces a structured payout breakdown.
-3. A deterministic Python/JS reconciler re-computes from the rule output and flags any creator whose Claude-computed total disagrees with the deterministic re-computation.
+1. Llama reads `policy.md` once as a system-message prefix (re-used across all creator calls in the batch).
+2. For each creator, Llama applies the policy to that creator's order rows and produces a structured payout breakdown.
+3. A deterministic JS reconciler re-computes from the same rules (`data/generators/orders/policy.ts`) and flags any creator whose Llama-computed total disagrees with the deterministic re-computation.
 
 **Measurement.** On a 50-creator fixture with hand-computed ground truth:
-- **Exact-match rate** of Claude payout vs. ground truth: target ≥ 99%.
+- **Exact-match rate** of Llama payout vs. ground truth: target ≥ 99%.
 - **Total dollars reconciled** and total time vs. a stopwatch-measured "do it in Google Sheets" baseline.
 
 ### 3. Tier-1 Customer Service Responder
 
-**Input.** Inbound customer messages (synthetic email + chat corpus, ~500 labeled with intent + canonical answer).
+**Input.** Inbound customer messages (synthetic email + chat corpus, ~300 labeled with intent + canonical answer).
 
 **Output.** Per message: an intent classification, a drafted reply grounded in a small knowledge-base markdown corpus, a confidence score in `[0,1]`, and an action: `auto_send` (≥ 0.85), `human_review` (0.5–0.85), or `escalate` (< 0.5).
 
 **Workflow.**
 1. Embed the knowledge-base markdown once into pgvector (Supabase).
-2. For each inbound message, retrieve top-k passages; pass message + passages to Claude with a structured-output prompt.
+2. For each inbound message, retrieve top-k passages; pass message + passages to Llama with a structured-output prompt.
 3. Confidence threshold gates the action.
 
 **Measurement.** On the labeled corpus:
@@ -63,9 +63,9 @@ A Claude + MCP executive co-pilot that runs four real back-office workflows for 
 **Output.** A grounded answer with citations to specific rows in the four MCP-served data sources.
 
 **Workflow.**
-1. Claude receives the question + tool descriptions for each MCP server (ERP, CRM, accounting/AP, retail channel).
-2. Claude plans a retrieval sequence, calls MCP tools, and synthesizes an answer.
-3. Every claim in the answer is cited back to a specific row via the Anthropic Citations API.
+1. Llama receives the question + tool descriptions for each MCP server (ERP, CRM, accounting/AP, retail channel).
+2. Llama plans a retrieval sequence, calls MCP tools, and synthesizes an answer.
+3. Every claim in the answer is paired with a `source_row_id` field from the tool response that the dashboard can resolve back to the underlying row.
 
 **Measurement.** A ten-question canned battery with hand-built ground-truth row IDs:
 - **Citation accuracy** (does the cited row actually support the claim).

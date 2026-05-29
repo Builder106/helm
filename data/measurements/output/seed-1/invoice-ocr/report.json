@@ -1,45 +1,45 @@
 {
   "seed": "1",
   "extractor": "mock",
-  "wallMs": 171550,
+  "wallMs": 172268,
   "headline": {
     "invoices_processed": 200,
-    "wall_ms": 171550,
+    "wall_ms": 172268,
     "extraction": {
       "parse_rate": 0.99,
       "field_accuracy": 0.99,
       "line_item_recall": 0.9798
     },
     "cost": {
-      "total_usd": 2.04,
-      "mean_per_invoice_usd": 0.0102
+      "total_usd": 0.074,
+      "mean_per_invoice_usd": 0.00037
     },
     "latency": {
-      "p50_ms": 861,
-      "p95_ms": 1333,
-      "p99_ms": 1377
+      "p50_ms": 859,
+      "p95_ms": 1336,
+      "p99_ms": 1385
     },
     "reconciler": {
-      "true_positives": 26,
+      "true_positives": 28,
       "false_positives": 11,
-      "false_negatives": 2,
+      "false_negatives": 0,
       "true_negatives": 161,
-      "precision": 0.7027,
-      "recall": 0.9286,
-      "f1": 0.8
+      "precision": 0.7179,
+      "recall": 1,
+      "f1": 0.8358
     },
     "labor": {
       "manual_minutes": 1200,
-      "helm_minutes": 74,
-      "minutes_saved": 1126,
-      "dollars_saved": 469.1667,
-      "time_reduction_ratio": 16.22
+      "helm_minutes": 78,
+      "minutes_saved": 1122,
+      "dollars_saved": 467.5,
+      "time_reduction_ratio": 15.38
     }
   },
   "records": [
     {
       "file_id": "inv-0001",
-      "pdf_path": "data/fixtures/1/invoices/inv-0001.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0001.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -50,8 +50,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 912
+        "cost_usd": 0.00037,
+        "latency_ms": 910
       },
       "reconciliation": {
         "status": "clean",
@@ -61,7 +61,7 @@
     },
     {
       "file_id": "inv-0002",
-      "pdf_path": "data/fixtures/1/invoices/inv-0002.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0002.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -72,8 +72,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 565
+        "cost_usd": 0.00037,
+        "latency_ms": 563
       },
       "reconciliation": {
         "status": "clean",
@@ -83,7 +83,7 @@
     },
     {
       "file_id": "inv-0003",
-      "pdf_path": "data/fixtures/1/invoices/inv-0003.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0003.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -94,7 +94,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1170
       },
       "reconciliation": {
@@ -105,7 +105,7 @@
     },
     {
       "file_id": "inv-0004",
-      "pdf_path": "data/fixtures/1/invoices/inv-0004.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0004.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -116,8 +116,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 872
+        "cost_usd": 0.00037,
+        "latency_ms": 871
       },
       "reconciliation": {
         "status": "clean",
@@ -127,7 +127,7 @@
     },
     {
       "file_id": "inv-0005",
-      "pdf_path": "data/fixtures/1/invoices/inv-0005.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0005.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -138,7 +138,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1095
       },
       "reconciliation": {
@@ -149,7 +149,7 @@
     },
     {
       "file_id": "inv-0006",
-      "pdf_path": "data/fixtures/1/invoices/inv-0006.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0006.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -160,8 +160,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1309
+        "cost_usd": 0.00037,
+        "latency_ms": 1311
       },
       "reconciliation": {
         "status": "flagged",
@@ -173,7 +173,7 @@
     },
     {
       "file_id": "inv-0007",
-      "pdf_path": "data/fixtures/1/invoices/inv-0007.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0007.png",
       "ground_truth_anomaly": "math-mismatch-subtotal",
       "extraction": {
         "parsed": true,
@@ -184,8 +184,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1307
+        "cost_usd": 0.00037,
+        "latency_ms": 1306
       },
       "reconciliation": {
         "status": "flagged",
@@ -198,7 +198,7 @@
     },
     {
       "file_id": "inv-0008",
-      "pdf_path": "data/fixtures/1/invoices/inv-0008.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0008.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -209,8 +209,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 636
+        "cost_usd": 0.00037,
+        "latency_ms": 635
       },
       "reconciliation": {
         "status": "clean",
@@ -220,7 +220,7 @@
     },
     {
       "file_id": "inv-0009",
-      "pdf_path": "data/fixtures/1/invoices/inv-0009.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0009.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -231,8 +231,8 @@
         "line_item_recall": 0.8571428571428571,
         "line_item_correct": 6,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 387
+        "cost_usd": 0.00037,
+        "latency_ms": 398
       },
       "reconciliation": {
         "status": "clean",
@@ -242,7 +242,7 @@
     },
     {
       "file_id": "inv-0010",
-      "pdf_path": "data/fixtures/1/invoices/inv-0010.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0010.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -253,8 +253,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 1120
+        "cost_usd": 0.00037,
+        "latency_ms": 1123
       },
       "reconciliation": {
         "status": "clean",
@@ -264,7 +264,7 @@
     },
     {
       "file_id": "inv-0011",
-      "pdf_path": "data/fixtures/1/invoices/inv-0011.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0011.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -275,8 +275,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 942
+        "cost_usd": 0.00037,
+        "latency_ms": 943
       },
       "reconciliation": {
         "status": "clean",
@@ -286,7 +286,7 @@
     },
     {
       "file_id": "inv-0012",
-      "pdf_path": "data/fixtures/1/invoices/inv-0012.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0012.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -297,8 +297,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 493
+        "cost_usd": 0.00037,
+        "latency_ms": 491
       },
       "reconciliation": {
         "status": "flagged",
@@ -310,7 +310,7 @@
     },
     {
       "file_id": "inv-0013",
-      "pdf_path": "data/fixtures/1/invoices/inv-0013.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0013.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -321,8 +321,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 799
+        "cost_usd": 0.00037,
+        "latency_ms": 798
       },
       "reconciliation": {
         "status": "clean",
@@ -332,7 +332,7 @@
     },
     {
       "file_id": "inv-0014",
-      "pdf_path": "data/fixtures/1/invoices/inv-0014.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0014.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -343,7 +343,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 471
       },
       "reconciliation": {
@@ -356,7 +356,7 @@
     },
     {
       "file_id": "inv-0015",
-      "pdf_path": "data/fixtures/1/invoices/inv-0015.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0015.png",
       "ground_truth_anomaly": "math-mismatch-tax",
       "extraction": {
         "parsed": true,
@@ -367,7 +367,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 656
       },
       "reconciliation": {
@@ -380,7 +380,7 @@
     },
     {
       "file_id": "inv-0016",
-      "pdf_path": "data/fixtures/1/invoices/inv-0016.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0016.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -391,7 +391,7 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 796
       },
       "reconciliation": {
@@ -402,7 +402,7 @@
     },
     {
       "file_id": "inv-0017",
-      "pdf_path": "data/fixtures/1/invoices/inv-0017.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0017.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -413,8 +413,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 1333
+        "cost_usd": 0.00037,
+        "latency_ms": 1345
       },
       "reconciliation": {
         "status": "clean",
@@ -424,7 +424,7 @@
     },
     {
       "file_id": "inv-0018",
-      "pdf_path": "data/fixtures/1/invoices/inv-0018.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0018.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -435,8 +435,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 981
+        "cost_usd": 0.00037,
+        "latency_ms": 1000
       },
       "reconciliation": {
         "status": "clean",
@@ -446,7 +446,7 @@
     },
     {
       "file_id": "inv-0019",
-      "pdf_path": "data/fixtures/1/invoices/inv-0019.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0019.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -457,8 +457,8 @@
         "line_item_recall": 0.8571428571428571,
         "line_item_correct": 6,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 537
+        "cost_usd": 0.00037,
+        "latency_ms": 538
       },
       "reconciliation": {
         "status": "flagged",
@@ -470,7 +470,7 @@
     },
     {
       "file_id": "inv-0020",
-      "pdf_path": "data/fixtures/1/invoices/inv-0020.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0020.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -481,8 +481,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 744
+        "cost_usd": 0.00037,
+        "latency_ms": 746
       },
       "reconciliation": {
         "status": "clean",
@@ -492,7 +492,7 @@
     },
     {
       "file_id": "inv-0021",
-      "pdf_path": "data/fixtures/1/invoices/inv-0021.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0021.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -503,8 +503,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 582
+        "cost_usd": 0.00037,
+        "latency_ms": 583
       },
       "reconciliation": {
         "status": "clean",
@@ -514,7 +514,7 @@
     },
     {
       "file_id": "inv-0022",
-      "pdf_path": "data/fixtures/1/invoices/inv-0022.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0022.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -525,8 +525,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 846
+        "cost_usd": 0.00037,
+        "latency_ms": 856
       },
       "reconciliation": {
         "status": "clean",
@@ -536,7 +536,7 @@
     },
     {
       "file_id": "inv-0023",
-      "pdf_path": "data/fixtures/1/invoices/inv-0023.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0023.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -547,8 +547,8 @@
         "line_item_recall": 0.6666666666666666,
         "line_item_correct": 2,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 637
+        "cost_usd": 0.00037,
+        "latency_ms": 638
       },
       "reconciliation": {
         "status": "flagged",
@@ -560,7 +560,7 @@
     },
     {
       "file_id": "inv-0024",
-      "pdf_path": "data/fixtures/1/invoices/inv-0024.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0024.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -571,8 +571,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 465
+        "cost_usd": 0.00037,
+        "latency_ms": 467
       },
       "reconciliation": {
         "status": "clean",
@@ -582,7 +582,7 @@
     },
     {
       "file_id": "inv-0025",
-      "pdf_path": "data/fixtures/1/invoices/inv-0025.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0025.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -593,7 +593,7 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1260
       },
       "reconciliation": {
@@ -604,7 +604,7 @@
     },
     {
       "file_id": "inv-0026",
-      "pdf_path": "data/fixtures/1/invoices/inv-0026.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0026.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -615,7 +615,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 900
       },
       "reconciliation": {
@@ -626,7 +626,7 @@
     },
     {
       "file_id": "inv-0027",
-      "pdf_path": "data/fixtures/1/invoices/inv-0027.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0027.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -637,8 +637,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 643
+        "cost_usd": 0.00037,
+        "latency_ms": 648
       },
       "reconciliation": {
         "status": "clean",
@@ -648,7 +648,7 @@
     },
     {
       "file_id": "inv-0028",
-      "pdf_path": "data/fixtures/1/invoices/inv-0028.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0028.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -659,8 +659,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 376
+        "cost_usd": 0.00037,
+        "latency_ms": 384
       },
       "reconciliation": {
         "status": "clean",
@@ -670,7 +670,7 @@
     },
     {
       "file_id": "inv-0029",
-      "pdf_path": "data/fixtures/1/invoices/inv-0029.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0029.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -681,8 +681,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 531
+        "cost_usd": 0.00037,
+        "latency_ms": 538
       },
       "reconciliation": {
         "status": "clean",
@@ -692,7 +692,7 @@
     },
     {
       "file_id": "inv-0030",
-      "pdf_path": "data/fixtures/1/invoices/inv-0030.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0030.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -703,8 +703,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 812
+        "cost_usd": 0.00037,
+        "latency_ms": 818
       },
       "reconciliation": {
         "status": "clean",
@@ -714,7 +714,7 @@
     },
     {
       "file_id": "inv-0031",
-      "pdf_path": "data/fixtures/1/invoices/inv-0031.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0031.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -725,8 +725,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 959
+        "cost_usd": 0.00037,
+        "latency_ms": 957
       },
       "reconciliation": {
         "status": "clean",
@@ -736,7 +736,7 @@
     },
     {
       "file_id": "inv-0032",
-      "pdf_path": "data/fixtures/1/invoices/inv-0032.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0032.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -747,8 +747,8 @@
         "line_item_recall": 0.75,
         "line_item_correct": 3,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 678
+        "cost_usd": 0.00037,
+        "latency_ms": 679
       },
       "reconciliation": {
         "status": "flagged",
@@ -760,7 +760,7 @@
     },
     {
       "file_id": "inv-0033",
-      "pdf_path": "data/fixtures/1/invoices/inv-0033.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0033.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -771,8 +771,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 998
+        "cost_usd": 0.00037,
+        "latency_ms": 1000
       },
       "reconciliation": {
         "status": "clean",
@@ -782,7 +782,7 @@
     },
     {
       "file_id": "inv-0034",
-      "pdf_path": "data/fixtures/1/invoices/inv-0034.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0034.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -793,7 +793,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 662
       },
       "reconciliation": {
@@ -804,7 +804,7 @@
     },
     {
       "file_id": "inv-0035",
-      "pdf_path": "data/fixtures/1/invoices/inv-0035.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0035.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -815,8 +815,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 479
+        "cost_usd": 0.00037,
+        "latency_ms": 477
       },
       "reconciliation": {
         "status": "clean",
@@ -826,7 +826,7 @@
     },
     {
       "file_id": "inv-0036",
-      "pdf_path": "data/fixtures/1/invoices/inv-0036.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0036.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -837,7 +837,7 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1278
       },
       "reconciliation": {
@@ -848,7 +848,7 @@
     },
     {
       "file_id": "inv-0037",
-      "pdf_path": "data/fixtures/1/invoices/inv-0037.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0037.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -859,7 +859,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 750
       },
       "reconciliation": {
@@ -872,7 +872,7 @@
     },
     {
       "file_id": "inv-0038",
-      "pdf_path": "data/fixtures/1/invoices/inv-0038.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0038.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -883,7 +883,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 368
       },
       "reconciliation": {
@@ -894,7 +894,7 @@
     },
     {
       "file_id": "inv-0039",
-      "pdf_path": "data/fixtures/1/invoices/inv-0039.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0039.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -905,8 +905,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 903
+        "cost_usd": 0.00037,
+        "latency_ms": 907
       },
       "reconciliation": {
         "status": "flagged",
@@ -918,7 +918,7 @@
     },
     {
       "file_id": "inv-0040",
-      "pdf_path": "data/fixtures/1/invoices/inv-0040.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0040.png",
       "ground_truth_anomaly": "math-mismatch-tax",
       "extraction": {
         "parsed": true,
@@ -929,8 +929,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 695
+        "cost_usd": 0.00037,
+        "latency_ms": 694
       },
       "reconciliation": {
         "status": "flagged",
@@ -942,7 +942,7 @@
     },
     {
       "file_id": "inv-0041",
-      "pdf_path": "data/fixtures/1/invoices/inv-0041.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0041.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -953,8 +953,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 519
+        "cost_usd": 0.00037,
+        "latency_ms": 518
       },
       "reconciliation": {
         "status": "clean",
@@ -964,7 +964,7 @@
     },
     {
       "file_id": "inv-0042",
-      "pdf_path": "data/fixtures/1/invoices/inv-0042.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0042.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -975,8 +975,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 443
+        "cost_usd": 0.00037,
+        "latency_ms": 441
       },
       "reconciliation": {
         "status": "clean",
@@ -986,7 +986,7 @@
     },
     {
       "file_id": "inv-0043",
-      "pdf_path": "data/fixtures/1/invoices/inv-0043.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0043.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -997,8 +997,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 665
+        "cost_usd": 0.00037,
+        "latency_ms": 668
       },
       "reconciliation": {
         "status": "clean",
@@ -1008,7 +1008,7 @@
     },
     {
       "file_id": "inv-0044",
-      "pdf_path": "data/fixtures/1/invoices/inv-0044.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0044.png",
       "ground_truth_anomaly": "duplicate-invoice-number",
       "extraction": {
         "parsed": true,
@@ -1019,8 +1019,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 1154
+        "cost_usd": 0.00037,
+        "latency_ms": 1159
       },
       "reconciliation": {
         "status": "flagged",
@@ -1032,7 +1032,7 @@
     },
     {
       "file_id": "inv-0045",
-      "pdf_path": "data/fixtures/1/invoices/inv-0045.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0045.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1043,8 +1043,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 666
+        "cost_usd": 0.00037,
+        "latency_ms": 664
       },
       "reconciliation": {
         "status": "clean",
@@ -1054,7 +1054,7 @@
     },
     {
       "file_id": "inv-0046",
-      "pdf_path": "data/fixtures/1/invoices/inv-0046.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0046.png",
       "ground_truth_anomaly": "math-mismatch-tax",
       "extraction": {
         "parsed": true,
@@ -1065,7 +1065,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 727
       },
       "reconciliation": {
@@ -1078,7 +1078,7 @@
     },
     {
       "file_id": "inv-0047",
-      "pdf_path": "data/fixtures/1/invoices/inv-0047.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0047.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1089,8 +1089,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1360
+        "cost_usd": 0.00037,
+        "latency_ms": 1359
       },
       "reconciliation": {
         "status": "clean",
@@ -1100,7 +1100,7 @@
     },
     {
       "file_id": "inv-0048",
-      "pdf_path": "data/fixtures/1/invoices/inv-0048.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0048.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1111,8 +1111,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1128
+        "cost_usd": 0.00037,
+        "latency_ms": 1127
       },
       "reconciliation": {
         "status": "clean",
@@ -1122,7 +1122,7 @@
     },
     {
       "file_id": "inv-0049",
-      "pdf_path": "data/fixtures/1/invoices/inv-0049.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0049.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1133,8 +1133,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 1112
+        "cost_usd": 0.00037,
+        "latency_ms": 1111
       },
       "reconciliation": {
         "status": "clean",
@@ -1144,7 +1144,7 @@
     },
     {
       "file_id": "inv-0050",
-      "pdf_path": "data/fixtures/1/invoices/inv-0050.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0050.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1155,8 +1155,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1270
+        "cost_usd": 0.00037,
+        "latency_ms": 1271
       },
       "reconciliation": {
         "status": "clean",
@@ -1166,7 +1166,7 @@
     },
     {
       "file_id": "inv-0051",
-      "pdf_path": "data/fixtures/1/invoices/inv-0051.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0051.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1177,7 +1177,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1016
       },
       "reconciliation": {
@@ -1188,7 +1188,7 @@
     },
     {
       "file_id": "inv-0052",
-      "pdf_path": "data/fixtures/1/invoices/inv-0052.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0052.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1199,8 +1199,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 967
+        "cost_usd": 0.00037,
+        "latency_ms": 965
       },
       "reconciliation": {
         "status": "clean",
@@ -1210,7 +1210,7 @@
     },
     {
       "file_id": "inv-0053",
-      "pdf_path": "data/fixtures/1/invoices/inv-0053.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0053.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1221,8 +1221,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 1384
+        "cost_usd": 0.00037,
+        "latency_ms": 1385
       },
       "reconciliation": {
         "status": "clean",
@@ -1232,7 +1232,7 @@
     },
     {
       "file_id": "inv-0054",
-      "pdf_path": "data/fixtures/1/invoices/inv-0054.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0054.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1243,8 +1243,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 1278
+        "cost_usd": 0.00037,
+        "latency_ms": 1279
       },
       "reconciliation": {
         "status": "clean",
@@ -1254,7 +1254,7 @@
     },
     {
       "file_id": "inv-0055",
-      "pdf_path": "data/fixtures/1/invoices/inv-0055.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0055.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1265,7 +1265,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 939
       },
       "reconciliation": {
@@ -1276,7 +1276,7 @@
     },
     {
       "file_id": "inv-0056",
-      "pdf_path": "data/fixtures/1/invoices/inv-0056.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0056.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1287,7 +1287,7 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1067
       },
       "reconciliation": {
@@ -1298,7 +1298,7 @@
     },
     {
       "file_id": "inv-0057",
-      "pdf_path": "data/fixtures/1/invoices/inv-0057.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0057.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1309,8 +1309,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1242
+        "cost_usd": 0.00037,
+        "latency_ms": 1237
       },
       "reconciliation": {
         "status": "clean",
@@ -1320,7 +1320,7 @@
     },
     {
       "file_id": "inv-0058",
-      "pdf_path": "data/fixtures/1/invoices/inv-0058.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0058.png",
       "ground_truth_anomaly": "duplicate-invoice-number",
       "extraction": {
         "parsed": true,
@@ -1331,7 +1331,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 970
       },
       "reconciliation": {
@@ -1344,7 +1344,7 @@
     },
     {
       "file_id": "inv-0059",
-      "pdf_path": "data/fixtures/1/invoices/inv-0059.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0059.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1355,8 +1355,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 641
+        "cost_usd": 0.00037,
+        "latency_ms": 640
       },
       "reconciliation": {
         "status": "clean",
@@ -1366,7 +1366,7 @@
     },
     {
       "file_id": "inv-0060",
-      "pdf_path": "data/fixtures/1/invoices/inv-0060.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0060.png",
       "ground_truth_anomaly": "math-mismatch-subtotal",
       "extraction": {
         "parsed": true,
@@ -1377,8 +1377,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 1117
+        "cost_usd": 0.00037,
+        "latency_ms": 1118
       },
       "reconciliation": {
         "status": "flagged",
@@ -1391,7 +1391,7 @@
     },
     {
       "file_id": "inv-0061",
-      "pdf_path": "data/fixtures/1/invoices/inv-0061.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0061.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1402,8 +1402,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 1139
+        "cost_usd": 0.00037,
+        "latency_ms": 1138
       },
       "reconciliation": {
         "status": "clean",
@@ -1413,7 +1413,7 @@
     },
     {
       "file_id": "inv-0062",
-      "pdf_path": "data/fixtures/1/invoices/inv-0062.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0062.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1424,7 +1424,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 908
       },
       "reconciliation": {
@@ -1435,7 +1435,7 @@
     },
     {
       "file_id": "inv-0063",
-      "pdf_path": "data/fixtures/1/invoices/inv-0063.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0063.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1446,8 +1446,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 819
+        "cost_usd": 0.00037,
+        "latency_ms": 818
       },
       "reconciliation": {
         "status": "clean",
@@ -1457,7 +1457,7 @@
     },
     {
       "file_id": "inv-0064",
-      "pdf_path": "data/fixtures/1/invoices/inv-0064.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0064.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1468,8 +1468,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 580
+        "cost_usd": 0.00037,
+        "latency_ms": 578
       },
       "reconciliation": {
         "status": "clean",
@@ -1479,7 +1479,7 @@
     },
     {
       "file_id": "inv-0065",
-      "pdf_path": "data/fixtures/1/invoices/inv-0065.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0065.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1490,7 +1490,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1331
       },
       "reconciliation": {
@@ -1501,7 +1501,7 @@
     },
     {
       "file_id": "inv-0066",
-      "pdf_path": "data/fixtures/1/invoices/inv-0066.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0066.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1512,8 +1512,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 930
+        "cost_usd": 0.00037,
+        "latency_ms": 931
       },
       "reconciliation": {
         "status": "clean",
@@ -1523,7 +1523,7 @@
     },
     {
       "file_id": "inv-0067",
-      "pdf_path": "data/fixtures/1/invoices/inv-0067.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0067.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1534,7 +1534,7 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 608
       },
       "reconciliation": {
@@ -1545,7 +1545,7 @@
     },
     {
       "file_id": "inv-0068",
-      "pdf_path": "data/fixtures/1/invoices/inv-0068.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0068.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1556,7 +1556,7 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1034
       },
       "reconciliation": {
@@ -1567,7 +1567,7 @@
     },
     {
       "file_id": "inv-0069",
-      "pdf_path": "data/fixtures/1/invoices/inv-0069.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0069.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1578,7 +1578,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1067
       },
       "reconciliation": {
@@ -1589,7 +1589,7 @@
     },
     {
       "file_id": "inv-0070",
-      "pdf_path": "data/fixtures/1/invoices/inv-0070.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0070.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1600,8 +1600,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 449
+        "cost_usd": 0.00037,
+        "latency_ms": 447
       },
       "reconciliation": {
         "status": "clean",
@@ -1611,7 +1611,7 @@
     },
     {
       "file_id": "inv-0071",
-      "pdf_path": "data/fixtures/1/invoices/inv-0071.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0071.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1622,8 +1622,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 1146
+        "cost_usd": 0.00037,
+        "latency_ms": 1173
       },
       "reconciliation": {
         "status": "clean",
@@ -1633,7 +1633,7 @@
     },
     {
       "file_id": "inv-0072",
-      "pdf_path": "data/fixtures/1/invoices/inv-0072.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0072.png",
       "ground_truth_anomaly": "math-mismatch-tax",
       "extraction": {
         "parsed": false,
@@ -1644,8 +1644,8 @@
         "line_item_recall": 0,
         "line_item_correct": 0,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1264
+        "cost_usd": 0.00037,
+        "latency_ms": 1497
       },
       "reconciliation": {
         "status": "flagged",
@@ -1657,7 +1657,7 @@
     },
     {
       "file_id": "inv-0073",
-      "pdf_path": "data/fixtures/1/invoices/inv-0073.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0073.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1668,8 +1668,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 596
+        "cost_usd": 0.00037,
+        "latency_ms": 594
       },
       "reconciliation": {
         "status": "clean",
@@ -1679,7 +1679,7 @@
     },
     {
       "file_id": "inv-0074",
-      "pdf_path": "data/fixtures/1/invoices/inv-0074.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0074.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1690,8 +1690,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1243
+        "cost_usd": 0.00037,
+        "latency_ms": 1242
       },
       "reconciliation": {
         "status": "clean",
@@ -1701,7 +1701,7 @@
     },
     {
       "file_id": "inv-0075",
-      "pdf_path": "data/fixtures/1/invoices/inv-0075.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0075.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1712,8 +1712,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 607
+        "cost_usd": 0.00037,
+        "latency_ms": 605
       },
       "reconciliation": {
         "status": "clean",
@@ -1723,7 +1723,7 @@
     },
     {
       "file_id": "inv-0076",
-      "pdf_path": "data/fixtures/1/invoices/inv-0076.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0076.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1734,7 +1734,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 953
       },
       "reconciliation": {
@@ -1745,7 +1745,7 @@
     },
     {
       "file_id": "inv-0077",
-      "pdf_path": "data/fixtures/1/invoices/inv-0077.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0077.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1756,7 +1756,7 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1184
       },
       "reconciliation": {
@@ -1767,7 +1767,7 @@
     },
     {
       "file_id": "inv-0078",
-      "pdf_path": "data/fixtures/1/invoices/inv-0078.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0078.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1778,7 +1778,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 530
       },
       "reconciliation": {
@@ -1789,7 +1789,7 @@
     },
     {
       "file_id": "inv-0079",
-      "pdf_path": "data/fixtures/1/invoices/inv-0079.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0079.png",
       "ground_truth_anomaly": "math-mismatch-tax",
       "extraction": {
         "parsed": false,
@@ -1800,8 +1800,8 @@
         "line_item_recall": 0,
         "line_item_correct": 0,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 462
+        "cost_usd": 0.00037,
+        "latency_ms": 528
       },
       "reconciliation": {
         "status": "flagged",
@@ -1813,7 +1813,7 @@
     },
     {
       "file_id": "inv-0080",
-      "pdf_path": "data/fixtures/1/invoices/inv-0080.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0080.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1824,7 +1824,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 613
       },
       "reconciliation": {
@@ -1835,7 +1835,7 @@
     },
     {
       "file_id": "inv-0081",
-      "pdf_path": "data/fixtures/1/invoices/inv-0081.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0081.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -1846,8 +1846,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 638
+        "cost_usd": 0.00037,
+        "latency_ms": 640
       },
       "reconciliation": {
         "status": "flagged",
@@ -1859,7 +1859,7 @@
     },
     {
       "file_id": "inv-0082",
-      "pdf_path": "data/fixtures/1/invoices/inv-0082.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0082.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1870,8 +1870,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 723
+        "cost_usd": 0.00037,
+        "latency_ms": 727
       },
       "reconciliation": {
         "status": "clean",
@@ -1881,7 +1881,7 @@
     },
     {
       "file_id": "inv-0083",
-      "pdf_path": "data/fixtures/1/invoices/inv-0083.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0083.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1892,8 +1892,8 @@
         "line_item_recall": 0.8,
         "line_item_correct": 4,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 1102
+        "cost_usd": 0.00037,
+        "latency_ms": 1208
       },
       "reconciliation": {
         "status": "flagged",
@@ -1905,7 +1905,7 @@
     },
     {
       "file_id": "inv-0084",
-      "pdf_path": "data/fixtures/1/invoices/inv-0084.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0084.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1916,8 +1916,8 @@
         "line_item_recall": 0.8333333333333334,
         "line_item_correct": 5,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 752
+        "cost_usd": 0.00037,
+        "latency_ms": 796
       },
       "reconciliation": {
         "status": "flagged",
@@ -1929,7 +1929,7 @@
     },
     {
       "file_id": "inv-0085",
-      "pdf_path": "data/fixtures/1/invoices/inv-0085.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0085.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1940,7 +1940,7 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1172
       },
       "reconciliation": {
@@ -1951,7 +1951,7 @@
     },
     {
       "file_id": "inv-0086",
-      "pdf_path": "data/fixtures/1/invoices/inv-0086.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0086.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1962,7 +1962,7 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1282
       },
       "reconciliation": {
@@ -1973,7 +1973,7 @@
     },
     {
       "file_id": "inv-0087",
-      "pdf_path": "data/fixtures/1/invoices/inv-0087.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0087.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -1984,7 +1984,7 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 441
       },
       "reconciliation": {
@@ -1995,7 +1995,7 @@
     },
     {
       "file_id": "inv-0088",
-      "pdf_path": "data/fixtures/1/invoices/inv-0088.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0088.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2006,7 +2006,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 870
       },
       "reconciliation": {
@@ -2017,7 +2017,7 @@
     },
     {
       "file_id": "inv-0089",
-      "pdf_path": "data/fixtures/1/invoices/inv-0089.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0089.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2028,8 +2028,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 715
+        "cost_usd": 0.00037,
+        "latency_ms": 717
       },
       "reconciliation": {
         "status": "clean",
@@ -2039,7 +2039,7 @@
     },
     {
       "file_id": "inv-0090",
-      "pdf_path": "data/fixtures/1/invoices/inv-0090.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0090.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2050,8 +2050,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 1186
+        "cost_usd": 0.00037,
+        "latency_ms": 1185
       },
       "reconciliation": {
         "status": "clean",
@@ -2061,7 +2061,7 @@
     },
     {
       "file_id": "inv-0091",
-      "pdf_path": "data/fixtures/1/invoices/inv-0091.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0091.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2072,8 +2072,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 943
+        "cost_usd": 0.00037,
+        "latency_ms": 942
       },
       "reconciliation": {
         "status": "clean",
@@ -2083,7 +2083,7 @@
     },
     {
       "file_id": "inv-0092",
-      "pdf_path": "data/fixtures/1/invoices/inv-0092.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0092.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2094,7 +2094,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1161
       },
       "reconciliation": {
@@ -2105,7 +2105,7 @@
     },
     {
       "file_id": "inv-0093",
-      "pdf_path": "data/fixtures/1/invoices/inv-0093.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0093.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2116,8 +2116,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 945
+        "cost_usd": 0.00037,
+        "latency_ms": 944
       },
       "reconciliation": {
         "status": "clean",
@@ -2127,7 +2127,7 @@
     },
     {
       "file_id": "inv-0094",
-      "pdf_path": "data/fixtures/1/invoices/inv-0094.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0094.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2138,7 +2138,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 496
       },
       "reconciliation": {
@@ -2149,7 +2149,7 @@
     },
     {
       "file_id": "inv-0095",
-      "pdf_path": "data/fixtures/1/invoices/inv-0095.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0095.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2160,7 +2160,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1162
       },
       "reconciliation": {
@@ -2171,7 +2171,7 @@
     },
     {
       "file_id": "inv-0096",
-      "pdf_path": "data/fixtures/1/invoices/inv-0096.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0096.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2182,8 +2182,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 471
+        "cost_usd": 0.00037,
+        "latency_ms": 469
       },
       "reconciliation": {
         "status": "clean",
@@ -2193,7 +2193,7 @@
     },
     {
       "file_id": "inv-0097",
-      "pdf_path": "data/fixtures/1/invoices/inv-0097.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0097.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2204,7 +2204,7 @@
         "line_item_recall": 0.6666666666666666,
         "line_item_correct": 2,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 897
       },
       "reconciliation": {
@@ -2217,7 +2217,7 @@
     },
     {
       "file_id": "inv-0098",
-      "pdf_path": "data/fixtures/1/invoices/inv-0098.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0098.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2228,7 +2228,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 471
       },
       "reconciliation": {
@@ -2239,7 +2239,7 @@
     },
     {
       "file_id": "inv-0099",
-      "pdf_path": "data/fixtures/1/invoices/inv-0099.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0099.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2250,8 +2250,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 1030
+        "cost_usd": 0.00037,
+        "latency_ms": 1032
       },
       "reconciliation": {
         "status": "clean",
@@ -2261,7 +2261,7 @@
     },
     {
       "file_id": "inv-0100",
-      "pdf_path": "data/fixtures/1/invoices/inv-0100.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0100.png",
       "ground_truth_anomaly": "duplicate-invoice-number",
       "extraction": {
         "parsed": true,
@@ -2272,8 +2272,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 1035
+        "cost_usd": 0.00037,
+        "latency_ms": 1036
       },
       "reconciliation": {
         "status": "flagged",
@@ -2285,7 +2285,7 @@
     },
     {
       "file_id": "inv-0101",
-      "pdf_path": "data/fixtures/1/invoices/inv-0101.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0101.png",
       "ground_truth_anomaly": "multi-page-layout",
       "extraction": {
         "parsed": true,
@@ -2296,18 +2296,20 @@
         "line_item_recall": 0.5714285714285714,
         "line_item_correct": 8,
         "line_item_total": 14,
-        "cost_usd": 0.0102,
-        "latency_ms": 1247
+        "cost_usd": 0.00037,
+        "latency_ms": 1246
       },
       "reconciliation": {
-        "status": "clean",
-        "flags": [],
+        "status": "flagged",
+        "flags": [
+          "multi_page_layout"
+        ],
         "expected_flag": "multi_page_layout"
       }
     },
     {
       "file_id": "inv-0102",
-      "pdf_path": "data/fixtures/1/invoices/inv-0102.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0102.png",
       "ground_truth_anomaly": "math-mismatch-tax",
       "extraction": {
         "parsed": true,
@@ -2318,8 +2320,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 1131
+        "cost_usd": 0.00037,
+        "latency_ms": 1130
       },
       "reconciliation": {
         "status": "flagged",
@@ -2331,7 +2333,7 @@
     },
     {
       "file_id": "inv-0103",
-      "pdf_path": "data/fixtures/1/invoices/inv-0103.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0103.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2342,8 +2344,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1264
+        "cost_usd": 0.00037,
+        "latency_ms": 1263
       },
       "reconciliation": {
         "status": "clean",
@@ -2353,7 +2355,7 @@
     },
     {
       "file_id": "inv-0104",
-      "pdf_path": "data/fixtures/1/invoices/inv-0104.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0104.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2364,8 +2366,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1179
+        "cost_usd": 0.00037,
+        "latency_ms": 1176
       },
       "reconciliation": {
         "status": "clean",
@@ -2375,7 +2377,7 @@
     },
     {
       "file_id": "inv-0105",
-      "pdf_path": "data/fixtures/1/invoices/inv-0105.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0105.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2386,8 +2388,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 1064
+        "cost_usd": 0.00037,
+        "latency_ms": 1063
       },
       "reconciliation": {
         "status": "clean",
@@ -2397,7 +2399,7 @@
     },
     {
       "file_id": "inv-0106",
-      "pdf_path": "data/fixtures/1/invoices/inv-0106.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0106.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2408,8 +2410,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 1338
+        "cost_usd": 0.00037,
+        "latency_ms": 1336
       },
       "reconciliation": {
         "status": "clean",
@@ -2419,7 +2421,7 @@
     },
     {
       "file_id": "inv-0107",
-      "pdf_path": "data/fixtures/1/invoices/inv-0107.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0107.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2430,8 +2432,8 @@
         "line_item_recall": 0.6666666666666666,
         "line_item_correct": 2,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1062
+        "cost_usd": 0.00037,
+        "latency_ms": 1061
       },
       "reconciliation": {
         "status": "flagged",
@@ -2443,7 +2445,7 @@
     },
     {
       "file_id": "inv-0108",
-      "pdf_path": "data/fixtures/1/invoices/inv-0108.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0108.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2454,7 +2456,7 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1344
       },
       "reconciliation": {
@@ -2465,7 +2467,7 @@
     },
     {
       "file_id": "inv-0109",
-      "pdf_path": "data/fixtures/1/invoices/inv-0109.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0109.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2476,8 +2478,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1235
+        "cost_usd": 0.00037,
+        "latency_ms": 1239
       },
       "reconciliation": {
         "status": "clean",
@@ -2487,7 +2489,7 @@
     },
     {
       "file_id": "inv-0110",
-      "pdf_path": "data/fixtures/1/invoices/inv-0110.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0110.png",
       "ground_truth_anomaly": "math-mismatch-subtotal",
       "extraction": {
         "parsed": true,
@@ -2498,7 +2500,7 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1165
       },
       "reconciliation": {
@@ -2512,7 +2514,7 @@
     },
     {
       "file_id": "inv-0111",
-      "pdf_path": "data/fixtures/1/invoices/inv-0111.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0111.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2523,8 +2525,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 496
+        "cost_usd": 0.00037,
+        "latency_ms": 495
       },
       "reconciliation": {
         "status": "clean",
@@ -2534,7 +2536,7 @@
     },
     {
       "file_id": "inv-0112",
-      "pdf_path": "data/fixtures/1/invoices/inv-0112.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0112.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2545,8 +2547,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1249
+        "cost_usd": 0.00037,
+        "latency_ms": 1254
       },
       "reconciliation": {
         "status": "clean",
@@ -2556,7 +2558,7 @@
     },
     {
       "file_id": "inv-0113",
-      "pdf_path": "data/fixtures/1/invoices/inv-0113.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0113.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2567,8 +2569,8 @@
         "line_item_recall": 0.6666666666666666,
         "line_item_correct": 2,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1377
+        "cost_usd": 0.00037,
+        "latency_ms": 1381
       },
       "reconciliation": {
         "status": "flagged",
@@ -2580,7 +2582,7 @@
     },
     {
       "file_id": "inv-0114",
-      "pdf_path": "data/fixtures/1/invoices/inv-0114.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0114.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2591,7 +2593,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 607
       },
       "reconciliation": {
@@ -2602,7 +2604,7 @@
     },
     {
       "file_id": "inv-0115",
-      "pdf_path": "data/fixtures/1/invoices/inv-0115.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0115.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2613,7 +2615,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 581
       },
       "reconciliation": {
@@ -2624,7 +2626,7 @@
     },
     {
       "file_id": "inv-0116",
-      "pdf_path": "data/fixtures/1/invoices/inv-0116.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0116.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2635,7 +2637,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 409
       },
       "reconciliation": {
@@ -2646,7 +2648,7 @@
     },
     {
       "file_id": "inv-0117",
-      "pdf_path": "data/fixtures/1/invoices/inv-0117.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0117.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -2657,8 +2659,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 943
+        "cost_usd": 0.00037,
+        "latency_ms": 942
       },
       "reconciliation": {
         "status": "flagged",
@@ -2670,7 +2672,7 @@
     },
     {
       "file_id": "inv-0118",
-      "pdf_path": "data/fixtures/1/invoices/inv-0118.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0118.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2681,8 +2683,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 855
+        "cost_usd": 0.00037,
+        "latency_ms": 854
       },
       "reconciliation": {
         "status": "clean",
@@ -2692,7 +2694,7 @@
     },
     {
       "file_id": "inv-0119",
-      "pdf_path": "data/fixtures/1/invoices/inv-0119.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0119.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2703,8 +2705,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 1012
+        "cost_usd": 0.00037,
+        "latency_ms": 1013
       },
       "reconciliation": {
         "status": "clean",
@@ -2714,7 +2716,7 @@
     },
     {
       "file_id": "inv-0120",
-      "pdf_path": "data/fixtures/1/invoices/inv-0120.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0120.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2725,8 +2727,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 650
+        "cost_usd": 0.00037,
+        "latency_ms": 651
       },
       "reconciliation": {
         "status": "clean",
@@ -2736,7 +2738,7 @@
     },
     {
       "file_id": "inv-0121",
-      "pdf_path": "data/fixtures/1/invoices/inv-0121.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0121.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2747,7 +2749,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 425
       },
       "reconciliation": {
@@ -2758,7 +2760,7 @@
     },
     {
       "file_id": "inv-0122",
-      "pdf_path": "data/fixtures/1/invoices/inv-0122.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0122.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2769,8 +2771,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 965
+        "cost_usd": 0.00037,
+        "latency_ms": 964
       },
       "reconciliation": {
         "status": "clean",
@@ -2780,7 +2782,7 @@
     },
     {
       "file_id": "inv-0123",
-      "pdf_path": "data/fixtures/1/invoices/inv-0123.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0123.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2791,8 +2793,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 972
+        "cost_usd": 0.00037,
+        "latency_ms": 971
       },
       "reconciliation": {
         "status": "clean",
@@ -2802,7 +2804,7 @@
     },
     {
       "file_id": "inv-0124",
-      "pdf_path": "data/fixtures/1/invoices/inv-0124.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0124.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -2813,7 +2815,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 898
       },
       "reconciliation": {
@@ -2826,7 +2828,7 @@
     },
     {
       "file_id": "inv-0125",
-      "pdf_path": "data/fixtures/1/invoices/inv-0125.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0125.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2837,8 +2839,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 797
+        "cost_usd": 0.00037,
+        "latency_ms": 802
       },
       "reconciliation": {
         "status": "clean",
@@ -2848,7 +2850,7 @@
     },
     {
       "file_id": "inv-0126",
-      "pdf_path": "data/fixtures/1/invoices/inv-0126.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0126.png",
       "ground_truth_anomaly": "duplicate-invoice-number",
       "extraction": {
         "parsed": true,
@@ -2859,7 +2861,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 382
       },
       "reconciliation": {
@@ -2872,7 +2874,7 @@
     },
     {
       "file_id": "inv-0127",
-      "pdf_path": "data/fixtures/1/invoices/inv-0127.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0127.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2883,8 +2885,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 579
+        "cost_usd": 0.00037,
+        "latency_ms": 578
       },
       "reconciliation": {
         "status": "clean",
@@ -2894,7 +2896,7 @@
     },
     {
       "file_id": "inv-0128",
-      "pdf_path": "data/fixtures/1/invoices/inv-0128.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0128.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2905,8 +2907,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1336
+        "cost_usd": 0.00037,
+        "latency_ms": 1335
       },
       "reconciliation": {
         "status": "clean",
@@ -2916,7 +2918,7 @@
     },
     {
       "file_id": "inv-0129",
-      "pdf_path": "data/fixtures/1/invoices/inv-0129.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0129.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2927,8 +2929,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 434
+        "cost_usd": 0.00037,
+        "latency_ms": 433
       },
       "reconciliation": {
         "status": "clean",
@@ -2938,7 +2940,7 @@
     },
     {
       "file_id": "inv-0130",
-      "pdf_path": "data/fixtures/1/invoices/inv-0130.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0130.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -2949,7 +2951,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 439
       },
       "reconciliation": {
@@ -2960,7 +2962,7 @@
     },
     {
       "file_id": "inv-0131",
-      "pdf_path": "data/fixtures/1/invoices/inv-0131.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0131.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -2971,8 +2973,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 680
+        "cost_usd": 0.00037,
+        "latency_ms": 677
       },
       "reconciliation": {
         "status": "flagged",
@@ -2984,7 +2986,7 @@
     },
     {
       "file_id": "inv-0132",
-      "pdf_path": "data/fixtures/1/invoices/inv-0132.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0132.png",
       "ground_truth_anomaly": "missing-due-date",
       "extraction": {
         "parsed": true,
@@ -2995,8 +2997,8 @@
         "line_item_recall": 0.75,
         "line_item_correct": 3,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 825
+        "cost_usd": 0.00037,
+        "latency_ms": 827
       },
       "reconciliation": {
         "status": "flagged",
@@ -3009,7 +3011,7 @@
     },
     {
       "file_id": "inv-0133",
-      "pdf_path": "data/fixtures/1/invoices/inv-0133.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0133.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3020,7 +3022,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 380
       },
       "reconciliation": {
@@ -3031,7 +3033,7 @@
     },
     {
       "file_id": "inv-0134",
-      "pdf_path": "data/fixtures/1/invoices/inv-0134.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0134.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3042,8 +3044,8 @@
         "line_item_recall": 0.6666666666666666,
         "line_item_correct": 2,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 623
+        "cost_usd": 0.00037,
+        "latency_ms": 625
       },
       "reconciliation": {
         "status": "flagged",
@@ -3055,7 +3057,7 @@
     },
     {
       "file_id": "inv-0135",
-      "pdf_path": "data/fixtures/1/invoices/inv-0135.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0135.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3066,8 +3068,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 601
+        "cost_usd": 0.00037,
+        "latency_ms": 602
       },
       "reconciliation": {
         "status": "clean",
@@ -3077,7 +3079,7 @@
     },
     {
       "file_id": "inv-0136",
-      "pdf_path": "data/fixtures/1/invoices/inv-0136.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0136.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3088,8 +3090,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 468
+        "cost_usd": 0.00037,
+        "latency_ms": 469
       },
       "reconciliation": {
         "status": "clean",
@@ -3099,7 +3101,7 @@
     },
     {
       "file_id": "inv-0137",
-      "pdf_path": "data/fixtures/1/invoices/inv-0137.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0137.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3110,8 +3112,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 820
+        "cost_usd": 0.00037,
+        "latency_ms": 822
       },
       "reconciliation": {
         "status": "clean",
@@ -3121,7 +3123,7 @@
     },
     {
       "file_id": "inv-0138",
-      "pdf_path": "data/fixtures/1/invoices/inv-0138.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0138.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3132,8 +3134,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 367
+        "cost_usd": 0.00037,
+        "latency_ms": 366
       },
       "reconciliation": {
         "status": "clean",
@@ -3143,7 +3145,7 @@
     },
     {
       "file_id": "inv-0139",
-      "pdf_path": "data/fixtures/1/invoices/inv-0139.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0139.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3154,7 +3156,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 481
       },
       "reconciliation": {
@@ -3165,7 +3167,7 @@
     },
     {
       "file_id": "inv-0140",
-      "pdf_path": "data/fixtures/1/invoices/inv-0140.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0140.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3176,8 +3178,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 922
+        "cost_usd": 0.00037,
+        "latency_ms": 921
       },
       "reconciliation": {
         "status": "clean",
@@ -3187,7 +3189,7 @@
     },
     {
       "file_id": "inv-0141",
-      "pdf_path": "data/fixtures/1/invoices/inv-0141.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0141.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3198,8 +3200,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 883
+        "cost_usd": 0.00037,
+        "latency_ms": 880
       },
       "reconciliation": {
         "status": "clean",
@@ -3209,7 +3211,7 @@
     },
     {
       "file_id": "inv-0142",
-      "pdf_path": "data/fixtures/1/invoices/inv-0142.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0142.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3220,8 +3222,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1192
+        "cost_usd": 0.00037,
+        "latency_ms": 1191
       },
       "reconciliation": {
         "status": "clean",
@@ -3231,7 +3233,7 @@
     },
     {
       "file_id": "inv-0143",
-      "pdf_path": "data/fixtures/1/invoices/inv-0143.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0143.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3242,8 +3244,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 817
+        "cost_usd": 0.00037,
+        "latency_ms": 815
       },
       "reconciliation": {
         "status": "clean",
@@ -3253,7 +3255,7 @@
     },
     {
       "file_id": "inv-0144",
-      "pdf_path": "data/fixtures/1/invoices/inv-0144.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0144.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3264,7 +3266,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1162
       },
       "reconciliation": {
@@ -3275,7 +3277,7 @@
     },
     {
       "file_id": "inv-0145",
-      "pdf_path": "data/fixtures/1/invoices/inv-0145.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0145.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3286,7 +3288,7 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1278
       },
       "reconciliation": {
@@ -3297,7 +3299,7 @@
     },
     {
       "file_id": "inv-0146",
-      "pdf_path": "data/fixtures/1/invoices/inv-0146.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0146.png",
       "ground_truth_anomaly": "math-mismatch-tax",
       "extraction": {
         "parsed": true,
@@ -3308,8 +3310,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1004
+        "cost_usd": 0.00037,
+        "latency_ms": 1009
       },
       "reconciliation": {
         "status": "flagged",
@@ -3321,7 +3323,7 @@
     },
     {
       "file_id": "inv-0147",
-      "pdf_path": "data/fixtures/1/invoices/inv-0147.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0147.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3332,8 +3334,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 405
+        "cost_usd": 0.00037,
+        "latency_ms": 403
       },
       "reconciliation": {
         "status": "clean",
@@ -3343,7 +3345,7 @@
     },
     {
       "file_id": "inv-0148",
-      "pdf_path": "data/fixtures/1/invoices/inv-0148.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0148.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3354,8 +3356,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1154
+        "cost_usd": 0.00037,
+        "latency_ms": 1152
       },
       "reconciliation": {
         "status": "clean",
@@ -3365,7 +3367,7 @@
     },
     {
       "file_id": "inv-0149",
-      "pdf_path": "data/fixtures/1/invoices/inv-0149.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0149.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3376,8 +3378,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 526
+        "cost_usd": 0.00037,
+        "latency_ms": 525
       },
       "reconciliation": {
         "status": "clean",
@@ -3387,7 +3389,7 @@
     },
     {
       "file_id": "inv-0150",
-      "pdf_path": "data/fixtures/1/invoices/inv-0150.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0150.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3398,8 +3400,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 564
+        "cost_usd": 0.00037,
+        "latency_ms": 565
       },
       "reconciliation": {
         "status": "clean",
@@ -3409,7 +3411,7 @@
     },
     {
       "file_id": "inv-0151",
-      "pdf_path": "data/fixtures/1/invoices/inv-0151.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0151.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3420,7 +3422,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1177
       },
       "reconciliation": {
@@ -3431,7 +3433,7 @@
     },
     {
       "file_id": "inv-0152",
-      "pdf_path": "data/fixtures/1/invoices/inv-0152.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0152.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3442,7 +3444,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 712
       },
       "reconciliation": {
@@ -3453,7 +3455,7 @@
     },
     {
       "file_id": "inv-0153",
-      "pdf_path": "data/fixtures/1/invoices/inv-0153.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0153.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3464,8 +3466,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 497
+        "cost_usd": 0.00037,
+        "latency_ms": 495
       },
       "reconciliation": {
         "status": "clean",
@@ -3475,7 +3477,7 @@
     },
     {
       "file_id": "inv-0154",
-      "pdf_path": "data/fixtures/1/invoices/inv-0154.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0154.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3486,7 +3488,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 444
       },
       "reconciliation": {
@@ -3497,7 +3499,7 @@
     },
     {
       "file_id": "inv-0155",
-      "pdf_path": "data/fixtures/1/invoices/inv-0155.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0155.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3508,8 +3510,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 962
+        "cost_usd": 0.00037,
+        "latency_ms": 963
       },
       "reconciliation": {
         "status": "clean",
@@ -3519,7 +3521,7 @@
     },
     {
       "file_id": "inv-0156",
-      "pdf_path": "data/fixtures/1/invoices/inv-0156.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0156.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3530,8 +3532,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 459
+        "cost_usd": 0.00037,
+        "latency_ms": 458
       },
       "reconciliation": {
         "status": "clean",
@@ -3541,7 +3543,7 @@
     },
     {
       "file_id": "inv-0157",
-      "pdf_path": "data/fixtures/1/invoices/inv-0157.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0157.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3552,8 +3554,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 1274
+        "cost_usd": 0.00037,
+        "latency_ms": 1273
       },
       "reconciliation": {
         "status": "clean",
@@ -3563,7 +3565,7 @@
     },
     {
       "file_id": "inv-0158",
-      "pdf_path": "data/fixtures/1/invoices/inv-0158.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0158.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3574,8 +3576,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1373
+        "cost_usd": 0.00037,
+        "latency_ms": 1377
       },
       "reconciliation": {
         "status": "clean",
@@ -3585,7 +3587,7 @@
     },
     {
       "file_id": "inv-0159",
-      "pdf_path": "data/fixtures/1/invoices/inv-0159.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0159.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3596,8 +3598,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 393
+        "cost_usd": 0.00037,
+        "latency_ms": 391
       },
       "reconciliation": {
         "status": "clean",
@@ -3607,7 +3609,7 @@
     },
     {
       "file_id": "inv-0160",
-      "pdf_path": "data/fixtures/1/invoices/inv-0160.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0160.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3618,8 +3620,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 523
+        "cost_usd": 0.00037,
+        "latency_ms": 520
       },
       "reconciliation": {
         "status": "clean",
@@ -3629,7 +3631,7 @@
     },
     {
       "file_id": "inv-0161",
-      "pdf_path": "data/fixtures/1/invoices/inv-0161.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0161.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3640,8 +3642,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 844
+        "cost_usd": 0.00037,
+        "latency_ms": 843
       },
       "reconciliation": {
         "status": "clean",
@@ -3651,7 +3653,7 @@
     },
     {
       "file_id": "inv-0162",
-      "pdf_path": "data/fixtures/1/invoices/inv-0162.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0162.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3662,8 +3664,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 879
+        "cost_usd": 0.00037,
+        "latency_ms": 874
       },
       "reconciliation": {
         "status": "clean",
@@ -3673,7 +3675,7 @@
     },
     {
       "file_id": "inv-0163",
-      "pdf_path": "data/fixtures/1/invoices/inv-0163.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0163.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3684,8 +3686,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 775
+        "cost_usd": 0.00037,
+        "latency_ms": 774
       },
       "reconciliation": {
         "status": "clean",
@@ -3695,7 +3697,7 @@
     },
     {
       "file_id": "inv-0164",
-      "pdf_path": "data/fixtures/1/invoices/inv-0164.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0164.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3706,8 +3708,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 752
+        "cost_usd": 0.00037,
+        "latency_ms": 751
       },
       "reconciliation": {
         "status": "clean",
@@ -3717,7 +3719,7 @@
     },
     {
       "file_id": "inv-0165",
-      "pdf_path": "data/fixtures/1/invoices/inv-0165.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0165.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3728,8 +3730,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 1147
+        "cost_usd": 0.00037,
+        "latency_ms": 1144
       },
       "reconciliation": {
         "status": "clean",
@@ -3739,7 +3741,7 @@
     },
     {
       "file_id": "inv-0166",
-      "pdf_path": "data/fixtures/1/invoices/inv-0166.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0166.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3750,8 +3752,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1033
+        "cost_usd": 0.00037,
+        "latency_ms": 1032
       },
       "reconciliation": {
         "status": "clean",
@@ -3761,7 +3763,7 @@
     },
     {
       "file_id": "inv-0167",
-      "pdf_path": "data/fixtures/1/invoices/inv-0167.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0167.png",
       "ground_truth_anomaly": "duplicate-invoice-number",
       "extraction": {
         "parsed": true,
@@ -3772,8 +3774,8 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
-        "latency_ms": 861
+        "cost_usd": 0.00037,
+        "latency_ms": 859
       },
       "reconciliation": {
         "status": "flagged",
@@ -3785,7 +3787,7 @@
     },
     {
       "file_id": "inv-0168",
-      "pdf_path": "data/fixtures/1/invoices/inv-0168.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0168.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3796,8 +3798,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 719
+        "cost_usd": 0.00037,
+        "latency_ms": 716
       },
       "reconciliation": {
         "status": "clean",
@@ -3807,7 +3809,7 @@
     },
     {
       "file_id": "inv-0169",
-      "pdf_path": "data/fixtures/1/invoices/inv-0169.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0169.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3818,8 +3820,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1031
+        "cost_usd": 0.00037,
+        "latency_ms": 1030
       },
       "reconciliation": {
         "status": "clean",
@@ -3829,7 +3831,7 @@
     },
     {
       "file_id": "inv-0170",
-      "pdf_path": "data/fixtures/1/invoices/inv-0170.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0170.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3840,7 +3842,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 473
       },
       "reconciliation": {
@@ -3851,7 +3853,7 @@
     },
     {
       "file_id": "inv-0171",
-      "pdf_path": "data/fixtures/1/invoices/inv-0171.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0171.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3862,8 +3864,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 763
+        "cost_usd": 0.00037,
+        "latency_ms": 762
       },
       "reconciliation": {
         "status": "clean",
@@ -3873,7 +3875,7 @@
     },
     {
       "file_id": "inv-0172",
-      "pdf_path": "data/fixtures/1/invoices/inv-0172.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0172.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3884,7 +3886,7 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1355
       },
       "reconciliation": {
@@ -3895,7 +3897,7 @@
     },
     {
       "file_id": "inv-0173",
-      "pdf_path": "data/fixtures/1/invoices/inv-0173.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0173.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3906,8 +3908,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1355
+        "cost_usd": 0.00037,
+        "latency_ms": 1354
       },
       "reconciliation": {
         "status": "clean",
@@ -3917,7 +3919,7 @@
     },
     {
       "file_id": "inv-0174",
-      "pdf_path": "data/fixtures/1/invoices/inv-0174.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0174.png",
       "ground_truth_anomaly": "math-mismatch-subtotal",
       "extraction": {
         "parsed": true,
@@ -3928,7 +3930,7 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 825
       },
       "reconciliation": {
@@ -3942,7 +3944,7 @@
     },
     {
       "file_id": "inv-0175",
-      "pdf_path": "data/fixtures/1/invoices/inv-0175.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0175.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3953,7 +3955,7 @@
         "line_item_recall": 0.75,
         "line_item_correct": 3,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 991
       },
       "reconciliation": {
@@ -3966,7 +3968,7 @@
     },
     {
       "file_id": "inv-0176",
-      "pdf_path": "data/fixtures/1/invoices/inv-0176.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0176.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3977,8 +3979,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 1005
+        "cost_usd": 0.00037,
+        "latency_ms": 1003
       },
       "reconciliation": {
         "status": "clean",
@@ -3988,7 +3990,7 @@
     },
     {
       "file_id": "inv-0177",
-      "pdf_path": "data/fixtures/1/invoices/inv-0177.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0177.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -3999,8 +4001,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 570
+        "cost_usd": 0.00037,
+        "latency_ms": 568
       },
       "reconciliation": {
         "status": "clean",
@@ -4010,7 +4012,7 @@
     },
     {
       "file_id": "inv-0178",
-      "pdf_path": "data/fixtures/1/invoices/inv-0178.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0178.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4021,7 +4023,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1137
       },
       "reconciliation": {
@@ -4032,7 +4034,7 @@
     },
     {
       "file_id": "inv-0179",
-      "pdf_path": "data/fixtures/1/invoices/inv-0179.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0179.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4043,7 +4045,7 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 695
       },
       "reconciliation": {
@@ -4054,7 +4056,7 @@
     },
     {
       "file_id": "inv-0180",
-      "pdf_path": "data/fixtures/1/invoices/inv-0180.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0180.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4065,8 +4067,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 774
+        "cost_usd": 0.00037,
+        "latency_ms": 773
       },
       "reconciliation": {
         "status": "clean",
@@ -4076,7 +4078,7 @@
     },
     {
       "file_id": "inv-0181",
-      "pdf_path": "data/fixtures/1/invoices/inv-0181.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0181.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4087,8 +4089,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 834
+        "cost_usd": 0.00037,
+        "latency_ms": 841
       },
       "reconciliation": {
         "status": "clean",
@@ -4098,7 +4100,7 @@
     },
     {
       "file_id": "inv-0182",
-      "pdf_path": "data/fixtures/1/invoices/inv-0182.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0182.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4109,8 +4111,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 395
+        "cost_usd": 0.00037,
+        "latency_ms": 394
       },
       "reconciliation": {
         "status": "clean",
@@ -4120,7 +4122,7 @@
     },
     {
       "file_id": "inv-0183",
-      "pdf_path": "data/fixtures/1/invoices/inv-0183.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0183.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4131,7 +4133,7 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 510
       },
       "reconciliation": {
@@ -4142,7 +4144,7 @@
     },
     {
       "file_id": "inv-0184",
-      "pdf_path": "data/fixtures/1/invoices/inv-0184.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0184.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4153,7 +4155,7 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 1327
       },
       "reconciliation": {
@@ -4164,7 +4166,7 @@
     },
     {
       "file_id": "inv-0185",
-      "pdf_path": "data/fixtures/1/invoices/inv-0185.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0185.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4175,8 +4177,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 390
+        "cost_usd": 0.00037,
+        "latency_ms": 389
       },
       "reconciliation": {
         "status": "clean",
@@ -4186,7 +4188,7 @@
     },
     {
       "file_id": "inv-0186",
-      "pdf_path": "data/fixtures/1/invoices/inv-0186.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0186.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4197,8 +4199,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 547
+        "cost_usd": 0.00037,
+        "latency_ms": 544
       },
       "reconciliation": {
         "status": "clean",
@@ -4208,7 +4210,7 @@
     },
     {
       "file_id": "inv-0187",
-      "pdf_path": "data/fixtures/1/invoices/inv-0187.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0187.png",
       "ground_truth_anomaly": "multi-page-layout",
       "extraction": {
         "parsed": true,
@@ -4219,18 +4221,20 @@
         "line_item_recall": 0.5,
         "line_item_correct": 7,
         "line_item_total": 14,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 356
       },
       "reconciliation": {
-        "status": "clean",
-        "flags": [],
+        "status": "flagged",
+        "flags": [
+          "multi_page_layout"
+        ],
         "expected_flag": "multi_page_layout"
       }
     },
     {
       "file_id": "inv-0188",
-      "pdf_path": "data/fixtures/1/invoices/inv-0188.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0188.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4241,8 +4245,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 748
+        "cost_usd": 0.00037,
+        "latency_ms": 747
       },
       "reconciliation": {
         "status": "clean",
@@ -4252,7 +4256,7 @@
     },
     {
       "file_id": "inv-0189",
-      "pdf_path": "data/fixtures/1/invoices/inv-0189.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0189.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4263,7 +4267,7 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 583
       },
       "reconciliation": {
@@ -4274,7 +4278,7 @@
     },
     {
       "file_id": "inv-0190",
-      "pdf_path": "data/fixtures/1/invoices/inv-0190.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0190.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4285,8 +4289,8 @@
         "line_item_recall": 1,
         "line_item_correct": 5,
         "line_item_total": 5,
-        "cost_usd": 0.0102,
-        "latency_ms": 639
+        "cost_usd": 0.00037,
+        "latency_ms": 638
       },
       "reconciliation": {
         "status": "clean",
@@ -4296,7 +4300,7 @@
     },
     {
       "file_id": "inv-0191",
-      "pdf_path": "data/fixtures/1/invoices/inv-0191.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0191.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4307,8 +4311,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 855
+        "cost_usd": 0.00037,
+        "latency_ms": 853
       },
       "reconciliation": {
         "status": "clean",
@@ -4318,7 +4322,7 @@
     },
     {
       "file_id": "inv-0192",
-      "pdf_path": "data/fixtures/1/invoices/inv-0192.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0192.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4329,8 +4333,8 @@
         "line_item_recall": 1,
         "line_item_correct": 4,
         "line_item_total": 4,
-        "cost_usd": 0.0102,
-        "latency_ms": 1236
+        "cost_usd": 0.00037,
+        "latency_ms": 1235
       },
       "reconciliation": {
         "status": "clean",
@@ -4340,7 +4344,7 @@
     },
     {
       "file_id": "inv-0193",
-      "pdf_path": "data/fixtures/1/invoices/inv-0193.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0193.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4351,8 +4355,8 @@
         "line_item_recall": 1,
         "line_item_correct": 7,
         "line_item_total": 7,
-        "cost_usd": 0.0102,
-        "latency_ms": 1012
+        "cost_usd": 0.00037,
+        "latency_ms": 1011
       },
       "reconciliation": {
         "status": "clean",
@@ -4362,7 +4366,7 @@
     },
     {
       "file_id": "inv-0194",
-      "pdf_path": "data/fixtures/1/invoices/inv-0194.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0194.png",
       "ground_truth_anomaly": "duplicate-invoice-number",
       "extraction": {
         "parsed": true,
@@ -4373,8 +4377,8 @@
         "line_item_recall": 1,
         "line_item_correct": 6,
         "line_item_total": 6,
-        "cost_usd": 0.0102,
-        "latency_ms": 1154
+        "cost_usd": 0.00037,
+        "latency_ms": 1152
       },
       "reconciliation": {
         "status": "flagged",
@@ -4386,7 +4390,7 @@
     },
     {
       "file_id": "inv-0195",
-      "pdf_path": "data/fixtures/1/invoices/inv-0195.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0195.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4397,8 +4401,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 1205
+        "cost_usd": 0.00037,
+        "latency_ms": 1202
       },
       "reconciliation": {
         "status": "clean",
@@ -4408,7 +4412,7 @@
     },
     {
       "file_id": "inv-0196",
-      "pdf_path": "data/fixtures/1/invoices/inv-0196.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0196.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4419,8 +4423,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 1048
+        "cost_usd": 0.00037,
+        "latency_ms": 1046
       },
       "reconciliation": {
         "status": "clean",
@@ -4430,7 +4434,7 @@
     },
     {
       "file_id": "inv-0197",
-      "pdf_path": "data/fixtures/1/invoices/inv-0197.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0197.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4441,8 +4445,8 @@
         "line_item_recall": 1,
         "line_item_correct": 1,
         "line_item_total": 1,
-        "cost_usd": 0.0102,
-        "latency_ms": 1124
+        "cost_usd": 0.00037,
+        "latency_ms": 1122
       },
       "reconciliation": {
         "status": "clean",
@@ -4452,7 +4456,7 @@
     },
     {
       "file_id": "inv-0198",
-      "pdf_path": "data/fixtures/1/invoices/inv-0198.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0198.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4463,8 +4467,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 1033
+        "cost_usd": 0.00037,
+        "latency_ms": 1032
       },
       "reconciliation": {
         "status": "clean",
@@ -4474,7 +4478,7 @@
     },
     {
       "file_id": "inv-0199",
-      "pdf_path": "data/fixtures/1/invoices/inv-0199.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0199.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4485,7 +4489,7 @@
         "line_item_recall": 1,
         "line_item_correct": 2,
         "line_item_total": 2,
-        "cost_usd": 0.0102,
+        "cost_usd": 0.00037,
         "latency_ms": 664
       },
       "reconciliation": {
@@ -4496,7 +4500,7 @@
     },
     {
       "file_id": "inv-0200",
-      "pdf_path": "data/fixtures/1/invoices/inv-0200.pdf",
+      "image_path": "data/fixtures/1/invoices/inv-0200.png",
       "ground_truth_anomaly": "none",
       "extraction": {
         "parsed": true,
@@ -4507,8 +4511,8 @@
         "line_item_recall": 1,
         "line_item_correct": 3,
         "line_item_total": 3,
-        "cost_usd": 0.0102,
-        "latency_ms": 779
+        "cost_usd": 0.00037,
+        "latency_ms": 778
       },
       "reconciliation": {
         "status": "clean",

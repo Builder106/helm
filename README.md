@@ -3,19 +3,20 @@
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg" type="image/svg+xml">
   <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
-  <img alt="Helm — Claude + MCP co-pilot for small-business operations. Four back-office workflows, measured cost and accuracy." src="assets/banner-dark.svg">
+  <img alt="Helm — Llama 4 + MCP co-pilot for small-business operations. Four back-office workflows, measured cost and accuracy." src="assets/banner-dark.svg">
 </picture>
 
 [![CI](https://github.com/Builder106/Helm/actions/workflows/deploy.yml/badge.svg)](https://github.com/Builder106/Helm/actions/workflows/deploy.yml)
 [![Live demo](https://img.shields.io/badge/demo-live-success.svg)](https://helm-ops.vercel.app)
 [![Node](https://img.shields.io/badge/Node-22%2B-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react&logoColor=white)](https://react.dev/)
-[![Claude](https://img.shields.io/badge/Claude-Sonnet%204.6%20%2F%20Opus%204.7-D97757.svg)](https://www.anthropic.com/claude)
+[![Llama 4](https://img.shields.io/badge/Llama%204%20Scout-vision-0467DF.svg?logo=meta&logoColor=white)](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)
+[![Groq](https://img.shields.io/badge/Groq-OpenAI%20compat-F55036.svg)](https://groq.com/)
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-0A0A0A.svg)](https://modelcontextprotocol.io/)
 [![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20pgvector-3ECF8E.svg?logo=supabase&logoColor=white)](https://supabase.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 
-> **Helm is a Claude + MCP executive co-pilot for small-and-mid-market business operations.** Four back-office workflows — AP-invoice OCR, creator-payout reconciliation, Tier-1 customer-service responses, and cross-company KPI Q&A — running end-to-end with measured cost and accuracy per task. The dashboard is the demo.
+> **Helm is a Llama 4 + MCP executive co-pilot for small-and-mid-market business operations.** Four back-office workflows — AP-invoice OCR, creator-payout reconciliation, Tier-1 customer-service responses, and cross-company KPI Q&A — running end-to-end with measured cost and accuracy per task. The dashboard is the demo.
 
 **Live dashboard:** _coming online — see the [scope contract](docs/scope.md) for what ships in v1._
 
@@ -25,9 +26,9 @@
 
 ## What this is
 
-Helm is a portfolio project: a working sketch of what an AI/automation team would actually build inside a growing SMB. The Handshake postings that motivated it — Smart Circle International, FHI Heat, Source Creative — all describe the same shape of work: a Claude-powered layer that sits between human operators and their messy stack of business systems, runs the repetitive parts, and surfaces decisions for humans. Helm is that layer, built against synthetic stand-ins for the systems and measured against hand-labeled ground truth.
+Helm is a portfolio project: a working sketch of what an AI/automation team would actually build inside a growing SMB. The Handshake postings that motivated it — Smart Circle International, FHI Heat, Source Creative — all describe the same shape of work: an LLM-powered layer that sits between human operators and their messy stack of business systems, runs the repetitive parts, and surfaces decisions for humans. Helm is that layer, built against synthetic stand-ins for the systems and measured against hand-labeled ground truth.
 
-The lane is **agent/automation**, not applied ML. There is no novel model here. The engineering contribution is the orchestration — four MCP servers, a Claude-vision OCR pipeline, a prompt-cached policy reasoner, and a citation-grounded executive Q&A path — and the per-workflow cost/accuracy measurement that lets the README make a defensible claim.
+The lane is **agent/automation**, not applied ML. There is no novel model here. The engineering contribution is the orchestration — four MCP servers, a Llama-vision OCR pipeline, a policy reasoner, and a citation-grounded executive Q&A path — and the per-workflow cost/accuracy measurement that lets the README make a defensible claim. The model is Llama 4 Scout served via Groq's OpenAI-compatible API; the extractor interface is provider-agnostic so a Claude or any other implementation can sit alongside.
 
 ## How it works
 
@@ -37,7 +38,7 @@ sequenceDiagram
     participant U as User
     participant D as Dashboard (React + Chart.js)
     participant API as API (Node + Express)
-    participant C as Claude (Sonnet 4.6 / Opus 4.7)
+    participant L as Llama 4 Scout (via Groq)
     participant MCP as MCP servers
     participant DB as Postgres (Supabase)
 
@@ -45,8 +46,9 @@ sequenceDiagram
     Note over U,DB: AP Invoice OCR
     U->>D: Drop invoice PDFs
     D->>API: POST /api/ap/ingest
-    API->>C: vision call (extract structured fields)
-    C-->>API: invoice JSON
+    API->>API: render PDF → PNG
+    API->>L: vision call (extract structured fields)
+    L-->>API: invoice JSON
     API->>API: Zod schema + math reconciliation
     API->>DB: insert ap_invoices, flag anomalies
     API-->>D: live activity log
@@ -56,8 +58,8 @@ sequenceDiagram
     Note over U,DB: Creator Payout Reconciler
     U->>D: Upload orders CSV + policy.md
     D->>API: POST /api/payouts/run
-    API->>C: cached policy + creator rows
-    C-->>API: payout breakdown
+    API->>L: policy + creator rows
+    L-->>API: payout breakdown
     API->>API: deterministic re-compute, flag diffs
     API-->>D: payouts.csv + discrepancies.md
     end
@@ -67,8 +69,8 @@ sequenceDiagram
     U->>D: Inbound message arrives
     D->>API: POST /api/cs/draft
     API->>DB: pgvector retrieve KB passages
-    API->>C: message + KB → reply + confidence
-    C-->>API: structured response
+    API->>L: message + KB → reply + confidence
+    L-->>API: structured response
     API-->>D: auto-send / review / escalate
     end
 
@@ -76,14 +78,14 @@ sequenceDiagram
     Note over U,DB: Cross-Company KPI Q&A
     U->>D: Ask a question
     D->>API: POST /api/kpi/ask
-    API->>C: question + MCP tool catalog
+    API->>L: question + MCP tool catalog
     loop one or more
-        C->>MCP: tool call (ERP / CRM / AP / channel)
+        L->>MCP: tool call (ERP / CRM / AP / channel)
         MCP->>DB: query rows
         DB-->>MCP: rows
-        MCP-->>C: tool result
+        MCP-->>L: tool result
     end
-    C-->>API: answer with citations
+    L-->>API: answer with grounded citations
     API-->>D: grounded answer, click to source row
     end
 ```
@@ -94,10 +96,10 @@ Each panel of the dashboard maps to one sub-feature, and each sub-feature ships 
 
 | Sub-feature | Stack | Measurement |
 |---|---|---|
-| **AP Invoice OCR** | Claude vision, Zod, Postgres | Line-item accuracy on 200-invoice holdout, USD/invoice, p50/p95 latency |
-| **Creator Payout Reconciler** | Claude with prompt-cached policy, deterministic re-computer | Exact-match rate vs. hand-computed ground truth on 50-creator fixture |
-| **Tier-1 CS Responder** | pgvector retrieval, Claude structured output, confidence gating | Auto-response rate, precision; escalation recall |
-| **Cross-Company KPI Q&A** | Anthropic Citations API, four custom MCP servers | Citation accuracy, tool-routing precision on a 10-question battery |
+| **AP Invoice OCR** | Llama 4 Scout vision, Zod, Postgres | Line-item accuracy on 200-invoice holdout, USD/invoice, p50/p95 latency |
+| **Creator Payout Reconciler** | Llama 4 + a programmatic re-computer | Exact-match rate vs. hand-computed ground truth on 50-creator fixture |
+| **Tier-1 CS Responder** | pgvector retrieval, Llama structured output, confidence gating | Auto-response rate, precision; escalation recall |
+| **Cross-Company KPI Q&A** | Llama tool-use, four custom MCP servers | Citation accuracy, tool-routing precision on a 10-question battery |
 
 ## Architecture
 
@@ -112,6 +114,7 @@ Helm/
 │   └── channel/
 ├── data/
 │   ├── generators/   Seed-driven synthetic-data generators
+│   ├── render-png/   Playwright-driven HTML → PNG renderer for invoices
 │   ├── fixtures/     Versioned generated fixtures with labels
 │   └── measurements/ Reproducibility scripts for every README number
 ├── e2e/          Playwright + playwright-bdd: QA suite + demo-recording suite
@@ -120,7 +123,7 @@ Helm/
 └── .github/workflows/  CI + deploy
 ```
 
-The deeper architectural notes — when to use Sonnet vs. Opus, the MCP-server protocol Helm uses, the prompt-cache layout for each path — live in [`docs/architecture.md`](docs/architecture.md) as those decisions land.
+The deeper architectural notes — the model-routing decisions, the MCP-server protocol Helm uses, the prompt layout for each path — live in [`docs/architecture.md`](docs/architecture.md) as those decisions land.
 
 ## Why this exists
 
@@ -130,7 +133,17 @@ This is a portfolio piece, not a product. The synthetic data is synthetic; the w
 
 ## Running it locally
 
-_Setup instructions land alongside the first working sub-feature. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for dev-environment requirements and the conventions this repo follows._
+```bash
+pnpm install
+pnpm exec playwright install chromium    # first run only
+cp .env.example .env                     # add GROQ_API_KEY (free tier exists)
+pnpm data:generate --seed 1              # generators
+pnpm data:render-png --seed 1            # HTML → PNG, ~17s
+pnpm measure:invoice-ocr --seed 1        # full pipeline against the mock extractor
+pnpm measure:invoice-ocr --seed 1 --extractor groq   # against real Llama vision
+```
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the longer dev-environment story.
 
 ## Demos
 
@@ -142,7 +155,7 @@ _Recorded walkthroughs land here once the dashboard renders end-to-end. The reco
 |---|---|
 | Scaffold | ✅ |
 | Synthetic-data generators (seed=1 committed) | ✅ |
-| Sub-feature 1 — AP Invoice OCR | 🟡 mock pipeline runnable end-to-end; real-Claude extractor pending |
+| Sub-feature 1 — AP Invoice OCR | 🟡 mock + Groq Llama-vision extractor wired; real measurement pending API key |
 | Sub-feature 2 — Creator Payout Reconciler | ⬜ |
 | Sub-feature 3 — Tier-1 CS Responder | ⬜ |
 | Sub-feature 4 — Cross-Company KPI Q&A | ⬜ |

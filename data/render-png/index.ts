@@ -1,11 +1,13 @@
-// Render invoice HTML fixtures to PDFs using Playwright. Run after
-// `pnpm data:generate` and before any OCR pass that wants PDFs.
+// Render invoice HTML fixtures to PNGs using Playwright. Run after
+// `pnpm data:generate` and before any OCR pass that wants images.
 //
-//   pnpm data:render-pdf --seed 1
+//   pnpm data:render-png --seed 1
 //
 // Each invoice HTML in data/fixtures/<seed>/invoices/inv-*.html gets
-// a sibling .pdf written alongside it. Multi-page anomalies render
-// across two pages automatically via Chromium's print-to-PDF rules.
+// a sibling .png written alongside it. Long line-item lists (the
+// multi-page-layout anomaly) render as a single tall PNG via
+// `fullPage: true` — the vision model still has to find the totals
+// at the bottom.
 
 import { parseArgs } from 'node:util';
 import { readdir, readFile } from 'node:fs/promises';
@@ -27,7 +29,7 @@ async function main(): Promise<void> {
   const concurrency = Math.max(1, Number(values.concurrency));
 
   const entries = (await readdir(invoicesDir)).filter((f) => f.endsWith('.html'));
-  console.log(`[helm:render-pdf] seed=${seed} files=${entries.length} concurrency=${concurrency}`);
+  console.log(`[helm:render-png] seed=${seed} files=${entries.length} concurrency=${concurrency}`);
 
   const browser = await chromium.launch();
   const start = Date.now();
@@ -36,7 +38,10 @@ async function main(): Promise<void> {
   let done = 0;
 
   async function worker(): Promise<void> {
-    const context = await browser.newContext();
+    const context = await browser.newContext({
+      viewport: { width: 1024, height: 1320 },
+      deviceScaleFactor: 2,
+    });
     const page = await context.newPage();
     try {
       while (true) {
@@ -44,18 +49,17 @@ async function main(): Promise<void> {
         if (idx >= entries.length) return;
         const file = entries[idx]!;
         const htmlPath = join(invoicesDir, file);
-        const pdfPath = htmlPath.replace(/\.html$/, '.pdf');
+        const pngPath = htmlPath.replace(/\.html$/, '.png');
         const html = await readFile(htmlPath, 'utf8');
         await page.setContent(html, { waitUntil: 'load' });
-        await page.pdf({
-          path: pdfPath,
-          format: 'Letter',
-          printBackground: true,
-          margin: { top: '0.4in', bottom: '0.4in', left: '0.4in', right: '0.4in' },
+        await page.screenshot({
+          path: pngPath,
+          fullPage: true,
+          type: 'png',
         });
         done++;
         if (done % 25 === 0) {
-          console.log(`[helm:render-pdf] ${done}/${entries.length}`);
+          console.log(`[helm:render-png] ${done}/${entries.length}`);
         }
       }
     } finally {
@@ -68,10 +72,10 @@ async function main(): Promise<void> {
   await browser.close();
 
   const elapsed = ((Date.now() - start) / 1000).toFixed(1);
-  console.log(`[helm:render-pdf] done. ${entries.length} PDFs in ${elapsed}s`);
+  console.log(`[helm:render-png] done. ${entries.length} PNGs in ${elapsed}s`);
 }
 
 main().catch((err) => {
-  console.error('[helm:render-pdf] failed:', err);
+  console.error('[helm:render-png] failed:', err);
   process.exitCode = 1;
 });

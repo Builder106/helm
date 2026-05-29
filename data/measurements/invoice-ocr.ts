@@ -1,11 +1,11 @@
 // End-to-end measurement for the AP Invoice OCR sub-feature.
 //
-//   pnpm measure:invoice-ocr --seed 1
+//   pnpm measure:invoice-ocr --seed 1 [--extractor=mock|groq] [--limit=N]
 //
-// Walks the seed=N fixture, runs each invoice through the OCR pipeline
-// (mock by default, real Claude when --extractor=claude), reconciles the
-// extracted JSON, and produces a structured report under
-// data/measurements/output/seed-N/invoice-ocr/.
+// Walks the seed=N fixture's PNG renders, runs each through the OCR
+// pipeline (mock by default, Llama 4 Scout via Groq when
+// --extractor=groq), reconciles the extracted JSON, and writes a
+// structured report under data/measurements/output/seed-N/invoice-ocr/.
 //
 // The report's `headline` block is what the README banner finding
 // quotes — every number there must be reproducible by re-running this
@@ -18,15 +18,15 @@ import {
   createMockExtractor,
   loadLabels,
   type Extractor,
-  type ExtractionResult,
 } from '../../back/src/ap/extraction.js';
+import { createGroqLlamaExtractor } from '../../back/src/ap/extraction-groq.js';
 import { reconcile, type ReconciliationFlag, type ReconciliationResult } from '../../back/src/ap/reconcile.js';
 import type { InvoiceLabel, InvoiceAnomaly } from '../generators/invoices/types.js';
 import type { ExtractedInvoice } from '../../back/src/ap/schema.js';
 
 type PerInvoiceRecord = {
   file_id: string;
-  pdf_path: string;
+  image_path: string;
   ground_truth_anomaly: InvoiceAnomaly;
   extraction: {
     parsed: boolean;
@@ -74,41 +74,41 @@ async function main(): Promise<void> {
   const limit = values.limit ? Number(values.limit) : null;
 
   const labels = await loadLabels(fixtureDir);
-  const pdfFiles = (await readdir(fixtureDir))
-    .filter((f) => f.endsWith('.pdf'))
+  const imageFiles = (await readdir(fixtureDir))
+    .filter((f) => f.endsWith('.png'))
     .sort();
-  const pdfPaths = (limit ? pdfFiles.slice(0, limit) : pdfFiles).map((f) => join(fixtureDir, f));
+  const imagePaths = (limit ? imageFiles.slice(0, limit) : imageFiles).map((f) => join(fixtureDir, f));
 
-  if (pdfPaths.length === 0) {
-    console.error(`[helm:measure] no PDFs found in ${fixtureDir} — run \`pnpm data:render-pdf --seed ${seed}\` first.`);
+  if (imagePaths.length === 0) {
+    console.error(`[helm:measure] no PNGs found in ${fixtureDir} — run \`pnpm data:render-png --seed ${seed}\` first.`);
     process.exitCode = 1;
     return;
   }
 
   const extractor = await buildExtractor(values.extractor!, labels, seed);
-  console.log(`[helm:measure] seed=${seed} extractor=${values.extractor} invoices=${pdfPaths.length}`);
+  console.log(`[helm:measure] seed=${seed} extractor=${values.extractor} invoices=${imagePaths.length}`);
 
   const records: PerInvoiceRecord[] = [];
   const seenInvoiceNumbers = new Set<string>();
   const startWall = Date.now();
 
-  for (const pdfPath of pdfPaths) {
-    const fileId = basename(pdfPath, '.pdf');
+  for (const imagePath of imagePaths) {
+    const fileId = basename(imagePath, '.png');
     const label = labels.get(fileId)!;
-    const result = await extractor(pdfPath);
+    const result = await extractor(imagePath);
 
     let recordRecon: ReconciliationResult;
     let fieldAccuracy = 0;
     let fieldCorrect = 0;
     let fieldTotal = 0;
     let lineItemCorrect = 0;
-    let lineItemTotal = label.lineItems.length;
+    const lineItemTotal = label.lineItems.length;
 
     if (result.invoice) {
-      const pageCount = await countPdfPages(pdfPath);
+      const isMultiPage = await isLikelyMultiPage(imagePath);
       recordRecon = reconcile(result.invoice, {
         seenInvoiceNumbers,
-        pageCount,
+        pageCount: isMultiPage ? 2 : 1,
       });
       const scored = scoreExtraction(label, result.invoice);
       fieldAccuracy = scored.accuracy;
@@ -126,7 +126,7 @@ async function main(): Promise<void> {
 
     records.push({
       file_id: fileId,
-      pdf_path: relative(process.cwd(), pdfPath),
+      image_path: relative(process.cwd(), imagePath),
       ground_truth_anomaly: label.anomaly,
       extraction: {
         parsed: result.invoice !== null,
@@ -161,7 +161,7 @@ async function main(): Promise<void> {
 
   console.log(`[helm:measure] done.`);
   console.log(`  extraction: parsed=${headline.extraction.parse_rate.toFixed(3)} field_acc=${headline.extraction.field_accuracy.toFixed(3)} line_acc=${headline.extraction.line_item_recall.toFixed(3)}`);
-  console.log(`  cost:       $${headline.cost.total_usd.toFixed(2)} total · $${headline.cost.mean_per_invoice_usd.toFixed(4)} per invoice`);
+  console.log(`  cost:       $${headline.cost.total_usd.toFixed(4)} total · $${headline.cost.mean_per_invoice_usd.toFixed(6)} per invoice`);
   console.log(`  latency:    p50=${headline.latency.p50_ms}ms p95=${headline.latency.p95_ms}ms`);
   console.log(`  reconciler: precision=${headline.reconciler.precision.toFixed(3)} recall=${headline.reconciler.recall.toFixed(3)} f1=${headline.reconciler.f1.toFixed(3)}`);
   console.log(`  output → ${outDir}`);
@@ -175,7 +175,10 @@ async function buildExtractor(
   if (kind === 'mock') {
     return createMockExtractor(labels, { seed: `${seed}:mock-extract` });
   }
-  throw new Error(`extractor=${kind} not implemented yet — only "mock" is wired in this commit`);
+  if (kind === 'groq') {
+    return createGroqLlamaExtractor();
+  }
+  throw new Error(`unknown extractor: ${kind}. Supported: mock, groq`);
 }
 
 function scoreExtraction(label: InvoiceLabel, extracted: ExtractedInvoice): {
@@ -291,8 +294,8 @@ function computeHeadline(records: readonly PerInvoiceRecord[], wallMs: number) {
       line_item_recall: round4(lineRecall),
     },
     cost: {
-      total_usd: round4(totalCost),
-      mean_per_invoice_usd: round4(meanCost),
+      total_usd: round6(totalCost),
+      mean_per_invoice_usd: round6(meanCost),
     },
     latency: {
       p50_ms: p50,
@@ -321,11 +324,14 @@ function computeHeadline(records: readonly PerInvoiceRecord[], wallMs: number) {
 function renderSummary(headline: ReturnType<typeof computeHeadline>, seed: string, extractor: string): string {
   const mockBanner =
     extractor === 'mock'
-      ? `> ⚠️ **Mock extractor.** Field accuracy, cost, and latency numbers below are derived from a controlled-noise mock of the Claude vision call, not real API output. Only the reconciler stats and labor model reflect actual pipeline logic. Run with \`--extractor claude\` for measured numbers.\n\n`
+      ? `> ⚠️ **Mock extractor.** Field accuracy, cost, and latency numbers below are derived from a controlled-noise mock of the vision call, not real API output. Only the reconciler stats and labor model reflect actual pipeline logic. Run with \`--extractor groq\` for measured numbers.\n\n`
       : '';
+  const modelLine = extractor === 'groq'
+    ? '_Model: Llama 4 Scout via Groq (meta-llama/llama-4-scout-17b-16e-instruct)._\n\n'
+    : '';
   return `# Invoice OCR — measurement (seed=${seed}, extractor=${extractor})
 
-${mockBanner}> ${headline.invoices_processed} invoices processed. Field accuracy ${(headline.extraction.field_accuracy * 100).toFixed(1)}%, line-item recall ${(headline.extraction.line_item_recall * 100).toFixed(1)}%. Mean cost $${headline.cost.mean_per_invoice_usd.toFixed(4)}/invoice. Reconciler F1 ${headline.reconciler.f1.toFixed(3)} (precision ${headline.reconciler.precision.toFixed(3)}, recall ${headline.reconciler.recall.toFixed(3)}).
+${mockBanner}${modelLine}> ${headline.invoices_processed} invoices processed. Field accuracy ${(headline.extraction.field_accuracy * 100).toFixed(1)}%, line-item recall ${(headline.extraction.line_item_recall * 100).toFixed(1)}%. Mean cost $${headline.cost.mean_per_invoice_usd.toFixed(6)}/invoice. Reconciler F1 ${headline.reconciler.f1.toFixed(3)} (precision ${headline.reconciler.precision.toFixed(3)}, recall ${headline.reconciler.recall.toFixed(3)}).
 
 ## Labor model
 
@@ -343,8 +349,8 @@ At 6 minutes/invoice manual handling × $25/hr loaded wage, this batch would cos
 
 | metric | value |
 | --- | --- |
-| mean per invoice | $${headline.cost.mean_per_invoice_usd.toFixed(4)} |
-| total | $${headline.cost.total_usd.toFixed(2)} |
+| mean per invoice | $${headline.cost.mean_per_invoice_usd.toFixed(6)} |
+| total | $${headline.cost.total_usd.toFixed(4)} |
 
 ## Latency (per-invoice end-to-end)
 
@@ -372,12 +378,12 @@ _Reproduced by_ \`pnpm measure:invoice-ocr --seed ${seed} --extractor ${extracto
 `;
 }
 
-async function countPdfPages(pdfPath: string): Promise<number> {
-  // The real number of pages requires parsing the PDF; for now use a
-  // file-size heuristic (multi-page anomaly PDFs are noticeably larger
-  // because they hold ~14 line items vs. typical ~3).
-  const s = await stat(pdfPath);
-  return s.size > 90_000 ? 2 : 1;
+async function isLikelyMultiPage(imagePath: string): Promise<boolean> {
+  // The multi-page-layout anomaly produces a noticeably taller PNG
+  // because Playwright captures fullPage. Tall files (> 200 KB at our
+  // viewport + DSR) almost always correspond to that anomaly.
+  const s = await stat(imagePath);
+  return s.size > 200_000;
 }
 
 function round2(n: number): number {
@@ -386,6 +392,10 @@ function round2(n: number): number {
 
 function round4(n: number): number {
   return Math.round(n * 10000) / 10000;
+}
+
+function round6(n: number): number {
+  return Math.round(n * 1_000_000) / 1_000_000;
 }
 
 main().catch((err) => {

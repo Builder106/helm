@@ -2,7 +2,7 @@
   "name": "helm",
   "version": "0.0.0",
   "private": true,
-  "description": "Claude + MCP executive co-pilot for small-and-mid-market business operations. Four back-office workflows, measured per task.",
+  "description": "Llama 4 (via Groq) + MCP executive co-pilot for small-and-mid-market business operations. Four back-office workflows, measured per task.",
   "license": "MIT",
   "author": "Yinka Vaughan",
   "repository": {
@@ -23,13 +23,14 @@
     "test:e2e": "playwright test --config=e2e/playwright.config.ts",
     "test:demo": "DEMO=1 playwright test --config=e2e/playwright.demo.config.ts",
     "data:generate": "tsx data/generators/index.ts",
-    "data:render-pdf": "tsx data/render-pdf/index.ts",
+    "data:render-png": "tsx data/render-png/index.ts",
     "measure": "tsx data/measurements/run-all.ts",
     "measure:invoice-ocr": "tsx data/measurements/invoice-ocr.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
     "@types/node": "^25.9.1",
+    "groq-sdk": "^1.2.1",
     "playwright-bdd": "^7.5.0",
     "prettier": "^3.4.0",
     "tsx": "^4.19.0",

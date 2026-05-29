@@ -4,18 +4,21 @@ Helm is a personal portfolio project, so the "contributor" is usually me-from-ne
 
 ## Dev environment
 
-- **Node 22+** (use `nvm use` once `.nvmrc` lands).
+- **Node 22+** (use `nvm use` to pin via `.nvmrc`).
 - **pnpm** for package management. The repo uses pnpm workspaces; npm and yarn will not produce the right `node_modules` layout.
-- **Anthropic API key** in `.env` as `ANTHROPIC_API_KEY`. See `.env.example` for the full list.
+- **Groq API key** in `.env` as `GROQ_API_KEY`. Free-tier accounts at [console.groq.com](https://console.groq.com/) issue keys instantly; the free tier is rate-limited but adequate for development and measurement runs.
 - **Supabase project** linked via the Supabase CLI for local Postgres + pgvector. The Vercel Marketplace install (`/vercel:bootstrap`) is the path of least resistance.
-- **Playwright browsers** installed via `pnpm exec playwright install --with-deps chromium`.
+- **Playwright browsers** installed via `pnpm exec playwright install chromium`.
 
 ## First-run commands
 
 ```bash
 pnpm install
-cp .env.example .env   # then fill in ANTHROPIC_API_KEY and SUPABASE_URL/KEY
-pnpm dev               # runs front + back + mcp servers concurrently
+cp .env.example .env   # then fill in GROQ_API_KEY and SUPABASE_URL/KEY
+pnpm data:generate --seed 1            # synthetic-data fixture
+pnpm data:render-png --seed 1          # HTML → PNG renders for invoice OCR
+pnpm measure:invoice-ocr --seed 1      # mock pipeline (no API spend)
+pnpm measure:invoice-ocr --seed 1 --extractor groq   # real Llama vision via Groq
 pnpm test              # unit + integration
 pnpm test:e2e          # headless Playwright QA suite
 pnpm test:demo         # narrated demo recordings (see global CLAUDE.md for the recording pipeline)
@@ -33,21 +36,23 @@ See the "Architecture" section of [`README.md`](README.md). The two non-obvious 
 ### Code
 
 - **TypeScript everywhere** in `front/`, `back/`, `mcp/`. Strict mode on. No `any` without an `// eslint-disable-next-line @typescript-eslint/no-explicit-any -- <reason>` comment.
-- **Zod for I/O boundaries.** Every Claude response that needs to be JSON is parsed through Zod. Every Express request body is parsed through Zod.
+- **Zod for I/O boundaries.** Every model response that needs to be JSON is parsed through Zod. Every Express request body is parsed through Zod.
 - **Comments only when WHY is non-obvious.** WHAT is self-evident from named identifiers. Follow the global guidance in `~/.claude/CLAUDE.md`.
 - **No file-header docblocks.** The filename and the imports tell the story.
 
-### Anthropic SDK usage
+### Llama / Groq SDK usage
 
-- **Prompt caching is mandatory** for any call where the same prompt prefix is reused across requests. The policy reasoner, the KPI Q&A tool catalog, and the KB-retrieval system prompt all qualify.
-- **Use the official `@anthropic-ai/sdk`**, not a third-party wrapper.
-- **Default to Sonnet 4.6** (`claude-sonnet-4-6`); reach for Opus 4.7 (`claude-opus-4-7`) only on the KPI Q&A path where reasoning depth matters.
-- **Every Claude call logs** input tokens, output tokens, cache hits, latency, and USD cost to a structured log. The dashboard surfaces these in the metrics panel; no measurement is allowed in the README that does not derive from this log.
+- **Use the official `groq-sdk`** (OpenAI-compatible chat completions). Don't pull in OpenRouter, LiteLLM, or other wrappers — they obscure the cost-tracking story.
+- **Default model: `meta-llama/llama-4-scout-17b-16e-instruct`** for all four sub-features. Llama 4 Maverick is the reach option for the KPI Q&A path if Scout's reasoning depth proves too shallow under real-world questions.
+- **`response_format: { type: 'json_object' }`** on every call that produces structured output. Validate the result through Zod immediately; retry once on parse failure with a "your previous response did not parse" follow-up.
+- **`temperature: 0`** for any path that is graded against a deterministic ground truth (extraction, payout reconciliation). Q&A paths can run at a low non-zero temperature if needed.
+- **Every Groq call logs** input tokens, output tokens, latency, and USD cost (computed from Groq's published pricing) to a structured log. The dashboard surfaces these in the metrics panel; no measurement is allowed in the README that does not derive from this log.
+- **The `Extractor` interface in [`back/src/ap/extraction.ts`](back/src/ap/extraction.ts) is provider-agnostic by design.** A `createClaudeExtractor` or `createOpenAIExtractor` could land alongside `createGroqLlamaExtractor` without touching the measurement script — the constructor accepts the model identity in its options.
 
 ### Commits
 
 - Imperative present tense: "add invoice OCR pipeline", not "added" or "adds".
-- **No `Co-Authored-By: Claude` trailers.** Per the user's global instruction.
+- **No `Co-Authored-By` trailers attributing work to any AI assistant.** Per the user's global instruction.
 - One concern per commit. A formatting sweep is its own commit, separate from a feature.
 
 ### Tests
@@ -64,7 +69,7 @@ To save anyone the trouble:
 - A real billing integration. Synthetic data only.
 - Slack/Teams/Discord integrations beyond the one escalation webhook.
 - Internationalization. English-only.
-- A custom-trained model. The lane is agent/automation; Claude is the model.
+- A custom-trained model. The lane is agent/automation; Llama 4 Scout is the model.
 - Mobile responsiveness beyond "doesn't break on a tablet."
 - A pricing page. This is a portfolio repo, not a startup.
 

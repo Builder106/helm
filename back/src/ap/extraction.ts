@@ -1,10 +1,11 @@
-// OCR extraction abstraction. Two implementations:
+// OCR extraction abstraction. Two implementations ship:
 //
-// - `mockExtract` reads the ground-truth label and returns it with
-//   controlled noise. Used for end-to-end pipeline development without
-//   spending API budget.
-// - `claudeExtract` calls Claude vision on the PDF. Plug-in target —
-//   lands when the user is ready to spend API for a real measurement.
+// - `createMockExtractor` reads the ground-truth label and returns it
+//   with controlled noise. Used for end-to-end pipeline development
+//   without spending API budget.
+// - `createGroqLlamaExtractor` (in ./extraction-groq.ts) calls
+//   Llama 4 Scout's vision endpoint via the Groq API on a PNG render
+//   of the invoice. Real measurement path.
 //
 // Both return the same shape: an `ExtractionResult` carrying the
 // parsed invoice, the cost in USD, the latency, and any raw response
@@ -14,26 +15,24 @@ import { readFile } from 'node:fs/promises';
 import { join, basename } from 'node:path';
 import { createRng, type Rng } from '../../../data/generators/rng.js';
 import type { InvoiceLabel } from '../../../data/generators/invoices/types.js';
-import { ExtractedInvoiceSchema, type ExtractedInvoice } from './schema.js';
+import { ExtractedInvoiceSchema } from './schema.js';
 
 export type ExtractionUsage = {
   input_tokens: number;
   output_tokens: number;
-  cache_read_tokens: number;
-  cache_creation_tokens: number;
   cost_usd: number;
 };
 
 export type ExtractionResult = {
-  pdf_path: string;
-  invoice: ExtractedInvoice | null;
+  image_path: string;
+  invoice: import('./schema.js').ExtractedInvoice | null;
   raw_response: unknown;
   usage: ExtractionUsage;
   latency_ms: number;
   parse_error: string | null;
 };
 
-export type Extractor = (pdfPath: string) => Promise<ExtractionResult>;
+export type Extractor = (imagePath: string) => Promise<ExtractionResult>;
 
 export type MockExtractorOptions = {
   seed: number | string;
@@ -50,14 +49,16 @@ export type MockExtractorOptions = {
   latencyMaxMs?: number;
 };
 
-// Pricing snapshot — Claude Sonnet 4.6 vision at announcement-time
-// rates. The mock charges these against a synthetic token count so
-// the cost-tracking machinery has something realistic to log.
+// Pricing snapshot — Llama 4 Scout via Groq (announcement-time
+// public rates: $0.11/M input, $0.34/M output). The mock charges
+// these against a synthetic token count so the cost-tracking
+// machinery has something realistic to log; the real Groq extractor
+// uses the `usage` field from the API response directly.
 const MOCK_PRICING = {
-  inputTokensPerInvoice: 1800, // pdf input
+  inputTokensPerInvoice: 2400, // image + system + prompt
   outputTokensPerInvoice: 320, // structured JSON out
-  inputCostPerMillion: 3.0,
-  outputCostPerMillion: 15.0,
+  inputCostPerMillion: 0.11,
+  outputCostPerMillion: 0.34,
 };
 
 export function createMockExtractor(
@@ -72,13 +73,13 @@ export function createMockExtractor(
   const latMin = options.latencyMinMs ?? 350;
   const latMax = options.latencyMaxMs ?? 1400;
 
-  return async (pdfPath) => {
+  return async (imagePath) => {
     const start = Date.now();
-    const fileId = basename(pdfPath, '.pdf');
+    const fileId = basename(imagePath).replace(/\.(png|jpg|jpeg|pdf)$/i, '');
     const label = labelsByFileId.get(fileId);
     if (!label) {
       return {
-        pdf_path: pdfPath,
+        image_path: imagePath,
         invoice: null,
         raw_response: { error: 'no label for fileId' },
         usage: emptyUsage(),
@@ -99,7 +100,7 @@ export function createMockExtractor(
 
     if (!parsed.success) {
       return {
-        pdf_path: pdfPath,
+        image_path: imagePath,
         invoice: null,
         raw_response: noisy,
         usage,
@@ -109,7 +110,7 @@ export function createMockExtractor(
     }
 
     return {
-      pdf_path: pdfPath,
+      image_path: imagePath,
       invoice: parsed.data,
       raw_response: noisy,
       usage,
@@ -195,9 +196,7 @@ function computeMockUsage(): ExtractionUsage {
   return {
     input_tokens: inputTokens,
     output_tokens: outputTokens,
-    cache_read_tokens: 0,
-    cache_creation_tokens: 0,
-    cost_usd: Math.round(cost * 10000) / 10000,
+    cost_usd: Math.round(cost * 100000) / 100000,
   };
 }
 
@@ -205,8 +204,6 @@ function emptyUsage(): ExtractionUsage {
   return {
     input_tokens: 0,
     output_tokens: 0,
-    cache_read_tokens: 0,
-    cache_creation_tokens: 0,
     cost_usd: 0,
   };
 }

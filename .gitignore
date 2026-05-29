@@ -50,6 +50,11 @@ data/fixtures/**/*.jpg
 data/fixtures/**/large/
 !data/fixtures/**/labels.json
 !data/fixtures/**/manifest.json
+!data/fixtures/**/*.html
+!data/fixtures/**/*.csv
+!data/fixtures/**/*.md
+!data/fixtures/**/*.jsonl
+!data/fixtures/**/*.json
 
 # Supabase local
 supabase/.temp/

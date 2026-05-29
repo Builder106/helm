@@ -14,6 +14,9 @@ importers:
       '@types/node':
         specifier: ^25.9.1
         version: 25.9.1
+      groq-sdk:
+        specifier: ^1.2.1
+        version: 1.2.1
       playwright-bdd:
         specifier: ^7.5.0
         version: 7.5.0(@cucumber/message-streams@4.1.1(@cucumber/messages@26.0.1))(@playwright/test@1.60.0)
@@ -327,6 +330,10 @@ packages:
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
+
+  groq-sdk@1.2.1:
+    resolution: {integrity: sha512-dsDSWJRJf+n2dPiCv7zU3IsJbrh7jfSPqi6vc1q0TTK1oUF6bn+wv4P2VFdynkHpuJ0TTJ57vlpT87judPgVPA==}
+    hasBin: true
 
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
@@ -711,6 +718,8 @@ snapshots:
   glob-parent@5.1.2:
     dependencies:
       is-glob: 4.0.3
+
+  groq-sdk@1.2.1: {}
 
   is-extglob@2.1.1: {}
 
