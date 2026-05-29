@@ -63,3 +63,4 @@ data/helm.db-wal
 
 # Vercel
 .vercel/
+.vercel
