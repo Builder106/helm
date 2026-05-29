@@ -63,7 +63,10 @@ export function createGroqLlamaExtractor(options: GroqExtractorOptions = {}): Ex
       '[helm:groq] GROQ_API_KEY is not set. Add it to your .env (see .env.example) before running with --extractor=groq.',
     );
   }
-  const client = new Groq({ apiKey });
+  // maxRetries=8 lets the SDK absorb Groq free-tier 429s by honoring
+  // the Retry-After header. With p50 latency ~200ms, the free-tier
+  // ~30 req/min ceiling means about half the batch needs to wait.
+  const client = new Groq({ apiKey, maxRetries: 8 });
   const model = options.model ?? DEFAULT_MODEL;
   const maxOutputTokens = options.maxOutputTokens ?? 1024;
   const temperature = options.temperature ?? 0;
