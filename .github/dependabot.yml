@@ -1,0 +1,47 @@
+# Dependabot keeps the toolchain fresh without manual PR babysitting.
+# Weekly schedule (not daily) — every Monday morning, batched into one
+# PR per ecosystem so the noise stays manageable on a solo project.
+#
+# Groq + libsql + Anthropic-adjacent libraries move fast; review the
+# changelogs before merging when the major version bumps.
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:00"
+      timezone: America/New_York
+    open-pull-requests-limit: 5
+    groups:
+      # Group related deps so a single PR carries a coherent diff.
+      playwright:
+        patterns:
+          - "@playwright/*"
+          - "playwright"
+          - "playwright-bdd"
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+      types:
+        patterns:
+          - "@types/*"
+    commit-message:
+      prefix: "deps"
+    labels:
+      - dependencies
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: "ci"
+    labels:
+      - dependencies
+      - ci

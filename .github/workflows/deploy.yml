@@ -1,0 +1,88 @@
+# CI for Helm. Gates merges on:
+#   1. typecheck (back/src + data/generators under strict TS),
+#   2. unit tests (vitest — policy reconciler, OCR reconciler, RNG),
+#   3. measurement smoke run (10-invoice mock pipeline end-to-end).
+#
+# No deploy stage yet — the dashboard front-end hasn't landed. Once
+# `front/` ships, add a `deploy` job that builds the SPA and pushes to
+# Vercel (uses the global `vercel:deploy` pattern from the user's
+# project skills).
+#
+# Concurrency: cancel an in-flight CI run when a newer commit lands on
+# the same PR — Helm's tests are cheap (~30s wall-clock) and the
+# saved minutes add up across iterations. `main` is exempt so deploys
+# can't get cancelled by overlapping merges (when deploys exist).
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  test:
+    name: typecheck · unit · smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Strict-TS typecheck covers back/src + data/generators + scripts.
+      - name: Typecheck
+        run: pnpm typecheck:data
+
+      # Vitest: deterministic-RNG, payout-policy, OCR-reconciler suites.
+      - name: Unit tests
+        run: pnpm exec vitest run --reporter=default
+
+      # Quick end-to-end smoke against a deterministic seed=1 fixture.
+      # Re-runs the synthetic-data generators to confirm they still
+      # produce the committed labels.json, then exercises the OCR
+      # pipeline against the mock extractor (no API budget spent).
+      # The full --extractor=groq run is on-demand only; CI just
+      # asserts the wiring works.
+      - name: Generators reproduce fixture
+        run: pnpm data:generate --seed 1
+
+      - name: Install Chromium for PNG render
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Render seed=1 PNGs
+        run: pnpm data:render-png --seed 1
+
+      - name: Mock OCR pipeline smoke (limit 10)
+        run: pnpm measure:invoice-ocr --seed 1 --limit 10
+
+# Notes for evolving this:
+#
+# - When front/ lands: add a `build-front` job that runs `pnpm --filter
+#   ./front build` after `test`, then a `deploy` job that pushes the
+#   built artifact to Vercel via `vercel deploy --prod --token=...`.
+# - When real-Groq measurements become part of the contract: do NOT
+#   put a Groq run in CI by default — the daily token cap will get
+#   exhausted in a busy week. Gate it behind workflow_dispatch with a
+#   `confirm: groq-burn` input, or run it weekly via schedule.
+# - When MCP servers ship: the typecheck step should expand to cover
+#   mcp/* via `pnpm typecheck` (the recursive workspace variant).

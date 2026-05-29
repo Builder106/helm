@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background — deep ocean. -->
+  <rect width="32" height="32" rx="6" fill="#0A0E1A"/>
+  <!-- Helm-wheel mark — simplified for 32x32 legibility. -->
+  <g transform="translate(16, 16)">
+    <!-- Rim -->
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#4FF8D2" stroke-width="1.6"/>
+    <!-- 4 spokes (8 is too dense at this size) -->
+    <g stroke="#4FF8D2" stroke-width="1.4" stroke-linecap="round">
+      <line x1="0" y1="-10" x2="0" y2="10"/>
+      <line x1="-10" y1="0" x2="10" y2="0"/>
+    </g>
+    <!-- Center hub -->
+    <circle cx="0" cy="0" r="2.4" fill="#4FF8D2"/>
+    <!-- 4 protruding handles -->
+    <g stroke="#4FF8D2" stroke-width="1.6" stroke-linecap="round">
+      <line x1="0" y1="-11.6" x2="0" y2="-13.4"/>
+      <line x1="0" y1="11.6"  x2="0" y2="13.4"/>
+      <line x1="-11.6" y1="0" x2="-13.4" y2="0"/>
+      <line x1="11.6" y1="0"  x2="13.4" y2="0"/>
+    </g>
+  </g>
+</svg>

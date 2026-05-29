@@ -1,0 +1,83 @@
+<!--
+Dark-mode README banner — paired with banner-light.svg.
+
+Sized at 1200x420 (~2.86:1) so it doesn't swallow the viewport on
+page load. Distinct from front/social-preview.svg, which is locked at
+1200x630 for the OG/Twitter/GitHub-repo-card sweet spot.
+
+Render to PNG with:
+    rsvg-convert -w 1200 -h 420 assets/banner-dark.svg -o assets/banner-dark.png
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420"
+     font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Inter, sans-serif">
+  <!-- Background — deep ocean. -->
+  <rect width="1200" height="420" fill="#0A0E1A"/>
+
+  <!-- Faint horizon grid (very subtle, evokes nav lines without clutter). -->
+  <g stroke="rgba(79,248,210,0.06)" stroke-width="1">
+    <line x1="0" y1="80"  x2="1200" y2="80"/>
+    <line x1="0" y1="340" x2="1200" y2="340"/>
+  </g>
+
+  <!-- Helm-wheel mark: 8-spoke wheel + four handles + center hub. -->
+  <g transform="translate(150, 210)">
+    <!-- Outer rim -->
+    <circle cx="0" cy="0" r="78" fill="none" stroke="#4FF8D2" stroke-width="5"/>
+    <!-- Inner rim -->
+    <circle cx="0" cy="0" r="62" fill="none" stroke="#4FF8D2" stroke-width="2" opacity="0.4"/>
+    <!-- 8 spokes -->
+    <g stroke="#4FF8D2" stroke-width="4" stroke-linecap="round">
+      <line x1="0" y1="-78" x2="0" y2="78"/>
+      <line x1="-78" y1="0" x2="78" y2="0"/>
+      <line x1="-55.15" y1="-55.15" x2="55.15" y2="55.15"/>
+      <line x1="-55.15" y1="55.15"  x2="55.15" y2="-55.15"/>
+    </g>
+    <!-- Center hub -->
+    <circle cx="0" cy="0" r="12" fill="#0A0E1A" stroke="#4FF8D2" stroke-width="4"/>
+    <!-- Four protruding handles (cardinal points beyond the rim) -->
+    <g stroke="#4FF8D2" stroke-width="5" stroke-linecap="round">
+      <line x1="0" y1="-82" x2="0" y2="-100"/>
+      <line x1="0" y1="82" x2="0" y2="100"/>
+      <line x1="-82" y1="0" x2="-100" y2="0"/>
+      <line x1="82" y1="0" x2="100" y2="0"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="290" y="180" fill="#FFFFFF" font-size="84" font-weight="800" letter-spacing="-0.02em">
+    Helm
+  </text>
+
+  <!-- Tagline -->
+  <text x="292" y="226" fill="#9CA3AF" font-size="21" font-weight="500">
+    Llama 4 + MCP co-pilot for small-business operations.
+  </text>
+
+  <!-- Stats / facts strip -->
+  <g font-size="11" font-weight="700" letter-spacing="0.18em">
+    <text x="292" y="296" fill="#4FF8D2">SUB-FEATURES</text>
+    <text x="292" y="324" fill="#FFFFFF" font-size="15" font-weight="600" letter-spacing="0">
+      AP-invoice OCR · Payout reconciler · Tier-1 support · KPI Q&amp;A
+    </text>
+
+    <text x="292" y="362" fill="#4FF8D2">STACK</text>
+    <text x="292" y="390" fill="#FFFFFF" font-size="15" font-weight="500" letter-spacing="0">
+      <tspan>Llama 4 Scout (Groq)</tspan>
+      <tspan dx="14" fill="#6B7280">·</tspan>
+      <tspan dx="14">MCP</tspan>
+      <tspan dx="14" fill="#6B7280">·</tspan>
+      <tspan dx="14">libsql</tspan>
+      <tspan dx="14" fill="#6B7280">·</tspan>
+      <tspan dx="14">Node + React + Chart.js</tspan>
+    </text>
+  </g>
+
+  <!-- Right-side credibility chip -->
+  <g transform="translate(1040, 70)">
+    <rect x="0" y="0" width="100" height="28" rx="14" fill="none" stroke="#4FF8D2" stroke-width="1.5"/>
+    <circle cx="14" cy="14" r="4" fill="#4FF8D2"/>
+    <text x="26" y="19" fill="#4FF8D2" font-size="12" font-weight="700" letter-spacing="0.12em">
+      MEASURED
+    </text>
+  </g>
+</svg>

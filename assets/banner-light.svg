@@ -1,0 +1,69 @@
+<!--
+Light-mode README banner — paired with banner-dark.svg. See that file
+for the rasterize command.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420"
+     font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Inter, sans-serif">
+  <!-- Background — paper / linen. -->
+  <rect width="1200" height="420" fill="#F7F8FA"/>
+
+  <!-- Faint horizon grid -->
+  <g stroke="rgba(10,14,26,0.06)" stroke-width="1">
+    <line x1="0" y1="80"  x2="1200" y2="80"/>
+    <line x1="0" y1="340" x2="1200" y2="340"/>
+  </g>
+
+  <!-- Helm-wheel mark -->
+  <g transform="translate(150, 210)">
+    <circle cx="0" cy="0" r="78" fill="none" stroke="#0A6D58" stroke-width="5"/>
+    <circle cx="0" cy="0" r="62" fill="none" stroke="#0A6D58" stroke-width="2" opacity="0.35"/>
+    <g stroke="#0A6D58" stroke-width="4" stroke-linecap="round">
+      <line x1="0" y1="-78" x2="0" y2="78"/>
+      <line x1="-78" y1="0" x2="78" y2="0"/>
+      <line x1="-55.15" y1="-55.15" x2="55.15" y2="55.15"/>
+      <line x1="-55.15" y1="55.15"  x2="55.15" y2="-55.15"/>
+    </g>
+    <circle cx="0" cy="0" r="12" fill="#F7F8FA" stroke="#0A6D58" stroke-width="4"/>
+    <g stroke="#0A6D58" stroke-width="5" stroke-linecap="round">
+      <line x1="0" y1="-82" x2="0" y2="-100"/>
+      <line x1="0" y1="82" x2="0" y2="100"/>
+      <line x1="-82" y1="0" x2="-100" y2="0"/>
+      <line x1="82" y1="0" x2="100" y2="0"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="290" y="180" fill="#0A0E1A" font-size="84" font-weight="800" letter-spacing="-0.02em">
+    Helm
+  </text>
+
+  <text x="292" y="226" fill="#4B5563" font-size="21" font-weight="500">
+    Llama 4 + MCP co-pilot for small-business operations.
+  </text>
+
+  <g font-size="11" font-weight="700" letter-spacing="0.18em">
+    <text x="292" y="296" fill="#0A6D58">SUB-FEATURES</text>
+    <text x="292" y="324" fill="#0A0E1A" font-size="15" font-weight="600" letter-spacing="0">
+      AP-invoice OCR · Payout reconciler · Tier-1 support · KPI Q&amp;A
+    </text>
+
+    <text x="292" y="362" fill="#0A6D58">STACK</text>
+    <text x="292" y="390" fill="#0A0E1A" font-size="15" font-weight="500" letter-spacing="0">
+      <tspan>Llama 4 Scout (Groq)</tspan>
+      <tspan dx="14" fill="#9CA3AF">·</tspan>
+      <tspan dx="14">MCP</tspan>
+      <tspan dx="14" fill="#9CA3AF">·</tspan>
+      <tspan dx="14">libsql</tspan>
+      <tspan dx="14" fill="#9CA3AF">·</tspan>
+      <tspan dx="14">Node + React + Chart.js</tspan>
+    </text>
+  </g>
+
+  <g transform="translate(1040, 70)">
+    <rect x="0" y="0" width="100" height="28" rx="14" fill="none" stroke="#0A6D58" stroke-width="1.5"/>
+    <circle cx="14" cy="14" r="4" fill="#0A6D58"/>
+    <text x="26" y="19" fill="#0A6D58" font-size="12" font-weight="700" letter-spacing="0.12em">
+      MEASURED
+    </text>
+  </g>
+</svg>
