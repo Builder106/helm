@@ -1,7 +1,6 @@
 // Navigator's logbook — one line per invoice processed. Each row reads
 // as an eval-harness output line, with brass chevrons (▸) separating
-// id-cluster ▸ metrics-cluster ▸ status-cluster. Tabular monospace
-// throughout so columns align across rows even without a table grid.
+// id-cluster ▸ metrics-cluster ▸ status-cluster.
 
 import { report, formatPercent, formatUsd, formatMs } from '../lib/report.ts';
 import type { ReportRecord } from '../lib/report.ts';
@@ -11,25 +10,31 @@ const recent = [...report.records].slice(-VISIBLE).reverse();
 
 export function RecentActivity() {
   return (
-    <div className="relative overflow-hidden border border-helm-rule bg-helm-panel/60 backdrop-blur">
+    <div
+      className="relative overflow-hidden border border-helm-cyan/15 backdrop-blur-md"
+      style={{
+        background:
+          'linear-gradient(180deg, rgba(125, 211, 224, 0.04) 0%, rgba(4, 27, 50, 0.7) 30%, rgba(2, 13, 29, 0.8) 100%)',
+      }}
+    >
       <CornerMarks />
 
-      <div className="flex items-end justify-between gap-6 border-b border-helm-rule px-7 py-5">
+      <div className="flex items-end justify-between gap-6 border-b border-helm-cyan/15 px-7 py-5">
         <div>
           <div className="eyebrow">log · trial run</div>
           <h3
             className="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
             style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}
           >
-            Last <span className="tabular text-helm-brass-bright">{VISIBLE}</span> entries
+            Last <span className="tabular text-helm-cyan">{VISIBLE}</span> entries
           </h3>
         </div>
-        <div className="text-right font-mono text-[10.5px] uppercase tracking-[0.18em] text-helm-vellum-faint">
+        <div className="text-right font-mono text-[10.5px] uppercase tracking-[0.18em] text-helm-cyan-dim">
           {report.records.length} total · seed {report.seed}
         </div>
       </div>
 
-      <ol className="divide-y divide-helm-rule/50">
+      <ol className="divide-y divide-helm-cyan/[0.07]">
         {recent.map((r, i) => (
           <LogLine key={r.file_id} r={r} ordinal={recent.length - i} />
         ))}
@@ -55,11 +60,11 @@ function LogLine({ r, ordinal }: { r: ReportRecord; ordinal: number }) {
 
   return (
     <li
-      className={`flex items-baseline gap-2 px-7 py-2 font-mono text-[12px] leading-snug transition-colors duration-150 hover:bg-helm-brass/5 ${
-        isFailed ? 'bg-helm-fail/[0.03]' : ''
+      className={`flex items-baseline gap-2 px-7 py-2 font-mono text-[12px] leading-snug transition-colors duration-150 hover:bg-helm-cyan/[0.05] ${
+        isFailed ? 'bg-helm-fail/[0.04]' : ''
       }`}
     >
-      <span className="tabular text-[10.5px] text-helm-vellum-faint">
+      <span className="tabular text-[10.5px] text-helm-cyan-dim">
         [{String(ordinal).padStart(3, '0')}]
       </span>
       <span className="tabular text-helm-vellum">{r.file_id}</span>
@@ -78,7 +83,7 @@ function LogLine({ r, ordinal }: { r: ReportRecord; ordinal: number }) {
       {r.ground_truth_anomaly !== 'none' ? (
         <>
           <span className="text-helm-brass">▸</span>
-          <span className="tabular text-helm-vellum-faint">
+          <span className="tabular text-helm-cyan-dim">
             anomaly:<span className="text-helm-vellum-muted">{r.ground_truth_anomaly}</span>
           </span>
         </>

@@ -1,9 +1,12 @@
 import { HelmMark } from './HelmMark.tsx';
 import { report, isMock } from '../lib/report.ts';
 
+// Top bar = sky / surface band. The surface wave layer (see SurfaceWaves
+// component) sits directly below this and visually transitions from
+// sky to water as the user begins reading.
 export function TopBar() {
   return (
-    <header className="relative z-10 flex items-center justify-between border-b border-helm-rule bg-helm-bg/85 px-8 py-4 backdrop-blur">
+    <header className="relative z-20 flex items-center justify-between border-b border-helm-cyan/15 bg-helm-surface/85 px-8 py-4 backdrop-blur">
       <div className="flex items-center gap-3.5">
         <HelmMark size={32} />
         <div className="flex flex-col leading-none">
@@ -13,8 +16,8 @@ export function TopBar() {
           >
             Helm
           </span>
-          <span className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-helm-vellum-faint">
-            sea trial · eval log
+          <span className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-helm-cyan">
+            submersible · eval dive
           </span>
         </div>
       </div>
@@ -54,11 +57,11 @@ function SignalDot({ tone }: { tone: 'pass' | 'warn' }) {
 
 function FixturePill() {
   return (
-    <span className="hidden items-center gap-2.5 border border-helm-rule bg-helm-panel/60 px-3 py-1.5 font-mono text-[10.5px] text-helm-vellum-muted md:inline-flex">
-      <span className="text-helm-vellum-faint">seed</span>
+    <span className="hidden items-center gap-2.5 border border-helm-cyan/20 bg-helm-twilight/50 px-3 py-1.5 font-mono text-[10.5px] text-helm-vellum-muted md:inline-flex">
+      <span className="text-helm-cyan-dim">seed</span>
       <span className="tabular text-helm-vellum">{report.seed}</span>
-      <span className="text-helm-vellum-faint">·</span>
-      <span className="text-helm-vellum-faint">n</span>
+      <span className="text-helm-cyan-dim">·</span>
+      <span className="text-helm-cyan-dim">n</span>
       <span className="tabular text-helm-vellum">{report.headline.invoices_processed}</span>
     </span>
   );

@@ -7,70 +7,105 @@ export function InvoiceOCRPanel() {
   const h = report.headline;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-12">
       <PanelHeader />
 
-      <section
-        className="rise grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4"
-        style={{ animationDelay: '120ms' }}
-      >
-        <MetricCard
-          index="01"
-          label="parse rate"
-          value={formatPercent(h.extraction.parse_rate)}
-          sublabel={
-            <>
-              <span className="tabular font-mono text-helm-vellum">
-                {Math.round(h.extraction.parse_rate * h.invoices_processed)}
-              </span>{' '}
-              of <span className="tabular font-mono text-helm-vellum">{h.invoices_processed}</span> invoices cleared validation.
-            </>
-          }
-          tone={h.extraction.parse_rate >= 0.95 ? 'good' : 'warn'}
-        />
-        <MetricCard
-          index="02"
-          label="field accuracy"
-          value={formatPercent(h.extraction.field_accuracy)}
-          sublabel="Exact-match across vendor, dates, totals, and every line-item field, micro-averaged."
-          tone={h.extraction.field_accuracy >= 0.95 ? 'good' : 'warn'}
-        />
-        <MetricCard
-          index="03"
-          label="cost / invoice"
-          value={formatUsd(h.cost.mean_per_invoice_usd)}
-          sublabel={
-            <>
-              <span className="tabular font-mono text-helm-vellum">{formatUsd(h.cost.total_usd)}</span> total across the run.
-            </>
-          }
-          tone="neutral"
-        />
-        <MetricCard
-          index="04"
-          label="labor recovered"
-          value={`${h.labor.time_reduction_ratio}×`}
-          sublabel={
-            <>
-              <span className="tabular font-mono text-helm-vellum">{h.labor.minutes_saved}</span> minutes saved at $25/hr loaded wage.
-            </>
-          }
-          hint={`≈ ${formatUsd(h.labor.dollars_saved)} this batch`}
-          tone="good"
-        />
-      </section>
+      <DepthBand zone="sunlit" depth="~15m" tag="readings · surface light">
+        <section
+          className="rise grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4"
+          style={{ animationDelay: '120ms' }}
+        >
+          <MetricCard
+            index="01"
+            label="parse rate"
+            value={formatPercent(h.extraction.parse_rate)}
+            sublabel={
+              <>
+                <span className="tabular font-mono text-helm-vellum">
+                  {Math.round(h.extraction.parse_rate * h.invoices_processed)}
+                </span>{' '}
+                of <span className="tabular font-mono text-helm-vellum">{h.invoices_processed}</span> invoices cleared validation.
+              </>
+            }
+            tone={h.extraction.parse_rate >= 0.95 ? 'good' : 'warn'}
+          />
+          <MetricCard
+            index="02"
+            label="field accuracy"
+            value={formatPercent(h.extraction.field_accuracy)}
+            sublabel="Exact-match across vendor, dates, totals, and every line-item field."
+            tone={h.extraction.field_accuracy >= 0.95 ? 'good' : 'warn'}
+          />
+          <MetricCard
+            index="03"
+            label="cost / invoice"
+            value={formatUsd(h.cost.mean_per_invoice_usd)}
+            sublabel={
+              <>
+                <span className="tabular font-mono text-helm-vellum">{formatUsd(h.cost.total_usd)}</span> total across the run.
+              </>
+            }
+            tone="neutral"
+          />
+          <MetricCard
+            index="04"
+            label="labor recovered"
+            value={`${h.labor.time_reduction_ratio}×`}
+            sublabel={
+              <>
+                <span className="tabular font-mono text-helm-vellum">{h.labor.minutes_saved}</span> min saved at $25/hr loaded wage.
+              </>
+            }
+            hint={`≈ ${formatUsd(h.labor.dollars_saved)} this batch`}
+            tone="good"
+          />
+        </section>
+      </DepthBand>
 
-      <section
-        className="rise grid grid-cols-1 gap-5 xl:grid-cols-[1.35fr_1fr]"
-        style={{ animationDelay: '220ms' }}
-      >
-        <LatencyHistogram />
-        <ReconcilerPanel />
-      </section>
+      <DepthBand zone="twilight" depth="~80m" tag="instruments · twilight zone">
+        <section
+          className="rise grid grid-cols-1 gap-5 xl:grid-cols-[1.35fr_1fr]"
+          style={{ animationDelay: '220ms' }}
+        >
+          <LatencyHistogram />
+          <ReconcilerPanel />
+        </section>
+      </DepthBand>
 
-      <section className="rise" style={{ animationDelay: '320ms' }}>
-        <RecentActivity />
-      </section>
+      <DepthBand zone="midnight" depth="~320m" tag="trial log · midnight zone">
+        <section className="rise" style={{ animationDelay: '320ms' }}>
+          <RecentActivity />
+        </section>
+      </DepthBand>
+    </div>
+  );
+}
+
+// Wraps a section with a depth annotation in the gutter — depth tag on
+// the left, zone description in the eyebrow. Gives every section a
+// labeled position in the water column.
+function DepthBand({
+  zone,
+  depth,
+  tag,
+  children,
+}: {
+  zone: string;
+  depth: string;
+  tag: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="relative">
+      <div className="mb-4 flex items-center gap-3">
+        <span className="depth-tag">{depth}</span>
+        <span className="h-px w-10 bg-helm-cyan/30" />
+        <span className="eyebrow text-helm-cyan-dim">{tag}</span>
+        <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-deep">
+          · {zone} zone
+        </span>
+      </div>
+      {children}
     </div>
   );
 }
@@ -79,10 +114,10 @@ function PanelHeader() {
   return (
     <div className="rise flex flex-col gap-5" style={{ animationDelay: '20ms' }}>
       <div className="flex items-center gap-3">
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-helm-brass">trial 01</span>
-        <span className="h-px w-10 bg-helm-brass/60" />
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-helm-vellum-faint">
-          sub-trial · 1 of 4
+        <span className="depth-tag">~15m</span>
+        <span className="h-px w-10 bg-helm-cyan/40" />
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-helm-cyan">
+          trial 01 · sub-trial 1 of 4
         </span>
       </div>
 
@@ -115,9 +150,6 @@ function PanelHeader() {
   );
 }
 
-// Sea-trial spec sheet: every parameter the trial was run against, in
-// one mono line. Hiring-manager engineers scan for these strings before
-// the prose.
 function MethodologyStrip() {
   const cells = [
     { label: 'model',     value: 'llama-4-scout' },
@@ -128,10 +160,10 @@ function MethodologyStrip() {
     { label: 'n',         value: String(report.headline.invoices_processed) },
   ];
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-helm-rule py-3">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-helm-cyan/15 py-3">
       {cells.map((c, i) => (
         <span key={c.label} className="inline-flex items-center gap-1.5 font-mono text-[11px]">
-          <span className="uppercase tracking-[0.16em] text-helm-vellum-faint">{c.label}</span>
+          <span className="uppercase tracking-[0.16em] text-helm-cyan-dim">{c.label}</span>
           <span className="tabular text-helm-vellum">{c.value}</span>
           {i < cells.length - 1 ? <span className="ml-2 text-helm-brass">▸</span> : null}
         </span>
@@ -142,7 +174,7 @@ function MethodologyStrip() {
 
 function MockBanner() {
   return (
-    <div className="mt-2 flex items-start gap-4 border border-helm-warn/40 bg-helm-warn/5 px-5 py-4">
+    <div className="mt-2 flex items-start gap-4 border border-helm-warn/40 bg-helm-warn/[0.06] px-5 py-4 backdrop-blur">
       <span aria-hidden className="mt-1.5 size-2 shrink-0 rounded-full bg-helm-warn" />
       <div>
         <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-helm-warn">
@@ -152,7 +184,7 @@ function MockBanner() {
           Field accuracy, cost, and latency below come from a controlled-noise mock of the vision
           call, not real API output. Only the reconciler stats and labor model reflect actual
           pipeline logic. Run{' '}
-          <code className="border border-helm-rule bg-helm-bg-2 px-1.5 py-0.5 font-mono text-[11.5px] text-helm-vellum">
+          <code className="border border-helm-cyan/20 bg-helm-twilight/60 px-1.5 py-0.5 font-mono text-[11.5px] text-helm-vellum">
             pnpm measure:invoice-ocr --seed 1 --extractor groq
           </code>{' '}
           for measured numbers.
@@ -165,7 +197,13 @@ function MockBanner() {
 function ReconcilerPanel() {
   const r = report.headline.reconciler;
   return (
-    <div className="relative flex flex-col gap-5 border border-helm-rule bg-helm-panel/60 p-7 backdrop-blur">
+    <div
+      className="relative flex flex-col gap-5 border border-helm-cyan/15 p-7 backdrop-blur-md"
+      style={{
+        background:
+          'linear-gradient(180deg, rgba(125, 211, 224, 0.05) 0%, rgba(8, 42, 69, 0.55) 30%, rgba(4, 27, 50, 0.55) 100%)',
+      }}
+    >
       <CornerMarks />
 
       <div>
@@ -174,7 +212,7 @@ function ReconcilerPanel() {
           className="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
           style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}
         >
-          Anomaly <span className="text-helm-brass-bright">detection</span>
+          Anomaly <span className="text-helm-cyan">detection</span>
         </h3>
         <p className="mt-1 max-w-md text-[12.5px] leading-snug text-helm-vellum-muted">
           Each invoice is one labeled example. Positive class = "has any anomaly".
@@ -196,7 +234,7 @@ function ReconcilerPanel() {
       />
 
       <div className="hairline" />
-      <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-vellum-faint">
+      <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">
         wall {formatMs(report.headline.wall_ms)} · seed {report.seed} · extractor{' '}
         <span className="text-helm-vellum">{report.extractor}</span>
       </div>
@@ -205,13 +243,15 @@ function ReconcilerPanel() {
 }
 
 function DialReading({ label, value }: { label: string; value: number }) {
-  // Tone-map the dial color: ≥ 0.85 = pass (green), ≥ 0.7 = warn (amber),
-  // < 0.7 = fail (red). Mirrors a real eval-harness threshold gate.
   const tone =
-    value >= 0.85 ? 'text-helm-pass' : value >= 0.7 ? 'text-helm-warn' : 'text-helm-fail';
+    value >= 0.85
+      ? 'text-helm-pass glow-pass'
+      : value >= 0.7
+        ? 'text-helm-warn'
+        : 'text-helm-fail';
   return (
-    <div className="flex flex-col items-start gap-1.5 border-l border-helm-rule pl-3 first:border-l-0 first:pl-0">
-      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-vellum-faint">
+    <div className="flex flex-col items-start gap-1.5 border-l border-helm-cyan/15 pl-3 first:border-l-0 first:pl-0">
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">
         {label}
       </span>
       <span className={`readout text-[28px] leading-none ${tone}`}>{value.toFixed(3)}</span>
@@ -231,7 +271,7 @@ function ConfusionGrid({
   tn: number;
 }) {
   return (
-    <div className="grid grid-cols-[auto_1fr_1fr] gap-px overflow-hidden border border-helm-rule bg-helm-rule">
+    <div className="grid grid-cols-[auto_1fr_1fr] gap-px overflow-hidden border border-helm-cyan/15 bg-helm-cyan/10">
       <CellLabel />
       <CellLabel>pred. anomaly</CellLabel>
       <CellLabel>pred. clean</CellLabel>
@@ -249,7 +289,7 @@ function ConfusionGrid({
 
 function CellLabel({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="bg-helm-panel-2/80 px-3 py-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-vellum-faint">
+    <div className="bg-helm-twilight/70 px-3 py-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-dim">
       {children ?? ''}
     </div>
   );
@@ -266,8 +306,8 @@ function ConfCell({
 }) {
   const color = tone === 'pass' ? 'text-helm-pass' : 'text-helm-warn';
   return (
-    <div className="relative flex items-baseline justify-center gap-2 bg-helm-panel px-4 py-4">
-      <span className="absolute left-2 top-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-helm-vellum-faint">
+    <div className="relative flex items-baseline justify-center gap-2 bg-helm-twilight/40 px-4 py-4">
+      <span className="absolute left-2 top-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-helm-cyan-dim">
         {caption}
       </span>
       <span className={`readout text-[26px] leading-none ${color}`}>{value}</span>

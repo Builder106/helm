@@ -1,73 +1,114 @@
 @import "tailwindcss";
 
 /*
- * Helm — "Sea Trial · Evaluation Log"
+ * Helm — "Submersible Eval Dive"
  *
- * The site is a sea-trial report rendered as a live console. Brass is the
- * instrument-chrome accent (panel borders, corner marks, eyebrows); a
- * semantic green/amber/red triad reads the data — safe-water green for
- * passes-threshold, hazard amber for warn / mock, distress red for failed.
- * The nautical signals (bathymetric contours, compass rose, depth
- * soundings) are load-bearing: a sea trial *is* an evaluation harness
- * with measured outcomes against contract spec.
+ * The page is a literal descent through the water column. As you scroll,
+ * you go deeper — sunlit shelf → twilight → midnight → abyssal. Each
+ * section sits at a labeled depth. The sidebar IS the depth gauge with
+ * trials positioned at scaled depths. Surface waves break against the
+ * top edge of the content; marine snow drifts through the background.
  *
- * Type triplet: General Sans display + body (Fontshare), JetBrains Mono
- * for every numeric value, ID, eyebrow, status pill. Mono prominence is
- * the eval-harness signature.
+ * The nautical metaphor is now load-bearing in three ways:
+ *   1. Vertical structure — depth IS the page's primary axis
+ *   2. Color zones — palette grades by depth, not by surface design taste
+ *   3. Chrome details — wave caps, depth annotations, soundings, marine snow
+ *
+ * The work is still an eval harness: brass instrument chrome on the panel
+ * corners, JetBrains Mono Bold tabular for every readout, semantic green
+ * for pass / amber for warn / red for fail. Eval rigor + actual water.
+ *
+ * Type triplet: General Sans + JetBrains Mono. No serifs.
  */
 @theme {
-  --color-helm-bg: #0A1421;
-  --color-helm-bg-2: #0D1A2A;
-  --color-helm-panel: #10202F;
-  --color-helm-panel-2: #152838;
-  --color-helm-rule: #1B2E42;
-  --color-helm-border: #233a52;
+  /* Water column — five graded depths. Background gradient sweeps these
+   * top to bottom; individual panels pick up the local depth tone. */
+  --color-helm-surface:   #1B4A6D;    /* sky/shelf, ~5-30m */
+  --color-helm-sunlit:    #0E3A5C;    /* sunlit zone, ~30-80m */
+  --color-helm-twilight:  #082A45;    /* twilight zone, ~80-200m */
+  --color-helm-midnight:  #041B32;    /* midnight zone, ~200-1000m */
+  --color-helm-abyssal:   #020D1D;    /* abyssal zone, > 1000m */
 
-  /* Instrument chrome — brass on midnight ocean. */
-  --color-helm-brass: #C9933F;
+  /* Surface light — cyan range, used for hairlines, water-light glow,
+   * and chart-style annotation lines. Replaces the warm-only chrome
+   * with something more underwater. */
+  --color-helm-cyan:      #7DD3E0;
+  --color-helm-cyan-dim:  #4A8FA0;
+  --color-helm-cyan-deep: #1F4A5C;
+
+  /* Brass — instrument chrome only. Used sparingly on panel corner
+   * marks, sextant readouts, and ▸ separators. */
+  --color-helm-brass:        #C9933F;
   --color-helm-brass-bright: #E8B871;
-  --color-helm-brass-dim: #7E5D27;
+  --color-helm-brass-dim:    #7E5D27;
 
-  /* Semantic data colors — safe water / hazard / distress.
-   * Used ONLY on measured values, not as decoration. */
-  --color-helm-pass: #34D399;       /* safe-water green — measurement clears threshold */
-  --color-helm-pass-dim: #10B981;
-  --color-helm-warn: #F59E0B;       /* hazard amber — mock / marginal / under threshold */
-  --color-helm-warn-dim: #B45309;
-  --color-helm-fail: #EF4444;       /* distress red — failed extraction */
-  --color-helm-fail-dim: #B91C1C;
+  /* Bioluminescent — deep-sea creatures literally glow in this green.
+   * Semantic = passes-threshold. Brighter than your eyes expect. */
+  --color-helm-pass:        #34D399;
+  --color-helm-pass-dim:    #10B981;
+  --color-helm-warn:        #F59E0B;
+  --color-helm-warn-dim:    #B45309;
+  --color-helm-fail:        #EF4444;
+  --color-helm-fail-dim:    #B91C1C;
 
-  /* Vellum text scale — warm-paper text on dark. */
-  --color-helm-vellum: #F0E5CC;
-  --color-helm-vellum-muted: #B5A98A;
-  --color-helm-vellum-faint: #6E6754;
+  /* Vellum + text — kept warm so the dark water doesn't go cold-only. */
+  --color-helm-vellum:        #F0E5CC;
+  --color-helm-vellum-muted:  #B5A98A;
+  --color-helm-vellum-faint:  #6E6754;
 
-  --color-helm-text: #E8DFC9;
-  --color-helm-muted: #8A8369;
-  --color-helm-faint: #574F3C;
+  --color-helm-text:    #E8DFC9;
+  --color-helm-muted:   #8A8369;
+  --color-helm-faint:   #574F3C;
+
+  /* Rules + borders — cyan-tinted on dark, replacing the old slate. */
+  --color-helm-rule:    rgba(125, 211, 224, 0.10);
+  --color-helm-rule-2:  rgba(125, 211, 224, 0.18);
+  --color-helm-border:  rgba(125, 211, 224, 0.22);
+
+  /* Aliases kept for legacy panel tokens. Map to depth-zone fills. */
+  --color-helm-bg:       #02101E;
+  --color-helm-bg-2:     #061E36;
+  --color-helm-panel:    rgba(8, 42, 69, 0.55);     /* twilight, translucent porthole */
+  --color-helm-panel-2:  rgba(14, 58, 92, 0.70);
 
   --font-display: "General Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans:    "General Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
-html, body, #root {
-  height: 100%;
-}
+html, body, #root { height: 100%; }
 
 body {
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
-  background-color: var(--color-helm-bg);
   color: var(--color-helm-text);
-  background-image:
-    radial-gradient(ellipse 110% 60% at 50% -10%, rgba(232, 184, 113, 0.07), transparent 60%),
-    radial-gradient(ellipse 120% 80% at 50% 110%, rgba(11, 20, 33, 0.6), transparent 70%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.9 0 0 0 0 0.75 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  background-attachment: fixed, fixed, fixed;
+  /* Page background = vertical depth gradient. The user literally
+   * descends as they scroll. Five stops, fixed so the gradient stays
+   * with the viewport, not with the document. */
+  background:
+    linear-gradient(
+      180deg,
+      #1B4A6D 0%,
+      #0E3A5C 12%,
+      #082A45 32%,
+      #041B32 60%,
+      #020D1D 100%
+    ) fixed;
+  position: relative;
 }
 
-/* Display = General Sans Bold, very tight tracking — gives weight and confidence. */
+/* Subtle paper-grain noise layered over the depth gradient so the
+ * water doesn't read as a single flat sweep. Very low alpha. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.65 0 0 0 0 0.78 0 0 0 0 0.85 0 0 0 0.035 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  z-index: 1;
+}
+
+/* Display — General Sans Bold, tight tracking. */
 .display {
   font-family: var(--font-display);
   font-weight: 700;
@@ -83,37 +124,46 @@ body {
   letter-spacing: -0.04em;
 }
 
-/* Functional eyebrow strings — mono, generous tracking. */
+/* Eyebrow — mono caps, generous tracking. */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 10.5px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-helm-vellum-faint);
+  color: var(--color-helm-cyan-dim);
 }
 
-/* Tabular figures for any data column. */
-.tabular {
-  font-variant-numeric: tabular-nums;
+/* Depth-tag — annotates each section with its scaled water-column depth. */
+.depth-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-helm-cyan);
 }
 
-/* Subtle hairline divider used between metric blocks. */
+.tabular { font-variant-numeric: tabular-nums; }
+
 .hairline {
   background-image: linear-gradient(
     to right,
     transparent,
-    var(--color-helm-rule) 16%,
-    var(--color-helm-rule) 84%,
+    rgba(125, 211, 224, 0.16) 16%,
+    rgba(125, 211, 224, 0.16) 84%,
     transparent
   );
   height: 1px;
 }
 
-/* Brass underline accent that grows on hover. */
-.brass-underline {
-  position: relative;
+/* Bioluminescent halo for "passes" numbers — gentle glow underneath
+ * the green readout, evoking deep-sea creature light. */
+.glow-pass {
+  text-shadow: 0 0 18px rgba(52, 211, 153, 0.5);
 }
+
+.brass-underline { position: relative; }
 .brass-underline::after {
   content: "";
   position: absolute;
@@ -124,42 +174,65 @@ body {
   background-color: var(--color-helm-brass);
   transition: width 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.brass-underline:hover::after {
-  width: 100%;
+.brass-underline:hover::after { width: 100%; }
+
+/* Page-load reveal — staggered rise. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.rise { animation: rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* Marine snow — slow drift of tiny particulates from top to bottom.
+ * Applied to a fixed-position layer; the keyframes shift the layer's
+ * background-position downward continuously. */
+@keyframes drift {
+  from { background-position: 0 0; }
+  to   { background-position: 0 1200px; }
+}
+.marine-snow {
+  background-image:
+    radial-gradient(circle at 15% 12%, rgba(240, 229, 204, 0.45) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 42% 68%, rgba(240, 229, 204, 0.35) 0.5px, transparent 1px),
+    radial-gradient(circle at 78% 24%, rgba(125, 211, 224, 0.4) 0.7px, transparent 1.4px),
+    radial-gradient(circle at 88% 84%, rgba(240, 229, 204, 0.32) 0.5px, transparent 1px),
+    radial-gradient(circle at 22% 92%, rgba(125, 211, 224, 0.3) 0.6px, transparent 1.2px),
+    radial-gradient(circle at 56% 38%, rgba(240, 229, 204, 0.28) 0.4px, transparent 0.9px),
+    radial-gradient(circle at 8% 56%, rgba(125, 211, 224, 0.38) 0.7px, transparent 1.3px),
+    radial-gradient(circle at 64% 8%, rgba(240, 229, 204, 0.36) 0.5px, transparent 1px);
+  background-size: 600px 800px;
+  animation: drift 60s linear infinite;
 }
 
-/* Page-load reveal — restrained rise, staggered via inline delay. */
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-.rise {
-  animation: rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+/* Caustic light streaks — angled rays from above, simulating sunlight
+ * filtering through water. Two angled linear-gradients overlap. Only
+ * applied at the top of the page (first viewport). */
+.caustics {
+  background-image:
+    linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(125, 211, 224, 0.06) 38%,
+      transparent 46%
+    ),
+    linear-gradient(
+      80deg,
+      transparent 60%,
+      rgba(240, 229, 204, 0.05) 68%,
+      transparent 76%
+    );
 }
 
 ::selection {
-  background-color: rgba(201, 147, 63, 0.35);
+  background-color: rgba(125, 211, 224, 0.35);
   color: var(--color-helm-vellum);
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-helm-bg);
-}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: rgba(2, 13, 29, 0.6); }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-helm-rule);
-  border: 2px solid var(--color-helm-bg);
+  background: rgba(125, 211, 224, 0.18);
+  border: 2px solid var(--color-helm-abyssal);
   border-radius: 999px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-helm-brass-dim);
-}
+::-webkit-scrollbar-thumb:hover { background: rgba(125, 211, 224, 0.35); }

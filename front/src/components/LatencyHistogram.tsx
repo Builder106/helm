@@ -11,8 +11,6 @@ import { report } from '../lib/report.ts';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-// Bucket per-invoice latencies into 12 bins between min and max so
-// the chart shape reflects the actual distribution.
 const BIN_COUNT = 12;
 
 function buildBins() {
@@ -38,7 +36,13 @@ export function LatencyHistogram() {
   const { labels, counts } = buildBins();
 
   return (
-    <div className="relative border border-helm-rule bg-helm-panel/60 p-7 backdrop-blur">
+    <div
+      className="relative border border-helm-cyan/15 p-7 backdrop-blur-md"
+      style={{
+        background:
+          'linear-gradient(180deg, rgba(125, 211, 224, 0.05) 0%, rgba(8, 42, 69, 0.55) 30%, rgba(4, 27, 50, 0.55) 100%)',
+      }}
+    >
       <CornerMarks />
 
       <div className="mb-5 flex items-end justify-between gap-6">
@@ -48,7 +52,7 @@ export function LatencyHistogram() {
             className="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
             style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}
           >
-            End-to-end <span className="text-helm-brass-bright">distribution</span>
+            End-to-end <span className="text-helm-cyan">distribution</span>
           </h3>
           <p className="mt-1 max-w-md text-[12.5px] leading-snug text-helm-vellum-muted">
             Lower-left tail is fast invoices. Right tail is rate-limit and retry
@@ -67,10 +71,10 @@ export function LatencyHistogram() {
               {
                 label: 'invoices',
                 data: counts,
-                backgroundColor: 'rgba(201, 147, 63, 0.45)',
-                borderColor: 'rgba(232, 184, 113, 0.95)',
+                backgroundColor: 'rgba(125, 211, 224, 0.4)',
+                borderColor: 'rgba(125, 211, 224, 0.9)',
                 borderWidth: 1,
-                hoverBackgroundColor: 'rgba(232, 184, 113, 0.7)',
+                hoverBackgroundColor: 'rgba(125, 211, 224, 0.7)',
                 borderRadius: 0,
               },
             ],
@@ -82,8 +86,8 @@ export function LatencyHistogram() {
             plugins: {
               legend: { display: false },
               tooltip: {
-                backgroundColor: '#10202F',
-                borderColor: '#C9933F',
+                backgroundColor: '#082A45',
+                borderColor: '#7DD3E0',
                 borderWidth: 1,
                 titleColor: '#F0E5CC',
                 bodyColor: '#B5A98A',
@@ -101,7 +105,7 @@ export function LatencyHistogram() {
             scales: {
               x: {
                 ticks: {
-                  color: '#6E6754',
+                  color: '#4A8FA0',
                   font: { family: '"JetBrains Mono"', size: 10 },
                   maxRotation: 0,
                   callback(this, _v, idx) {
@@ -109,17 +113,17 @@ export function LatencyHistogram() {
                   },
                 },
                 grid: { display: false },
-                border: { color: '#1B2E42' },
+                border: { color: 'rgba(125, 211, 224, 0.18)' },
               },
               y: {
                 beginAtZero: true,
                 ticks: {
-                  color: '#6E6754',
+                  color: '#4A8FA0',
                   stepSize: 10,
                   font: { family: '"JetBrains Mono"', size: 10 },
                 },
-                grid: { color: 'rgba(27, 46, 66, 0.6)' },
-                border: { color: '#1B2E42' },
+                grid: { color: 'rgba(125, 211, 224, 0.08)' },
+                border: { color: 'rgba(125, 211, 224, 0.18)' },
               },
             },
           }}
@@ -136,14 +140,14 @@ function PercentileRail() {
     { label: 'p99', value: report.headline.latency.p99_ms },
   ];
   return (
-    <div className="flex flex-col gap-1 border-l border-helm-rule pl-5 text-right">
+    <div className="flex flex-col gap-1 border-l border-helm-cyan/15 pl-5 text-right">
       {rows.map((r) => (
         <div key={r.label} className="flex items-baseline justify-end gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-vellum-faint">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">
             {r.label}
           </span>
           <span className="tabular font-mono text-[14px] font-medium text-helm-vellum">{r.value}</span>
-          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-helm-vellum-faint">
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-helm-cyan-dim">
             ms
           </span>
         </div>
