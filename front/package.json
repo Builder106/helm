@@ -10,6 +10,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "chart.js": "^4.4.6",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.2.0",

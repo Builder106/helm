@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Sidebar } from './components/Sidebar.tsx';
 import { TopBar } from './components/TopBar.tsx';
 import { InvoiceOCRPanel } from './components/InvoiceOCRPanel.tsx';
@@ -32,6 +34,12 @@ export default function App() {
           </div>
         </main>
       </div>
+
+      {/* Vercel Analytics + Core Web Vitals — surfaces in the Vercel
+          project's Analytics + Speed Insights dashboards. No code in
+          dev (the components no-op when not behind Vercel's edge). */}
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
