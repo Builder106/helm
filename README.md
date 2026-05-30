@@ -3,21 +3,21 @@
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg" type="image/svg+xml">
   <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
-  <img alt="Helm — Gemini 2.5 Flash + MCP co-pilot for small-business operations. Four back-office workflows, measured cost and accuracy." src="assets/banner-dark.svg">
+  <img alt="Helm — Gemini 3.1 Flash Lite + MCP co-pilot for small-business operations. Four back-office workflows, measured cost and accuracy." src="assets/banner-dark.svg">
 </picture>
 
 [![CI](https://github.com/Builder106/Helm/actions/workflows/deploy.yml/badge.svg)](https://github.com/Builder106/Helm/actions/workflows/deploy.yml)
 [![Live demo](https://img.shields.io/badge/demo-live-success.svg)](https://helm-bridge.vercel.app)
 [![Node](https://img.shields.io/badge/Node-22%2B-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react&logoColor=white)](https://react.dev/)
-[![Gemini](https://img.shields.io/badge/Gemini%202.5%20Flash-vision-4285F4.svg?logo=google&logoColor=white)](https://ai.google.dev/gemini-api/docs/models/gemini)
+[![Gemini](https://img.shields.io/badge/Gemini%203.1%20Flash%20Lite-vision-4285F4.svg?logo=google&logoColor=white)](https://ai.google.dev/gemini-api/docs/models/gemini)
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-0A0A0A.svg)](https://modelcontextprotocol.io/)
 [![libsql](https://img.shields.io/badge/libsql-SQLite%20%2B%20vector-4FF8D2.svg)](https://github.com/tursodatabase/libsql)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 
-> **Helm is a Gemini 2.5 Flash + MCP executive co-pilot for small-and-mid-market business operations.** Four back-office workflows — AP-invoice OCR, creator-payout reconciliation, Tier-1 customer-service responses, and cross-company KPI Q&A — running end-to-end with measured cost and accuracy per task. The dashboard is the demo.
+> **Helm is a Gemini 3.1 Flash Lite + MCP executive co-pilot for small-and-mid-market business operations.** Four back-office workflows — AP-invoice OCR, creator-payout reconciliation, Tier-1 customer-service responses, and cross-company KPI Q&A — running end-to-end with measured cost and accuracy per task. The dashboard is the demo.
 
-**Live dashboard:** [helm-bridge.vercel.app](https://helm-bridge.vercel.app) — the MOCK DATA badge swaps to MEASURED · Gemini 2.5 Flash on the next measurement run.
+**Live dashboard:** [helm-bridge.vercel.app](https://helm-bridge.vercel.app) — the MOCK DATA badge swaps to MEASURED · Gemini 3.1 Flash Lite on the next measurement run.
 
 ## The headline finding
 
@@ -27,7 +27,7 @@
 
 Helm is a portfolio project: a working sketch of what an AI/automation team would actually build inside a growing SMB. The Handshake postings that motivated it — Smart Circle International, FHI Heat, Source Creative — all describe the same shape of work: an LLM-powered layer that sits between human operators and their messy stack of business systems, runs the repetitive parts, and surfaces decisions for humans. Helm is that layer, built against synthetic stand-ins for the systems and measured against hand-labeled ground truth.
 
-The lane is **agent/automation**, not applied ML. There is no novel model here. The engineering contribution is the orchestration — four MCP servers, a Gemini-vision OCR pipeline, a policy reasoner, and a citation-grounded executive Q&A path — and the per-workflow cost/accuracy measurement that lets the README make a defensible claim. The model is Gemini 2.5 Flash via Google AI Studio; the extractor interface is provider-agnostic and a Llama-via-Groq implementation lives alongside (`back/src/ap/extraction-groq.ts`) as an alternative.
+The lane is **agent/automation**, not applied ML. There is no novel model here. The engineering contribution is the orchestration — four MCP servers, a Gemini-vision OCR pipeline, a policy reasoner, and a citation-grounded executive Q&A path — and the per-workflow cost/accuracy measurement that lets the README make a defensible claim. The model is Gemini 3.1 Flash Lite via Google AI Studio; the extractor interface is provider-agnostic and a Llama-via-Groq implementation lives alongside (`back/src/ap/extraction-groq.ts`) as an alternative.
 
 ## How it works
 
@@ -37,7 +37,7 @@ sequenceDiagram
     participant U as User
     participant D as Dashboard (React + Chart.js)
     participant API as API (Node + Express)
-    participant L as Gemini 2.5 Flash
+    participant L as Gemini 3.1 Flash Lite
     participant MCP as MCP servers
     participant DB as libsql (SQLite + vector)
 
@@ -95,7 +95,7 @@ Each panel of the dashboard maps to one sub-feature, and each sub-feature ships 
 
 | Sub-feature | Stack | Measurement |
 |---|---|---|
-| **AP Invoice OCR** | Gemini 2.5 Flash vision, Zod, libsql | Line-item accuracy on 200-invoice holdout, USD/invoice, p50/p95 latency |
+| **AP Invoice OCR** | Gemini 3.1 Flash Lite vision, Zod, libsql | Line-item accuracy on 200-invoice holdout, USD/invoice, p50/p95 latency |
 | **Creator Payout Reconciler** | Gemini + a programmatic re-computer | Exact-match rate vs. hand-computed ground truth on 50-creator fixture |
 | **Tier-1 CS Responder** | libsql vector retrieval, Gemini structured output, confidence gating | Auto-response rate, precision; escalation recall |
 | **Cross-Company KPI Q&A** | Gemini tool-use, four custom MCP servers | Citation accuracy, tool-routing precision on a 10-question battery |
@@ -139,7 +139,7 @@ cp .env.example .env                     # add GEMINI_API_KEY (free at aistudio.
 pnpm data:generate --seed 1              # generators
 pnpm data:render-png --seed 1            # HTML → PNG, ~17s
 pnpm measure:invoice-ocr --seed 1        # full pipeline against the mock extractor
-pnpm measure:invoice-ocr --seed 1 --extractor gemini   # against real Gemini 2.5 Flash vision (~22 min, free)
+pnpm measure:invoice-ocr --seed 1 --extractor gemini   # against real Gemini 3.1 Flash Lite vision (~14 min, free)
 ```
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the longer dev-environment story.

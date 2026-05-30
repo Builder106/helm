@@ -1,21 +1,21 @@
 // Gemini Flash vision extractor. Helm's locked-default OCR path.
 //
-// Why Gemini over Groq Llama 4 Scout: image tokens cost a flat
-// per-tile rate (~258 tokens for a typical invoice PNG) versus
-// Groq's per-pixel-patch counting (~6,400 tokens for the same
-// image). The Groq free tier's 500K-tokens-per-day cap blocks the
-// full 200-invoice corpus at ~70 invoices; on Gemini's free tier,
-// 200 invoices fit comfortably under the daily allotment.
+// Why Gemini: image tokens are flat-rated per tile (~258 per typical
+// PNG) versus Groq's per-pixel-patch counting (~6,400 per image).
+// Lower image-token cost = more invoices per daily quota.
 //
-// Model: gemini-2.5-flash by default (override via GEMINI_MODEL env).
-// gemini-2.0-flash was pulled from Google's free tier in 2026 — the
-// lesson is to keep the model overridable rather than hard-coded.
-// For maximum free-tier headroom use GEMINI_MODEL=gemini-2.5-flash-lite.
+// Model: gemini-3.1-flash-lite by default (override via GEMINI_MODEL).
+// Lesson learned the hard way: don't hard-code a vendor model name.
+// gemini-2.0-flash was pulled from the free tier in 2026; 2.5-flash
+// then carried a ~25 RPD free-tier cap that blocked the corpus.
+// 3.1-flash-lite is the current best-fit for high RPD + low cost.
+// Reach options: gemini-3.1-pro for KPI Q&A reasoning depth; fall
+// back to gemini-2.5-flash if 3.1 ever ships breaking changes.
 //
-// Pacing: the extractor self-paces — it tracks the timestamp of the
-// last call and sleeps to maintain a minimum interval. Default 6.5s
-// (10 RPM, comfortable under Gemini 2.5 Flash's free tier). For
-// 200 invoices that's ~22 minutes end-to-end.
+// Pacing: the extractor self-paces by tracking the last-call
+// timestamp and sleeping to maintain a minimum interval. Default
+// 4s (15 RPM, the typical Lite-tier ceiling). Override via
+// GEMINI_MIN_INTERVAL_MS.
 //
 // The Groq extractor in ./extraction-groq.ts stays in the repo as an
 // alternative provider; the Extractor interface is provider-agnostic
@@ -34,29 +34,27 @@ export type GeminiExtractorOptions = {
   /** 0 for deterministic structured extraction. */
   temperature?: number;
   /** Minimum interval between API calls in ms. Defaults from
-   * GEMINI_MIN_INTERVAL_MS env, else 6500ms (10 RPM = 6000ms ideal
-   * for gemini-2.5-flash free tier; +500ms safety margin). Drop to
-   * 4500ms for gemini-2.5-flash-lite (15 RPM). */
+   * GEMINI_MIN_INTERVAL_MS env, else 4000ms (15 RPM ideal for the
+   * Flash-Lite tier). Raise to 6500ms for non-Lite Flash variants. */
   minIntervalMs?: number;
   /** Retry budget on schema-validation failures. */
   maxParseRetries?: number;
 };
 
-// Gemini model — overridable via GEMINI_MODEL env var so a shift in
-// Google's free-tier coverage (2.0 Flash got pulled from the free
-// tier in 2026; the lesson is to not hard-code) can be answered
-// without a code change. Default: gemini-2.5-flash. For more
-// free-tier headroom, set GEMINI_MODEL=gemini-2.5-flash-lite.
-const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? 'gemini-2.5-flash';
+// Gemini model — overridable via GEMINI_MODEL env var. Default
+// rotates with whatever Google's current best-fit free-tier option
+// is for this workload. Never hard-code a specific model in
+// component code; consume DEFAULT_MODEL or the env override.
+const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? 'gemini-3.1-flash-lite';
 
-// Public Gemini 2.5 Flash rates (paid-tier). The free tier is $0,
-// but the dashboard reports cost as if paid so the per-invoice
-// number is meaningful at scale. Image tokens count as input.
-// (2.5-flash-lite is roughly 1/4 the price; not auto-detected here —
-// override the pricing constants if you swap to lite for production.)
+// Public Gemini 3.1 Flash-Lite rates (paid-tier). The free tier is
+// $0, but the dashboard reports cost as if paid so the per-invoice
+// number is meaningful at scale. Image tokens count as input. If you
+// swap to a non-Lite variant via GEMINI_MODEL, also update these
+// constants — the math doesn't auto-rescale.
 const PRICING = {
-  inputCostPerMillion: 0.30,
-  outputCostPerMillion: 2.50,
+  inputCostPerMillion: 0.10,
+  outputCostPerMillion: 0.40,
 };
 
 const SYSTEM_PROMPT = `You are an invoice OCR assistant. Given a single invoice image, extract its structured fields and respond with JSON that matches the schema provided in the response config.
@@ -129,7 +127,7 @@ export function createGeminiExtractor(options: GeminiExtractorOptions = {}): Ext
   const maxOutputTokens = options.maxOutputTokens ?? 1024;
   const temperature = options.temperature ?? 0;
   const minIntervalMs =
-    options.minIntervalMs ?? Number(process.env.GEMINI_MIN_INTERVAL_MS ?? 6500);
+    options.minIntervalMs ?? Number(process.env.GEMINI_MIN_INTERVAL_MS ?? 4000);
   const maxParseRetries = options.maxParseRetries ?? 1;
 
   // Pace requests to stay under the 15 RPM free-tier limit. Tracks the

@@ -61,7 +61,7 @@ export function Sidebar() {
         <div className="eyebrow">stack</div>
         <ul className="mt-2 space-y-1 font-mono text-[11px] text-helm-vellum-muted">
           <li>
-            <span className="text-helm-vellum">gemini-2.5-flash</span>
+            <span className="text-helm-vellum">gemini-3.1-flash-lite</span>
             <span className="text-helm-vellum-faint"> · google ai studio</span>
           </li>
           <li>

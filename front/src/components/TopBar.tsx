@@ -2,7 +2,7 @@ import { HelmMark } from './HelmMark.tsx';
 import { report, isMock } from '../lib/report.ts';
 
 const EXTRACTOR_LABELS: Record<string, string> = {
-  gemini: 'gemini 2.5 flash',
+  gemini: 'gemini 3.1 flash lite',
   groq: 'llama 4 scout',
   mock: 'mock data',
 };

@@ -137,7 +137,7 @@ function PanelHeader() {
       </div>
 
       <p className="max-w-3xl text-[15px] leading-relaxed text-helm-vellum-muted">
-        Invoice PNGs are extracted to structured JSON by Gemini 2.5 Flash vision (constrained
+        Invoice PNGs are extracted to structured JSON by Gemini 3.1 Flash Lite vision (constrained
         server-side by a JSON schema, then re-validated through Zod). Each invoice is then
         reconciled for line-item math, missing due dates, duplicate invoice numbers, and layout
         overflow. Auto-approved invoices land in the AP ledger; flagged ones queue for human review.
@@ -152,7 +152,7 @@ function PanelHeader() {
 
 function MethodologyStrip() {
   const cells = [
-    { label: 'model',     value: 'gemini-2.5-flash' },
+    { label: 'model',     value: 'gemini-3.1-flash-lite' },
     { label: 'provider',  value: 'google ai studio' },
     { label: 'fixture',   value: '200 png' },
     { label: 'seed',      value: report.seed },
