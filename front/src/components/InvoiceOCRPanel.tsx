@@ -79,10 +79,10 @@ function PanelHeader() {
   return (
     <div className="rise flex flex-col gap-5" style={{ animationDelay: '20ms' }}>
       <div className="flex items-center gap-3">
-        <span className="font-mono text-[11px] text-helm-brass">01</span>
-        <span className="h-px w-8 bg-helm-brass/60" />
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-helm-brass">trial 01</span>
+        <span className="h-px w-10 bg-helm-brass/60" />
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-helm-vellum-faint">
-          sub-feature · 1 of 4
+          sub-trial · 1 of 4
         </span>
       </div>
 
@@ -108,30 +108,32 @@ function PanelHeader() {
         land in the AP ledger; flagged ones queue for human review.
       </p>
 
-      <ChipRow />
+      <MethodologyStrip />
 
       {isMock ? <MockBanner /> : null}
     </div>
   );
 }
 
-function ChipRow() {
-  const chips = [
-    { label: 'model', value: 'llama-4-scout' },
-    { label: 'provider', value: 'groq' },
-    { label: 'schema', value: 'zod' },
-    { label: 'storage', value: 'libsql' },
-    { label: 'fixture', value: '200 png · seed 1' },
+// Sea-trial spec sheet: every parameter the trial was run against, in
+// one mono line. Hiring-manager engineers scan for these strings before
+// the prose.
+function MethodologyStrip() {
+  const cells = [
+    { label: 'model',     value: 'llama-4-scout' },
+    { label: 'provider',  value: 'groq' },
+    { label: 'fixture',   value: '200 png' },
+    { label: 'seed',      value: report.seed },
+    { label: 'extractor', value: report.extractor },
+    { label: 'n',         value: String(report.headline.invoices_processed) },
   ];
   return (
-    <div className="flex flex-wrap gap-1.5 pt-1">
-      {chips.map((c) => (
-        <span
-          key={c.label}
-          className="inline-flex items-center gap-1.5 border border-helm-rule bg-helm-panel/50 px-2.5 py-1 font-mono text-[10.5px]"
-        >
-          <span className="text-helm-vellum-faint">{c.label}</span>
-          <span className="text-helm-vellum">{c.value}</span>
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-helm-rule py-3">
+      {cells.map((c, i) => (
+        <span key={c.label} className="inline-flex items-center gap-1.5 font-mono text-[11px]">
+          <span className="uppercase tracking-[0.16em] text-helm-vellum-faint">{c.label}</span>
+          <span className="tabular text-helm-vellum">{c.value}</span>
+          {i < cells.length - 1 ? <span className="ml-2 text-helm-brass">▸</span> : null}
         </span>
       ))}
     </div>
@@ -203,17 +205,16 @@ function ReconcilerPanel() {
 }
 
 function DialReading({ label, value }: { label: string; value: number }) {
+  // Tone-map the dial color: ≥ 0.85 = pass (green), ≥ 0.7 = warn (amber),
+  // < 0.7 = fail (red). Mirrors a real eval-harness threshold gate.
+  const tone =
+    value >= 0.85 ? 'text-helm-pass' : value >= 0.7 ? 'text-helm-warn' : 'text-helm-fail';
   return (
     <div className="flex flex-col items-start gap-1.5 border-l border-helm-rule pl-3 first:border-l-0 first:pl-0">
       <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-vellum-faint">
         {label}
       </span>
-      <span
-        className="tabular text-[32px] font-bold leading-none text-helm-brass-bright"
-        style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}
-      >
-        {value.toFixed(3)}
-      </span>
+      <span className={`readout text-[28px] leading-none ${tone}`}>{value.toFixed(3)}</span>
     </div>
   );
 }
@@ -236,12 +237,12 @@ function ConfusionGrid({
       <CellLabel>pred. clean</CellLabel>
 
       <CellLabel>truth anomaly</CellLabel>
-      <ConfCell value={tp} tone="good" caption="tp" />
+      <ConfCell value={tp} tone="pass" caption="tp" />
       <ConfCell value={fn} tone="warn" caption="fn" />
 
       <CellLabel>truth clean</CellLabel>
       <ConfCell value={fp} tone="warn" caption="fp" />
-      <ConfCell value={tn} tone="good" caption="tn" />
+      <ConfCell value={tn} tone="pass" caption="tn" />
     </div>
   );
 }
@@ -260,21 +261,16 @@ function ConfCell({
   caption,
 }: {
   value: number;
-  tone: 'good' | 'warn';
+  tone: 'pass' | 'warn';
   caption: string;
 }) {
-  const color = tone === 'good' ? 'text-helm-brass-bright' : 'text-helm-warn';
+  const color = tone === 'pass' ? 'text-helm-pass' : 'text-helm-warn';
   return (
     <div className="relative flex items-baseline justify-center gap-2 bg-helm-panel px-4 py-4">
       <span className="absolute left-2 top-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-helm-vellum-faint">
         {caption}
       </span>
-      <span
-        className={`tabular text-[30px] font-bold leading-none ${color}`}
-        style={{ fontFamily: 'var(--font-display)', letterSpacing: '-0.025em' }}
-      >
-        {value}
-      </span>
+      <span className={`readout text-[26px] leading-none ${color}`}>{value}</span>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export function TopBar() {
             Helm
           </span>
           <span className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-helm-vellum-faint">
-            bridge · ops
+            sea trial · eval log
           </span>
         </div>
       </div>
@@ -36,14 +36,14 @@ function ExtractorBadge() {
     );
   }
   return (
-    <span className="inline-flex items-center gap-2 border border-helm-brass/50 bg-helm-brass/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-helm-brass-bright">
-      <SignalDot tone="brass" /> measured · llama 4 scout
+    <span className="inline-flex items-center gap-2 border border-helm-pass/40 bg-helm-pass/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-helm-pass">
+      <SignalDot tone="pass" /> measured · llama 4 scout
     </span>
   );
 }
 
-function SignalDot({ tone }: { tone: 'brass' | 'warn' }) {
-  const fill = tone === 'brass' ? 'bg-helm-brass' : 'bg-helm-warn';
+function SignalDot({ tone }: { tone: 'pass' | 'warn' }) {
+  const fill = tone === 'pass' ? 'bg-helm-pass' : 'bg-helm-warn';
   return (
     <span className="relative flex size-2">
       <span className={`absolute inset-0 animate-ping rounded-full opacity-50 ${fill}`} />
