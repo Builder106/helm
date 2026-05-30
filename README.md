@@ -124,7 +124,7 @@ Helm/
 │   ├── render-png/   Playwright-driven HTML → PNG renderer for invoices
 │   ├── fixtures/     Versioned generated fixtures with labels
 │   └── measurements/ Reproducibility scripts for every README number
-├── e2e/          Playwright + playwright-bdd: QA suite + demo-recording suite
+├── e2e/          Playwright: QA suite + slowMo demo-recording suite
 ├── docs/         scope.md, architecture.md, anything else durable
 ├── assets/       Banner SVGs, logo, demo recordings
 └── .github/workflows/  CI + deploy
@@ -154,7 +154,20 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the longer dev-environment story.
 
 ## Demos
 
-_Recorded walkthroughs land here once the dashboard renders end-to-end. The recording pipeline is the Playwright + playwright-bdd demo suite described in the global `~/.claude/CLAUDE.md`._
+The dashboard is a submersible dive log: trial 01 sits in the sunlit zone (~15m), trial 02 descends to the twilight zone (~80m), and pending trials wait deeper in the column. Each video is recorded by the Playwright demo suite (`pnpm test:demo`) and committed to `docs/demos/`.
+
+<details>
+<summary><b>Trial 01 → Trial 02 — the headline tour (≈30s)</b></summary>
+
+<br />
+
+![Helm dashboard tour — trial 01 then trial 02](docs/demos/helm-tour.gif)
+
+A single descent through the dashboard: the AP Invoice OCR panel with its 99.0% parse rate, then down to the Creator Payout Reconciler showing the 6.0% exact-match finding and the per-creator discrepancy log flagged for human review.
+
+The mp4 master ([`docs/demos/helm-tour.mp4`](docs/demos/helm-tour.mp4)) is what's embedded above as a GIF — open the mp4 for sharper playback.
+
+</details>
 
 ## Project status
 
@@ -168,7 +181,7 @@ _Recorded walkthroughs land here once the dashboard renders end-to-end. The reco
 | Sub-feature 4 — Cross-Company KPI Q&A | ⬜ |
 | Banner SVGs + favicon + social card | ✅ |
 | Dashboard SPA (AP panel rendering live measurement) | ✅ |
-| Demo videos | ⬜ |
+| Demo videos | ✅ [`docs/demos/helm-tour.gif`](docs/demos/helm-tour.gif) (trial 01 → 02 tour) |
 | Deployed dashboard | ✅ [helm-bridge.vercel.app](https://helm-bridge.vercel.app) |
 
 ## License

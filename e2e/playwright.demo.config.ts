@@ -11,15 +11,9 @@
 // exists) will discard their videos by slug prefix.
 
 import { defineConfig, devices } from '@playwright/test';
-import { defineBddConfig } from 'playwright-bdd';
-
-const testDir = defineBddConfig({
-  features: 'e2e/demo/features/**/*.feature',
-  steps: 'e2e/steps/**/*.steps.ts',
-});
 
 export default defineConfig({
-  testDir,
+  testDir: 'demo/features',
   timeout: 180_000,
   fullyParallel: false,
   workers: 1,

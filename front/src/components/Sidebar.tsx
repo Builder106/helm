@@ -20,7 +20,7 @@ type Trial = {
 
 const trials: Trial[] = [
   { id: 'invoice-ocr',       index: '01', label: 'invoice-ocr',       depth: 12, depthM: 15,   zone: 'sunlit',    active: true, shipped: true },
-  { id: 'payout-reconciler', index: '02', label: 'payout-reconciler', depth: 38, depthM: 80,   zone: 'twilight',                shipped: false },
+  { id: 'payout-reconciler', index: '02', label: 'payout-reconciler', depth: 38, depthM: 80,   zone: 'twilight',                shipped: true },
   { id: 'tier1-cs',          index: '03', label: 'tier1-cs',          depth: 64, depthM: 320,  zone: 'midnight',                shipped: false },
   { id: 'kpi-qa',            index: '04', label: 'kpi-qa',            depth: 88, depthM: 1100, zone: 'abyssal',                 shipped: false },
 ];

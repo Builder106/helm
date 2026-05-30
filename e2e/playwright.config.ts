@@ -1,22 +1,24 @@
-// QA suite: fast, headless, no videos. Runs against the dashboard
-// (front/) once it lands; feature files will fill in under
-// e2e/features/. The demo-recording suite lives in
-// playwright.demo.config.ts — see the global ~/.claude/CLAUDE.md
-// "Gherkin E2E Tests + Demo Video Recording" section for the
-// shared-step-library + two-suite pattern.
+// QA suite: fast, headless, no videos. Runs plain Playwright .spec.ts
+// files at e2e/features/. The matching .feature documents are kept
+// alongside as natural-English documentation; a future migration to
+// playwright-bdd v8 is a paste job (the step semantics already match).
+//
+// The demo-recording suite lives in playwright.demo.config.ts — see
+// the global ~/.claude/CLAUDE.md "Gherkin E2E Tests + Demo Video
+// Recording" section for the two-suite pattern.
 
 import { defineConfig, devices } from '@playwright/test';
-import { defineBddConfig } from 'playwright-bdd';
-
-const testDir = defineBddConfig({
-  features: 'e2e/features/**/*.feature',
-  steps: 'e2e/steps/**/*.steps.ts',
-});
 
 export default defineConfig({
-  testDir,
+  testDir: 'features',
+  testMatch: /.*\.spec\.ts$/,
   timeout: 30_000,
-  fullyParallel: true,
+  // Parallel QA contexts overwhelm the dev server during Vite HMR — six
+  // parallel React mounts produced inconsistent .rise animation timing
+  // and visibility timeouts. Serial workers add ~30s to the suite for
+  // dramatically better stability locally and in CI.
+  fullyParallel: false,
+  workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   use: {
