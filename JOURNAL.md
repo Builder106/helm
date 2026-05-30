@@ -4,6 +4,10 @@
 > things happen — retrospectives need this raw material to land.
 > Reverse-chronological; one paragraph max per entry.
 
+## 2026-05-30 — Repo public on GitHub + Vercel auto-deploy wired + Analytics/Speed Insights live #milestone
+
+Helm now exists at `github.com/Builder106/Helm` with a one-line description, homepage URL, and 10 topics (gemini, mcp, libsql, llm, ocr, accounts-payable, ai-automation, vision-llm, typescript, react). `vercel git connect` linked the project to the repo; `@vercel/analytics` + `@vercel/speed-insights` wired into front/src/App.tsx and ship +7 KB gzip. The standard-repo baseline checklist from the global CLAUDE.md is now complete except for E2E feature files + demo videos. Each push to `main` triggers an automatic Vercel build; production deployments promote from those builds via the project's Production Branch setting.
+
 ## 2026-05-30 — First complete 200-invoice measurement landed #milestone
 
 After five LLM commits and three failed/partial measurement attempts, `pnpm measure:invoice-ocr --seed 1 --extractor gemini` cleared the full 200-invoice corpus on `gemini-3.1-flash-lite`. Wall time: 944 s (~15.7 min). Results: **99.0% parse rate (198/200), 91.9% field accuracy (micro-averaged), 84.1% line-item exact match, $0.000298 per invoice ($0.0595 total)**. Reconciler F1 0.776 (precision 0.667, recall 0.929) — the precision soft spot is false-positive flagging when Gemini's cent-level number drift trips the math-mismatch check, not missed real anomalies (only 2 FN). Latency: p50 3.1 s, p95 9.3 s, p99 15.5 s. Labor model: 1200 manual-minutes → 78 Helm-touched minutes = ~18.7 hrs saved per 200-invoice batch, **15.4× time reduction** at $0.06 API spend. The two parse failures (inv-0072, inv-0079) returned a negative `tax_amount` and tripped the Zod `.nonnegative()` check — a layout-specific Gemini quirk, fixable with prompt tweaking, not a structural pipeline flaw. README headline section + status table updated; sub-feature 1 flipped from 🟡 to ✅. Live dashboard auto-picks up the new `report.json` on next Vercel deploy; the MOCK DATA banner becomes MEASURED · GEMINI 3.1 FLASH LITE.
