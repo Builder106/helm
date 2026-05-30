@@ -6,7 +6,7 @@ Helm is a personal portfolio project, so the "contributor" is usually me-from-ne
 
 - **Node 22+** (use `nvm use` to pin via `.nvmrc`).
 - **pnpm** for package management. The repo uses pnpm workspaces; npm and yarn will not produce the right `node_modules` layout.
-- **Groq API key** in `.env` as `GROQ_API_KEY`. Free-tier accounts at [console.groq.com](https://console.groq.com/) issue keys instantly; the free tier is rate-limited but adequate for development and measurement runs.
+- **Gemini API key** in `.env` as `GEMINI_API_KEY`. Free key at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey). The free tier has no daily token cap (15 RPM, 1,500 RPD, 1M TPM) so a full 200-invoice run completes in ~15 minutes at zero cost. (Optional secondary: `GROQ_API_KEY` if you want to compare against the Llama 4 Scout extractor — kept in the repo as an alternative provider.)
 - **libsql** runs locally as a single file at `data/helm.db` — no setup required, no account. The dev default in `.env.example` is `LIBSQL_URL=file:./data/helm.db`. For deployment, swap to a Turso Cloud URL (`libsql://<name>.turso.io`) + `LIBSQL_AUTH_TOKEN`; SQL is identical.
 - **Playwright browsers** installed via `pnpm exec playwright install chromium`.
 
@@ -14,11 +14,12 @@ Helm is a personal portfolio project, so the "contributor" is usually me-from-ne
 
 ```bash
 pnpm install
-cp .env.example .env   # then fill in GROQ_API_KEY and SUPABASE_URL/KEY
+cp .env.example .env   # then fill in GEMINI_API_KEY (and optionally GROQ_API_KEY)
 pnpm data:generate --seed 1            # synthetic-data fixture
 pnpm data:render-png --seed 1          # HTML → PNG renders for invoice OCR
 pnpm measure:invoice-ocr --seed 1      # mock pipeline (no API spend)
-pnpm measure:invoice-ocr --seed 1 --extractor groq   # real Llama vision via Groq
+pnpm measure:invoice-ocr --seed 1 --extractor gemini   # real Gemini 2.0 Flash vision (~15 min, free)
+pnpm measure:invoice-ocr --seed 1 --extractor groq     # alternative: Llama 4 Scout via Groq
 pnpm test              # unit + integration
 pnpm test:e2e          # headless Playwright QA suite
 pnpm test:demo         # narrated demo recordings (see global CLAUDE.md for the recording pipeline)
@@ -40,14 +41,15 @@ See the "Architecture" section of [`README.md`](README.md). The two non-obvious 
 - **Comments only when WHY is non-obvious.** WHAT is self-evident from named identifiers. Follow the global guidance in `~/.claude/CLAUDE.md`.
 - **No file-header docblocks.** The filename and the imports tell the story.
 
-### Llama / Groq SDK usage
+### Gemini SDK usage
 
-- **Use the official `groq-sdk`** (OpenAI-compatible chat completions). Don't pull in OpenRouter, LiteLLM, or other wrappers — they obscure the cost-tracking story.
-- **Default model: `meta-llama/llama-4-scout-17b-16e-instruct`** for all four sub-features. Llama 4 Maverick is the reach option for the KPI Q&A path if Scout's reasoning depth proves too shallow under real-world questions.
-- **`response_format: { type: 'json_object' }`** on every call that produces structured output. Validate the result through Zod immediately; retry once on parse failure with a "your previous response did not parse" follow-up.
+- **Use the official `@google/genai`** (Google's unified Gemini SDK; replaces the legacy `@google/generative-ai`). Don't pull in OpenRouter, LiteLLM, or other wrappers — they obscure the cost-tracking story.
+- **Default model: `gemini-2.0-flash`** for all four sub-features. Gemini 2.5 Flash is the reach option for the KPI Q&A path if 2.0's reasoning depth proves too shallow under real-world questions.
+- **Use `responseMimeType: 'application/json'` + `responseSchema`** on every call that produces structured output. Gemini enforces the schema server-side; combined with Zod parsing on the client, schema drift becomes effectively impossible.
 - **`temperature: 0`** for any path that is graded against a deterministic ground truth (extraction, payout reconciliation). Q&A paths can run at a low non-zero temperature if needed.
-- **Every Groq call logs** input tokens, output tokens, latency, and USD cost (computed from Groq's published pricing) to a structured log. The dashboard surfaces these in the metrics panel; no measurement is allowed in the README that does not derive from this log.
-- **The `Extractor` interface in [`back/src/ap/extraction.ts`](back/src/ap/extraction.ts) is provider-agnostic by design.** A `createClaudeExtractor` or `createOpenAIExtractor` could land alongside `createGroqLlamaExtractor` without touching the measurement script — the constructor accepts the model identity in its options.
+- **Self-pace at 15 RPM** (one request every ~4.5 seconds) to stay under the free-tier limit. The Gemini extractor in `back/src/ap/extraction-gemini.ts` does this internally — callers don't need to add delays.
+- **Every Gemini call logs** input tokens (which include image tokens at ~258 per PNG), output tokens, latency, and USD cost (computed from Gemini 2.0 Flash's published pricing: $0.10/M input, $0.40/M output) to a structured log. The dashboard surfaces these in the metrics panel; no measurement is allowed in the README that does not derive from this log.
+- **The `Extractor` interface in [`back/src/ap/extraction.ts`](back/src/ap/extraction.ts) is provider-agnostic by design.** `createGroqLlamaExtractor` lives alongside `createGeminiExtractor`; a Claude or OpenAI implementation could land next to them without touching the measurement script — the constructor accepts the model identity in its options.
 
 ### Commits
 
@@ -69,7 +71,7 @@ To save anyone the trouble:
 - A real billing integration. Synthetic data only.
 - Slack/Teams/Discord integrations beyond the one escalation webhook.
 - Internationalization. English-only.
-- A custom-trained model. The lane is agent/automation; Llama 4 Scout is the model.
+- A custom-trained model. The lane is agent/automation; Gemini 2.0 Flash is the model.
 - Mobile responsiveness beyond "doesn't break on a tablet."
 - A pricing page. This is a portfolio repo, not a startup.
 

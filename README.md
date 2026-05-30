@@ -3,22 +3,21 @@
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg" type="image/svg+xml">
   <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
-  <img alt="Helm — Llama 4 + MCP co-pilot for small-business operations. Four back-office workflows, measured cost and accuracy." src="assets/banner-dark.svg">
+  <img alt="Helm — Gemini 2.0 Flash + MCP co-pilot for small-business operations. Four back-office workflows, measured cost and accuracy." src="assets/banner-dark.svg">
 </picture>
 
 [![CI](https://github.com/Builder106/Helm/actions/workflows/deploy.yml/badge.svg)](https://github.com/Builder106/Helm/actions/workflows/deploy.yml)
 [![Live demo](https://img.shields.io/badge/demo-live-success.svg)](https://helm-bridge.vercel.app)
 [![Node](https://img.shields.io/badge/Node-22%2B-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react&logoColor=white)](https://react.dev/)
-[![Llama 4](https://img.shields.io/badge/Llama%204%20Scout-vision-0467DF.svg?logo=meta&logoColor=white)](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)
-[![Groq](https://img.shields.io/badge/Groq-OpenAI%20compat-F55036.svg)](https://groq.com/)
+[![Gemini](https://img.shields.io/badge/Gemini%202.0%20Flash-vision-4285F4.svg?logo=google&logoColor=white)](https://ai.google.dev/gemini-api/docs/models/gemini)
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-0A0A0A.svg)](https://modelcontextprotocol.io/)
 [![libsql](https://img.shields.io/badge/libsql-SQLite%20%2B%20vector-4FF8D2.svg)](https://github.com/tursodatabase/libsql)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 
-> **Helm is a Llama 4 + MCP executive co-pilot for small-and-mid-market business operations.** Four back-office workflows — AP-invoice OCR, creator-payout reconciliation, Tier-1 customer-service responses, and cross-company KPI Q&A — running end-to-end with measured cost and accuracy per task. The dashboard is the demo.
+> **Helm is a Gemini 2.0 Flash + MCP executive co-pilot for small-and-mid-market business operations.** Four back-office workflows — AP-invoice OCR, creator-payout reconciliation, Tier-1 customer-service responses, and cross-company KPI Q&A — running end-to-end with measured cost and accuracy per task. The dashboard is the demo.
 
-**Live dashboard:** [helm-bridge.vercel.app](https://helm-bridge.vercel.app) — currently rendering the seed=1 mock measurement; the MOCK DATA badge swaps to MEASURED · Llama 4 Scout the next time the Groq cap resets.
+**Live dashboard:** [helm-bridge.vercel.app](https://helm-bridge.vercel.app) — the MOCK DATA badge swaps to MEASURED · Gemini 2.0 Flash on the next measurement run.
 
 ## The headline finding
 
@@ -28,7 +27,7 @@
 
 Helm is a portfolio project: a working sketch of what an AI/automation team would actually build inside a growing SMB. The Handshake postings that motivated it — Smart Circle International, FHI Heat, Source Creative — all describe the same shape of work: an LLM-powered layer that sits between human operators and their messy stack of business systems, runs the repetitive parts, and surfaces decisions for humans. Helm is that layer, built against synthetic stand-ins for the systems and measured against hand-labeled ground truth.
 
-The lane is **agent/automation**, not applied ML. There is no novel model here. The engineering contribution is the orchestration — four MCP servers, a Llama-vision OCR pipeline, a policy reasoner, and a citation-grounded executive Q&A path — and the per-workflow cost/accuracy measurement that lets the README make a defensible claim. The model is Llama 4 Scout served via Groq's OpenAI-compatible API; the extractor interface is provider-agnostic so a Claude or any other implementation can sit alongside.
+The lane is **agent/automation**, not applied ML. There is no novel model here. The engineering contribution is the orchestration — four MCP servers, a Gemini-vision OCR pipeline, a policy reasoner, and a citation-grounded executive Q&A path — and the per-workflow cost/accuracy measurement that lets the README make a defensible claim. The model is Gemini 2.0 Flash via Google AI Studio; the extractor interface is provider-agnostic and a Llama-via-Groq implementation lives alongside (`back/src/ap/extraction-groq.ts`) as an alternative.
 
 ## How it works
 
@@ -38,7 +37,7 @@ sequenceDiagram
     participant U as User
     participant D as Dashboard (React + Chart.js)
     participant API as API (Node + Express)
-    participant L as Llama 4 Scout (via Groq)
+    participant L as Gemini 2.0 Flash
     participant MCP as MCP servers
     participant DB as libsql (SQLite + vector)
 
@@ -96,10 +95,10 @@ Each panel of the dashboard maps to one sub-feature, and each sub-feature ships 
 
 | Sub-feature | Stack | Measurement |
 |---|---|---|
-| **AP Invoice OCR** | Llama 4 Scout vision, Zod, libsql | Line-item accuracy on 200-invoice holdout, USD/invoice, p50/p95 latency |
-| **Creator Payout Reconciler** | Llama 4 + a programmatic re-computer | Exact-match rate vs. hand-computed ground truth on 50-creator fixture |
-| **Tier-1 CS Responder** | libsql vector retrieval, Llama structured output, confidence gating | Auto-response rate, precision; escalation recall |
-| **Cross-Company KPI Q&A** | Llama tool-use, four custom MCP servers | Citation accuracy, tool-routing precision on a 10-question battery |
+| **AP Invoice OCR** | Gemini 2.0 Flash vision, Zod, libsql | Line-item accuracy on 200-invoice holdout, USD/invoice, p50/p95 latency |
+| **Creator Payout Reconciler** | Gemini + a programmatic re-computer | Exact-match rate vs. hand-computed ground truth on 50-creator fixture |
+| **Tier-1 CS Responder** | libsql vector retrieval, Gemini structured output, confidence gating | Auto-response rate, precision; escalation recall |
+| **Cross-Company KPI Q&A** | Gemini tool-use, four custom MCP servers | Citation accuracy, tool-routing precision on a 10-question battery |
 
 ## Architecture
 
@@ -136,11 +135,11 @@ This is a portfolio piece, not a product. The synthetic data is synthetic; the w
 ```bash
 pnpm install
 pnpm exec playwright install chromium    # first run only
-cp .env.example .env                     # add GROQ_API_KEY (free tier exists); LIBSQL_URL defaults to file:./data/helm.db
+cp .env.example .env                     # add GEMINI_API_KEY (free at aistudio.google.com); LIBSQL_URL defaults to file:./data/helm.db
 pnpm data:generate --seed 1              # generators
 pnpm data:render-png --seed 1            # HTML → PNG, ~17s
 pnpm measure:invoice-ocr --seed 1        # full pipeline against the mock extractor
-pnpm measure:invoice-ocr --seed 1 --extractor groq   # against real Llama vision
+pnpm measure:invoice-ocr --seed 1 --extractor gemini   # against real Gemini 2.0 Flash vision (~15 min, free)
 ```
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the longer dev-environment story.
@@ -155,7 +154,7 @@ _Recorded walkthroughs land here once the dashboard renders end-to-end. The reco
 |---|---|
 | Scaffold | ✅ |
 | Synthetic-data generators (seed=1 committed) | ✅ |
-| Sub-feature 1 — AP Invoice OCR | 🟡 mock + Groq Llama-vision extractor wired; real measurement pending API key |
+| Sub-feature 1 — AP Invoice OCR | 🟡 mock + Gemini (and Groq fallback) extractors wired; real measurement pending API key |
 | Sub-feature 2 — Creator Payout Reconciler | ⬜ |
 | Sub-feature 3 — Tier-1 CS Responder | ⬜ |
 | Sub-feature 4 — Cross-Company KPI Q&A | ⬜ |

@@ -83,7 +83,7 @@ export type ReportHeadline = {
 
 export type Report = {
   seed: string;
-  extractor: 'mock' | 'groq';
+  extractor: 'mock' | 'gemini' | 'groq';
   wallMs: number;
   headline: ReportHeadline;
   records: ReportRecord[];

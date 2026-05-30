@@ -56,7 +56,7 @@ export function LatencyHistogram() {
           </h3>
           <p className="mt-1 max-w-md text-[12.5px] leading-snug text-helm-vellum-muted">
             Lower-left tail is fast invoices. Right tail is rate-limit and retry
-            backoff under the Groq free-tier ceiling.
+            backoff under the free-tier RPM ceiling.
           </p>
         </div>
 

@@ -1,6 +1,12 @@
 import { HelmMark } from './HelmMark.tsx';
 import { report, isMock } from '../lib/report.ts';
 
+const EXTRACTOR_LABELS: Record<string, string> = {
+  gemini: 'gemini 2.0 flash',
+  groq: 'llama 4 scout',
+  mock: 'mock data',
+};
+
 // Top bar = sky / surface band. The surface wave layer (see SurfaceWaves
 // component) sits directly below this and visually transitions from
 // sky to water as the user begins reading.
@@ -38,9 +44,10 @@ function ExtractorBadge() {
       </span>
     );
   }
+  const label = EXTRACTOR_LABELS[report.extractor] ?? report.extractor;
   return (
     <span className="inline-flex items-center gap-2 border border-helm-pass/40 bg-helm-pass/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-helm-pass">
-      <SignalDot tone="pass" /> measured · llama 4 scout
+      <SignalDot tone="pass" /> measured · {label}
     </span>
   );
 }

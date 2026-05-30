@@ -20,6 +20,7 @@ import {
   type Extractor,
 } from '../../back/src/ap/extraction.js';
 import { createGroqLlamaExtractor } from '../../back/src/ap/extraction-groq.js';
+import { createGeminiExtractor } from '../../back/src/ap/extraction-gemini.js';
 import { reconcile, type ReconciliationFlag, type ReconciliationResult } from '../../back/src/ap/reconcile.js';
 import type { InvoiceLabel, InvoiceAnomaly } from '../generators/invoices/types.js';
 import type { ExtractedInvoice } from '../../back/src/ap/schema.js';
@@ -175,10 +176,13 @@ async function buildExtractor(
   if (kind === 'mock') {
     return createMockExtractor(labels, { seed: `${seed}:mock-extract` });
   }
+  if (kind === 'gemini') {
+    return createGeminiExtractor();
+  }
   if (kind === 'groq') {
     return createGroqLlamaExtractor();
   }
-  throw new Error(`unknown extractor: ${kind}. Supported: mock, groq`);
+  throw new Error(`unknown extractor: ${kind}. Supported: mock, gemini, groq`);
 }
 
 function scoreExtraction(label: InvoiceLabel, extracted: ExtractedInvoice): {

@@ -4,7 +4,7 @@ This document freezes what Helm is and is not. See [`CLAUDE.md`](../CLAUDE.md) a
 
 ## One-line pitch
 
-A Llama 4 + MCP executive co-pilot that runs four real back-office workflows for a small-and-mid-market business, with measured cost and accuracy per workflow.
+A Gemini 2.0 Flash + MCP executive co-pilot that runs four real back-office workflows for a small-and-mid-market business, with measured cost and accuracy per workflow.
 
 ## The four sub-features (contract)
 
@@ -15,14 +15,14 @@ A Llama 4 + MCP executive co-pilot that runs four real back-office workflows for
 **Output.** A normalized `invoices.jsonl` with one record per invoice: vendor, invoice number, line items (description, qty, unit price, total), subtotal, tax, total, due date. Plus an `anomalies.jsonl` for invoices where the line-item math doesn't reconcile or a field is missing.
 
 **Workflow.**
-1. Watch a folder; for each new PNG, send it to Llama 4 Scout vision via Groq with a structured-extraction prompt (`response_format: json_object`).
+1. Watch a folder; for each new PNG, send it to Gemini 2.0 Flash vision via the `@google/genai` SDK with a structured-extraction prompt (`responseMimeType: 'application/json'` + a `responseSchema` matching the Zod shape).
 2. Validate the extracted JSON against a Zod schema.
 3. Compute reconciliation: `sum(line_items) + tax ?= total`. Flag mismatches.
 4. Push valid invoices to a Postgres `ap_invoices` table; emit anomalies to a review queue.
 
 **Measurement.** On a 200-invoice labeled holdout:
 - **Line-item accuracy** (exact match per field, micro-averaged): target ≥ 95%.
-- **Cost per invoice** in USD (Groq input + output tokens × published Llama 4 Scout pricing).
+- **Cost per invoice** in USD (Gemini input + output tokens × published Gemini 2.0 Flash pricing; the free-tier $0 reality is also reported but the per-paid-tier cost is the more meaningful number at scale).
 - **p50 / p95 latency** end-to-end (PNG landed → row in DB).
 
 ### 2. Creator Payout Reconciler

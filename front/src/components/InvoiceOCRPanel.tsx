@@ -137,10 +137,10 @@ function PanelHeader() {
       </div>
 
       <p className="max-w-3xl text-[15px] leading-relaxed text-helm-vellum-muted">
-        Invoice PNGs are extracted to structured JSON by Llama 4 Scout vision, served via Groq,
-        and validated against a Zod schema. Each invoice is then reconciled for line-item math,
-        missing due dates, duplicate invoice numbers, and layout overflow. Auto-approved invoices
-        land in the AP ledger; flagged ones queue for human review.
+        Invoice PNGs are extracted to structured JSON by Gemini 2.0 Flash vision (constrained
+        server-side by a JSON schema, then re-validated through Zod). Each invoice is then
+        reconciled for line-item math, missing due dates, duplicate invoice numbers, and layout
+        overflow. Auto-approved invoices land in the AP ledger; flagged ones queue for human review.
       </p>
 
       <MethodologyStrip />
@@ -152,8 +152,8 @@ function PanelHeader() {
 
 function MethodologyStrip() {
   const cells = [
-    { label: 'model',     value: 'llama-4-scout' },
-    { label: 'provider',  value: 'groq' },
+    { label: 'model',     value: 'gemini-2.0-flash' },
+    { label: 'provider',  value: 'google ai studio' },
     { label: 'fixture',   value: '200 png' },
     { label: 'seed',      value: report.seed },
     { label: 'extractor', value: report.extractor },
@@ -185,7 +185,7 @@ function MockBanner() {
           call, not real API output. Only the reconciler stats and labor model reflect actual
           pipeline logic. Run{' '}
           <code className="border border-helm-cyan/20 bg-helm-twilight/60 px-1.5 py-0.5 font-mono text-[11.5px] text-helm-vellum">
-            pnpm measure:invoice-ocr --seed 1 --extractor groq
+            pnpm measure:invoice-ocr --seed 1 --extractor gemini
           </code>{' '}
           for measured numbers.
         </div>
