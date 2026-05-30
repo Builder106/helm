@@ -4,7 +4,7 @@ This document freezes what Helm is and is not. See [`CLAUDE.md`](../CLAUDE.md) a
 
 ## One-line pitch
 
-A Gemini 2.0 Flash + MCP executive co-pilot that runs four real back-office workflows for a small-and-mid-market business, with measured cost and accuracy per workflow.
+A Gemini 2.5 Flash + MCP executive co-pilot that runs four real back-office workflows for a small-and-mid-market business, with measured cost and accuracy per workflow.
 
 ## The four sub-features (contract)
 
@@ -15,14 +15,14 @@ A Gemini 2.0 Flash + MCP executive co-pilot that runs four real back-office work
 **Output.** A normalized `invoices.jsonl` with one record per invoice: vendor, invoice number, line items (description, qty, unit price, total), subtotal, tax, total, due date. Plus an `anomalies.jsonl` for invoices where the line-item math doesn't reconcile or a field is missing.
 
 **Workflow.**
-1. Watch a folder; for each new PNG, send it to Gemini 2.0 Flash vision via the `@google/genai` SDK with a structured-extraction prompt (`responseMimeType: 'application/json'` + a `responseSchema` matching the Zod shape).
+1. Watch a folder; for each new PNG, send it to Gemini 2.5 Flash vision via the `@google/genai` SDK with a structured-extraction prompt (`responseMimeType: 'application/json'` + a `responseSchema` matching the Zod shape).
 2. Validate the extracted JSON against a Zod schema.
 3. Compute reconciliation: `sum(line_items) + tax ?= total`. Flag mismatches.
 4. Push valid invoices to a Postgres `ap_invoices` table; emit anomalies to a review queue.
 
 **Measurement.** On a 200-invoice labeled holdout:
 - **Line-item accuracy** (exact match per field, micro-averaged): target ≥ 95%.
-- **Cost per invoice** in USD (Gemini input + output tokens × published Gemini 2.0 Flash pricing; the free-tier $0 reality is also reported but the per-paid-tier cost is the more meaningful number at scale).
+- **Cost per invoice** in USD (Gemini input + output tokens × published Gemini 2.5 Flash pricing; the free-tier $0 reality is also reported but the per-paid-tier cost is the more meaningful number at scale).
 - **p50 / p95 latency** end-to-end (PNG landed → row in DB).
 
 ### 2. Creator Payout Reconciler
@@ -32,12 +32,12 @@ A Gemini 2.0 Flash + MCP executive co-pilot that runs four real back-office work
 **Output.** A `payouts.csv` with one row per creator: gross, deductions itemized by rule, net payout, currency-normalized USD net. Plus a `discrepancies.md` markdown report flagging cases where the policy is ambiguous.
 
 **Workflow.**
-1. Llama reads `policy.md` once as a system-message prefix (re-used across all creator calls in the batch).
-2. For each creator, Llama applies the policy to that creator's order rows and produces a structured payout breakdown.
-3. A deterministic JS reconciler re-computes from the same rules (`data/generators/orders/policy.ts`) and flags any creator whose Llama-computed total disagrees with the deterministic re-computation.
+1. Gemini reads `policy.md` once as a system-message prefix (re-used across all creator calls in the batch).
+2. For each creator, Gemini applies the policy to that creator's order rows and produces a structured payout breakdown.
+3. A deterministic JS reconciler re-computes from the same rules (`data/generators/orders/policy.ts`) and flags any creator whose Gemini-computed total disagrees with the deterministic re-computation.
 
 **Measurement.** On a 50-creator fixture with hand-computed ground truth:
-- **Exact-match rate** of Llama payout vs. ground truth: target ≥ 99%.
+- **Exact-match rate** of Gemini payout vs. ground truth: target ≥ 99%.
 - **Total dollars reconciled** and total time vs. a stopwatch-measured "do it in Google Sheets" baseline.
 
 ### 3. Tier-1 Customer Service Responder
@@ -48,7 +48,7 @@ A Gemini 2.0 Flash + MCP executive co-pilot that runs four real back-office work
 
 **Workflow.**
 1. Embed the knowledge-base markdown once into libsql (the F32_BLOB vector column on a `kb_passages` table; cosine similarity via `vector_distance_cos`).
-2. For each inbound message, retrieve top-k passages; pass message + passages to Llama with a structured-output prompt.
+2. For each inbound message, retrieve top-k passages; pass message + passages to Gemini with a structured-output prompt.
 3. Confidence threshold gates the action.
 
 **Measurement.** On the labeled corpus:
@@ -63,8 +63,8 @@ A Gemini 2.0 Flash + MCP executive co-pilot that runs four real back-office work
 **Output.** A grounded answer with citations to specific rows in the four MCP-served data sources.
 
 **Workflow.**
-1. Llama receives the question + tool descriptions for each MCP server (ERP, CRM, accounting/AP, retail channel).
-2. Llama plans a retrieval sequence, calls MCP tools, and synthesizes an answer.
+1. Gemini receives the question + tool descriptions for each MCP server (ERP, CRM, accounting/AP, retail channel).
+2. Gemini plans a retrieval sequence, calls MCP tools, and synthesizes an answer.
 3. Every claim in the answer is paired with a `source_row_id` field from the tool response that the dashboard can resolve back to the underlying row.
 
 **Measurement.** A ten-question canned battery with hand-built ground-truth row IDs:
