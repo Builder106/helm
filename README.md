@@ -19,11 +19,17 @@
 
 **Live dashboard:** [helm-bridge.vercel.app](https://helm-bridge.vercel.app) — rendering the seed=1 / 200-invoice measurement against Gemini 3.1 Flash Lite.
 
-## The headline finding
+## The headline findings
 
-> **200 synthetic AP invoices through a Gemini 3.1 Flash Lite vision pipeline. 99.0% parse rate, 91.9% field accuracy, 84.1% line-item exact match at $0.000298 per invoice.** Reconciler F1 0.78 on anomaly detection (precision 0.67, recall 0.93 — the soft spot is false-positive flagging on cent-rounding drift, not missed real anomalies). At a 6 min/invoice manual baseline and $25/hr loaded wage, the pipeline recovers **~18.7 labor-hours per 200 invoices — a 15.4× time reduction at $0.06 total API cost.**
+**Trial 01 — AP Invoice OCR · 200 synthetic invoices · Gemini 3.1 Flash Lite vision**
 
-Reproduced by [`pnpm measure:invoice-ocr --seed 1 --extractor gemini`](data/measurements/invoice-ocr.ts), which writes [`data/measurements/output/seed-1/invoice-ocr/report.json`](data/measurements/output/seed-1/invoice-ocr/report.json). p50 latency 3.1 s, p95 9.3 s, p99 15.5 s. 198 of 200 invoices cleared Zod validation; the 2 failures returned a negative `tax_amount` (a Gemini quirk on two specific layouts — fixable with a prompt tweak, not a pipeline flaw). The full per-invoice trace is in the report JSON; the dashboard at [helm-bridge.vercel.app](https://helm-bridge.vercel.app) renders it live.
+> **99.0% parse rate, 91.9% field accuracy, 84.1% line-item exact match at $0.000298 per invoice.** Reconciler F1 0.78 on anomaly detection (precision 0.67, recall 0.93). At a 6 min/invoice manual baseline and $25/hr loaded wage, the pipeline recovers **~18.7 labor-hours per 200 invoices — a 15.4× time reduction at $0.06 total API cost.** Reproduced by [`pnpm measure:invoice-ocr --seed 1 --extractor gemini`](data/measurements/invoice-ocr.ts).
+
+**Trial 02 — Creator Payout Reconciler · 50 creators × 863 orders · Gemini 3.1 Flash Lite policy reasoning**
+
+> **6.0% exact-match rate, 54.1% field accuracy, $285 max single-creator drift on $14,184 total reconciled.** This is the finding worth reading carefully: **Gemini reads invoices well (vision) but reasons about multi-step arithmetic policy badly (text).** The same model that scored 91.9% on invoice OCR drops to 54% on payout math — applying commission tiers, refund/shipping/fee deductions, currency FX, and minimum-payout thresholds across 17 orders per creator. The deterministic re-computer at [`data/generators/orders/policy.ts`](data/generators/orders/policy.ts) is the architectural answer: the LLM proposes, the code disposes. Reproduced by [`pnpm measure:payout-reconciler --seed 1 --extractor gemini`](data/measurements/payout-reconciler.ts).
+
+The dashboard at [helm-bridge.vercel.app](https://helm-bridge.vercel.app) renders both trials side-by-side; the depth-zone metaphor descends from trial 01 at the sunlit zone to trial 02 in the twilight.
 
 ## What this is
 
@@ -157,7 +163,7 @@ _Recorded walkthroughs land here once the dashboard renders end-to-end. The reco
 | Scaffold | ✅ |
 | Synthetic-data generators (seed=1 committed) | ✅ |
 | Sub-feature 1 — AP Invoice OCR | ✅ 200 invoices · 99.0% parse · 91.9% field accuracy · $0.000298/invoice |
-| Sub-feature 2 — Creator Payout Reconciler | ⬜ |
+| Sub-feature 2 — Creator Payout Reconciler | ✅ 50 creators · 6.0% exact-match (LLM arithmetic weakness, see headline) · $0.000237/creator |
 | Sub-feature 3 — Tier-1 CS Responder | ⬜ |
 | Sub-feature 4 — Cross-Company KPI Q&A | ⬜ |
 | Banner SVGs + favicon + social card | ✅ |

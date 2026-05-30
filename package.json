@@ -27,7 +27,8 @@
     "data:generate": "tsx --env-file-if-exists=.env data/generators/index.ts",
     "data:render-png": "tsx --env-file-if-exists=.env data/render-png/index.ts",
     "measure": "tsx --env-file-if-exists=.env data/measurements/run-all.ts",
-    "measure:invoice-ocr": "tsx --env-file-if-exists=.env data/measurements/invoice-ocr.ts"
+    "measure:invoice-ocr": "tsx --env-file-if-exists=.env data/measurements/invoice-ocr.ts",
+    "measure:payout-reconciler": "tsx --env-file-if-exists=.env data/measurements/payout-reconciler.ts"
   },
   "devDependencies": {
     "@google/genai": "^2.7.0",

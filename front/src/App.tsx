@@ -3,6 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Sidebar } from './components/Sidebar.tsx';
 import { TopBar } from './components/TopBar.tsx';
 import { InvoiceOCRPanel } from './components/InvoiceOCRPanel.tsx';
+import { PayoutReconcilerPanel } from './components/PayoutReconcilerPanel.tsx';
 import { SurfaceWaves } from './components/SurfaceWaves.tsx';
 import { MarineSnow } from './components/MarineSnow.tsx';
 import { DepthDecorations } from './components/DepthDecorations.tsx';
@@ -30,6 +31,8 @@ export default function App() {
 
           <div className="caustics relative z-10 mx-auto max-w-[1280px] px-10 pb-16 pt-32">
             <InvoiceOCRPanel />
+            <TrialSeparator depth="twilight" />
+            <PayoutReconcilerPanel />
             <PageFooter />
           </div>
         </main>
@@ -40,6 +43,26 @@ export default function App() {
           dev (the components no-op when not behind Vercel's edge). */}
       <Analytics />
       <SpeedInsights />
+    </div>
+  );
+}
+
+// Depth-zone transition between trials. A thin cyan rule with mono
+// depth annotation visually marks the descent from sunlit (~15m) to
+// twilight (~80m) as the reader scrolls into the next trial.
+function TrialSeparator({ depth }: { depth: 'twilight' | 'midnight' | 'abyssal' }) {
+  const depthLabels: Record<typeof depth, { label: string; meters: string }> = {
+    twilight: { label: 'twilight zone', meters: '~80m' },
+    midnight: { label: 'midnight zone', meters: '~320m' },
+    abyssal:  { label: 'abyssal zone',  meters: '~1100m' },
+  };
+  const meta = depthLabels[depth];
+  return (
+    <div className="my-20 flex items-center gap-4">
+      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-helm-cyan">{meta.meters}</span>
+      <span className="h-px flex-1 bg-helm-cyan/15" />
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">descending · {meta.label}</span>
+      <span className="h-px flex-1 bg-helm-cyan/15" />
     </div>
   );
 }
