@@ -8,6 +8,7 @@
 // Recording" section for the two-suite pattern.
 
 import { defineConfig, devices } from '@playwright/test';
+import path from 'node:path';
 
 export default defineConfig({
   testDir: 'features',
@@ -21,6 +22,18 @@ export default defineConfig({
   workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
+  // Self-start the Vite dev server so `pnpm test:e2e` is standalone (and CI
+  // can run it). Reuses an already-running server locally so the inner-loop
+  // `pnpm dev` + `test:e2e` workflow isn't disrupted.
+  webServer: {
+    command: 'pnpm --filter ./front dev',
+    // webServer cwd defaults to this config's dir (e2e/); the workspace
+    // filter only resolves from the repo root.
+    cwd: path.resolve(__dirname, '..'),
+    url: process.env.HELM_BASE_URL ?? 'http://localhost:5173',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
   use: {
     baseURL: process.env.HELM_BASE_URL ?? 'http://localhost:5173',
     trace: 'retain-on-failure',

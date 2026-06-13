@@ -73,6 +73,20 @@ jobs:
       - name: Mock OCR pipeline smoke (limit 10)
         run: pnpm measure:invoice-ocr --seed 1 --limit 10
 
+      # E2E QA suite (Playwright). Self-starts the Vite dev server via the
+      # config's webServer; asserts the dashboard renders both trials and
+      # their measurement headlines against the committed report.json.
+      - name: E2E (Playwright QA)
+        run: pnpm test:e2e
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
 # Notes for evolving this:
 #
 # - When front/ lands: add a `build-front` job that runs `pnpm --filter

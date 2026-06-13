@@ -12,6 +12,7 @@
 //   opacity animation doesn't race the assertion.
 
 import { test, expect } from '@playwright/test';
+import { INVOICE_PARSE_RATE, PAYOUT_EXACT_MATCH_RATE } from '../helpers/report-data';
 
 test.describe('Helm dashboard renders both shipped trials', () => {
   test.beforeEach(async ({ page }) => {
@@ -33,14 +34,16 @@ test.describe('Helm dashboard renders both shipped trials', () => {
 
   test('trial 01 — AP Invoice OCR — title + headline parse rate', async ({ page }) => {
     await expect(page.getByRole('heading', { name: /AP Invoice/i, level: 1 })).toBeVisible();
-    await expect(page.getByText('99.0%').first()).toBeVisible();
+    // Tracks invoice-ocr/report.json parse_rate (the value the dashboard renders).
+    await expect(page.getByText(INVOICE_PARSE_RATE).first()).toBeVisible();
   });
 
   test('trial 02 — Creator Payout Reconciler — title + headline exact-match', async ({ page }) => {
     const trial02 = page.getByRole('heading', { name: /Creator Payout/i, level: 1 });
     await trial02.scrollIntoViewIfNeeded();
     await expect(trial02).toBeVisible();
-    await expect(page.getByText('6.0%').first()).toBeVisible();
+    // Tracks payout-reconciler/report.json exact_match_rate.
+    await expect(page.getByText(PAYOUT_EXACT_MATCH_RATE).first()).toBeVisible();
   });
 
   test('measurement metadata names gemini and the seed', async ({ page }) => {
