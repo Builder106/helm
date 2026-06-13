@@ -67,15 +67,11 @@ jobs:
       - name: Install Chromium for PNG render
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Render seed=1 PNGs
-        run: pnpm data:render-png --seed 1
-
-      - name: Mock OCR pipeline smoke (limit 10)
-        run: pnpm measure:invoice-ocr --seed 1 --limit 10
-
-      # E2E QA suite (Playwright). Self-starts the Vite dev server via the
-      # config's webServer; asserts the dashboard renders both trials and
-      # their measurement headlines against the committed report.json.
+      # E2E QA suite (Playwright). MUST run before the mock-OCR smoke below:
+      # that step overwrites data/measurements/output with --extractor=mock,
+      # but the E2E asserts the dashboard against the committed *gemini*
+      # report.json (e.g. "measured · gemini 3.1 flash lite"). Running it first
+      # keeps that data intact. Self-starts the Vite dev server via webServer.
       - name: E2E (Playwright QA)
         run: pnpm test:e2e
 
@@ -86,6 +82,12 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+      - name: Render seed=1 PNGs
+        run: pnpm data:render-png --seed 1
+
+      - name: Mock OCR pipeline smoke (limit 10)
+        run: pnpm measure:invoice-ocr --seed 1 --limit 10
 
 # Notes for evolving this:
 #
