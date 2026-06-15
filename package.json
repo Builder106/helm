@@ -34,7 +34,7 @@
     "@google/genai": "^2.7.0",
     "@libsql/client": "^0.17.3",
     "@playwright/test": "^1.49.0",
-    "@types/node": "^25.9.1",
+    "@types/node": "^25.9.3",
     "@vitest/coverage-v8": "^4.1.8",
     "groq-sdk": "^1.2.1",
     "playwright-bdd": "^8.5.1",
