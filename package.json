@@ -31,17 +31,17 @@
     "measure:payout-reconciler": "tsx --env-file-if-exists=.env data/measurements/payout-reconciler.ts"
   },
   "devDependencies": {
-    "@google/genai": "^2.7.0",
-    "@libsql/client": "^0.17.3",
-    "@playwright/test": "^1.49.0",
-    "@types/node": "^25.9.1",
-    "@vitest/coverage-v8": "^4.1.8",
-    "groq-sdk": "^1.2.1",
-    "playwright-bdd": "^8.5.1",
-    "prettier": "^3.4.0",
+    "@google/genai": "^2.10.0",
+    "@libsql/client": "^0.17.4",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.0.1",
+    "@vitest/coverage-v8": "^4.1.9",
+    "groq-sdk": "^1.3.0",
+    "playwright-bdd": "^9.2.0",
+    "prettier": "^3.9.1",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8",
+    "vitest": "^4.1.9",
     "zod": "^4.4.3"
   }
 }
