@@ -32,7 +32,7 @@ export default defineConfig({
     cwd: path.resolve(__dirname, '..'),
     url: process.env.HELM_BASE_URL ?? 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    timeout: 300_000,
   },
   use: {
     baseURL: process.env.HELM_BASE_URL ?? 'http://127.0.0.1:3000',
