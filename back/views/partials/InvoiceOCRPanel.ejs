@@ -1,0 +1,225 @@
+<% const h = report.headline; %>
+
+<div class="flex flex-col gap-12">
+  <div class="rise flex flex-col gap-5" style="animation-delay: 20ms;">
+    <div class="flex items-center gap-3">
+      <span class="depth-tag">~15m</span>
+      <span class="h-px w-10 bg-helm-cyan/40"></span>
+      <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-helm-cyan">
+        trial 01 · sub-trial 1 of 4
+      </span>
+    </div>
+
+    <div class="flex items-baseline gap-4 flex-wrap">
+      <h1
+        class="text-[58px] font-bold leading-[0.95] tracking-tight text-helm-vellum"
+        style="font-family: var(--font-display); letter-spacing: -0.035em;"
+      >
+        AP Invoice
+      </h1>
+      <span
+        class="font-mono text-[42px] font-bold leading-none text-helm-brass-bright"
+        style="letter-spacing: -0.02em;"
+      >
+        OCR
+      </span>
+    </div>
+
+    <p class="max-w-3xl text-[15px] leading-relaxed text-helm-vellum-muted">
+      Invoice PNGs are extracted to structured JSON by Gemini 3.1 Flash Lite vision (constrained
+      server-side by a JSON schema, then re-validated through Zod). Each invoice is then
+      reconciled for line-item math, missing due dates, duplicate invoice numbers, and layout
+      overflow. Auto-approved invoices land in the AP ledger; flagged ones queue for human review.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-helm-cyan/15 py-3">
+      <% 
+        const cells = [
+          { label: 'model',     value: 'gemini-3.1-flash-lite' },
+          { label: 'provider',  value: 'google ai studio' },
+          { label: 'fixture',   value: '200 png' },
+          { label: 'seed',      value: report.seed },
+          { label: 'extractor', value: report.extractor },
+          { label: 'n',         value: String(report.headline.invoices_processed) },
+        ];
+      %>
+      <% cells.forEach((c, i) => { %>
+        <span class="inline-flex items-center gap-1.5 font-mono text-[11px]">
+          <span class="uppercase tracking-[0.16em] text-helm-cyan-dim"><%= c.label %></span>
+          <span class="tabular text-helm-vellum"><%= c.value %></span>
+          <% if (i < cells.length - 1) { %>
+            <span class="ml-2 text-helm-brass">▸</span>
+          <% } %>
+        </span>
+      <% }) %>
+    </div>
+
+    <% if (isMock) { %>
+      <div class="mt-2 flex items-start gap-4 border border-helm-warn/40 bg-helm-warn/[0.06] px-5 py-4 backdrop-blur">
+        <span aria-hidden class="mt-1.5 size-2 shrink-0 rounded-full bg-helm-warn"></span>
+        <div>
+          <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-helm-warn">
+            mock extractor
+          </div>
+          <div class="mt-1.5 max-w-3xl text-[13.5px] leading-relaxed text-helm-vellum-muted">
+            Field accuracy, cost, and latency below come from a controlled-noise mock of the vision
+            call, not real API output. Only the reconciler stats and labor model reflect actual
+            pipeline logic. Run{' '}
+            <code class="border border-helm-cyan/20 bg-helm-twilight/60 px-1.5 py-0.5 font-mono text-[11.5px] text-helm-vellum">
+              pnpm measure:invoice-ocr --seed 1 --extractor gemini
+            </code>{' '}
+            for measured numbers.
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+
+  <div class="relative">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="depth-tag">~15m</span>
+      <span class="h-px w-10 bg-helm-cyan/30"></span>
+      <span class="eyebrow text-helm-cyan-dim">readings · surface light</span>
+      <span class="font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-deep">
+        · sunlit zone
+      </span>
+    </div>
+    <section class="rise grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4" style="animation-delay: 120ms;">
+      <%- include('MetricCard', {
+        index: "01",
+        label: "parse rate",
+        value: formatPercent(h.extraction.parse_rate),
+        sublabel: `<span class="tabular font-mono text-helm-vellum">${Math.round(h.extraction.parse_rate * h.invoices_processed)}</span> of <span class="tabular font-mono text-helm-vellum">${h.invoices_processed}</span> invoices cleared validation.`,
+        hint: null,
+        tone: h.extraction.parse_rate >= 0.95 ? 'good' : 'warn'
+      }) %>
+      <%- include('MetricCard', {
+        index: "02",
+        label: "field accuracy",
+        value: formatPercent(h.extraction.field_accuracy),
+        sublabel: "Exact-match across vendor, dates, totals, and every line-item field.",
+        hint: null,
+        tone: h.extraction.field_accuracy >= 0.95 ? 'good' : 'warn'
+      }) %>
+      <%- include('MetricCard', {
+        index: "03",
+        label: "cost / invoice",
+        value: formatUsd(h.cost.mean_per_invoice_usd),
+        sublabel: `<span class="tabular font-mono text-helm-vellum">${formatUsd(h.cost.total_usd)}</span> total across the run.`,
+        hint: null,
+        tone: "neutral"
+      }) %>
+      <%- include('MetricCard', {
+        index: "04",
+        label: "labor recovered",
+        value: `${h.labor.time_reduction_ratio}×`,
+        sublabel: `<span class="tabular font-mono text-helm-vellum">${h.labor.minutes_saved}</span> min saved at $25/hr loaded wage.`,
+        hint: `≈ ${formatUsd(h.labor.dollars_saved)} this batch`,
+        tone: "good"
+      }) %>
+    </section>
+  </div>
+
+  <div class="relative">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="depth-tag">~80m</span>
+      <span class="h-px w-10 bg-helm-cyan/30"></span>
+      <span class="eyebrow text-helm-cyan-dim">instruments · twilight zone</span>
+      <span class="font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-deep">
+        · twilight zone
+      </span>
+    </div>
+    <section
+      class="rise grid grid-cols-1 gap-5 xl:grid-cols-[1.35fr_1fr]"
+      style="animation-delay: 220ms;"
+    >
+      <%- include('LatencyHistogram') %>
+      
+      <% const r = report.headline.reconciler; %>
+      <div
+        class="relative flex flex-col gap-5 border border-helm-cyan/15 p-7 backdrop-blur-md"
+        style="background: linear-gradient(180deg, rgba(125, 211, 224, 0.05) 0%, rgba(8, 42, 69, 0.55) 30%, rgba(4, 27, 50, 0.55) 100%);"
+      >
+        <span aria-hidden class="pointer-events-none absolute right-0 top-0 size-2.5 border-r border-t border-helm-brass/70"></span>
+        <span aria-hidden class="pointer-events-none absolute bottom-0 left-0 size-2.5 border-b border-l border-helm-brass/70"></span>
+
+        <div>
+          <div class="eyebrow">reconciler · classifier</div>
+          <h3
+            class="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
+            style="font-family: var(--font-display); letter-spacing: -0.02em;"
+          >
+            Anomaly <span class="text-helm-cyan">detection</span>
+          </h3>
+          <p class="mt-1 max-w-md text-[12.5px] leading-snug text-helm-vellum-muted">
+            Each invoice is one labeled example. Positive class = "has any anomaly".
+            Predicted positive = "reconciler raised at least one flag".
+          </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-x-4">
+          <% [
+            { label: 'precision', value: r.precision },
+            { label: 'recall', value: r.recall },
+            { label: 'f1', value: r.f1 }
+          ].forEach(dial => { 
+            const valTone = dial.value >= 0.85 ? 'text-helm-pass glow-pass' : dial.value >= 0.7 ? 'text-helm-warn' : 'text-helm-fail';
+          %>
+            <div class="flex flex-col items-start gap-1.5 border-l border-helm-cyan/15 pl-3 first:border-l-0 first:pl-0">
+              <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">
+                <%= dial.label %>
+              </span>
+              <span class="readout text-[28px] leading-none <%= valTone %>"><%= dial.value.toFixed(3) %></span>
+            </div>
+          <% }) %>
+        </div>
+
+        <div class="grid grid-cols-[auto_1fr_1fr] gap-px overflow-hidden border border-helm-cyan/15 bg-helm-cyan/10">
+          <div class="bg-helm-twilight/70 px-3 py-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-dim"></div>
+          <div class="bg-helm-twilight/70 px-3 py-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-dim">pred. anomaly</div>
+          <div class="bg-helm-twilight/70 px-3 py-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-dim">pred. clean</div>
+
+          <div class="bg-helm-twilight/70 px-3 py-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-dim">truth anomaly</div>
+          <div class="relative flex items-baseline justify-center gap-2 bg-helm-twilight/40 px-4 py-4">
+            <span class="absolute left-2 top-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-helm-cyan-dim">tp</span>
+            <span class="readout text-[26px] leading-none text-helm-pass"><%= r.true_positives %></span>
+          </div>
+          <div class="relative flex items-baseline justify-center gap-2 bg-helm-twilight/40 px-4 py-4">
+            <span class="absolute left-2 top-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-helm-cyan-dim">fn</span>
+            <span class="readout text-[26px] leading-none text-helm-warn"><%= r.false_negatives %></span>
+          </div>
+
+          <div class="bg-helm-twilight/70 px-3 py-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-dim">truth clean</div>
+          <div class="relative flex items-baseline justify-center gap-2 bg-helm-twilight/40 px-4 py-4">
+            <span class="absolute left-2 top-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-helm-cyan-dim">fp</span>
+            <span class="readout text-[26px] leading-none text-helm-warn"><%= r.false_positives %></span>
+          </div>
+          <div class="relative flex items-baseline justify-center gap-2 bg-helm-twilight/40 px-4 py-4">
+            <span class="absolute left-2 top-1.5 font-mono text-[9px] uppercase tracking-[0.16em] text-helm-cyan-dim">tn</span>
+            <span class="readout text-[26px] leading-none text-helm-pass"><%= r.true_negatives %></span>
+          </div>
+        </div>
+
+        <div class="hairline"></div>
+        <div class="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">
+          wall <%= formatMs(report.headline.wall_ms) %> · seed <%= report.seed %> · extractor{' '}
+          <span class="text-helm-vellum"><%= report.extractor %></span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="relative">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="depth-tag">~320m</span>
+      <span class="h-px w-10 bg-helm-cyan/30"></span>
+      <span class="eyebrow text-helm-cyan-dim">trial log · midnight zone</span>
+      <span class="font-mono text-[9.5px] uppercase tracking-[0.16em] text-helm-cyan-deep">
+        · midnight zone
+      </span>
+    </div>
+    <section class="rise" style="animation-delay: 320ms;">
+      <%- include('RecentActivity') %>
+    </section>
+  </div>
+</div>

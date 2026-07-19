@@ -1,0 +1,141 @@
+<%
+const BIN_COUNT = 12;
+const latencies = report.records.map((r) => r.extraction.latency_ms);
+const min = Math.min(...latencies);
+const max = Math.max(...latencies);
+const width = Math.max(1, (max - min) / BIN_COUNT);
+const counts = Array(BIN_COUNT).fill(0);
+const labels = [];
+
+for (let i = 0; i < BIN_COUNT; i++) {
+  const lo = min + i * width;
+  labels.push(`${Math.round(lo)}`);
+}
+for (const ms of latencies) {
+  const idx = Math.min(BIN_COUNT - 1, Math.floor((ms - min) / width));
+  counts[idx] += 1;
+}
+%>
+
+<div
+  class="relative border border-helm-cyan/15 p-7 backdrop-blur-md"
+  style="background: linear-gradient(180deg, rgba(125, 211, 224, 0.05) 0%, rgba(8, 42, 69, 0.55) 30%, rgba(4, 27, 50, 0.55) 100%);"
+>
+  <span aria-hidden class="pointer-events-none absolute right-0 top-0 size-2.5 border-r border-t border-helm-brass/70"></span>
+  <span aria-hidden class="pointer-events-none absolute bottom-0 left-0 size-2.5 border-b border-l border-helm-brass/70"></span>
+
+  <div class="mb-5 flex items-end justify-between gap-6">
+    <div>
+      <div class="eyebrow">latency · per invoice</div>
+      <h3
+        class="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
+        style="font-family: var(--font-display); letter-spacing: -0.02em;"
+      >
+        End-to-end <span class="text-helm-cyan">distribution</span>
+      </h3>
+      <p class="mt-1 max-w-md text-[12.5px] leading-snug text-helm-vellum-muted">
+        Lower-left tail is fast invoices. Right tail is rate-limit and retry
+        backoff under the free-tier RPM ceiling.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-1 border-l border-helm-cyan/15 pl-5 text-right">
+      <% [
+        { label: 'p50', value: report.headline.latency.p50_ms },
+        { label: 'p95', value: report.headline.latency.p95_ms },
+        { label: 'p99', value: report.headline.latency.p99_ms }
+      ].forEach(r => { %>
+        <div class="flex items-baseline justify-end gap-2">
+          <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">
+            <%= r.label %>
+          </span>
+          <span class="tabular font-mono text-[14px] font-medium text-helm-vellum"><%= r.value %></span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-helm-cyan-dim">
+            ms
+          </span>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="h-56" 
+       x-data="chartData( <%= JSON.stringify(labels) %>, <%= JSON.stringify(counts) %> )" 
+       x-init="initChart()">
+    <canvas x-ref="canvas"></canvas>
+  </div>
+</div>
+
+<!-- Simple Alpine component to handle the chart initialization -->
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('chartData', (labels, counts) => ({
+      chart: null,
+      initChart() {
+        const ctx = this.$refs.canvas.getContext('2d');
+        this.chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'invoices',
+              data: counts,
+              backgroundColor: 'rgba(125, 211, 224, 0.4)',
+              borderColor: 'rgba(125, 211, 224, 0.9)',
+              borderWidth: 1,
+              hoverBackgroundColor: 'rgba(125, 211, 224, 0.7)',
+              borderRadius: 0,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 700 },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#082A45',
+                borderColor: '#7DD3E0',
+                borderWidth: 1,
+                titleColor: '#F0E5CC',
+                bodyColor: '#B5A98A',
+                titleFont: { family: '"JetBrains Mono"', size: 10, weight: 'bold' },
+                bodyFont: { family: '"JetBrains Mono"', size: 11 },
+                padding: 10,
+                cornerRadius: 0,
+                displayColors: false,
+                callbacks: {
+                  title: (ctx) => `${ctx[0]?.label ?? ''} ms`,
+                  label: (ctx) => ` ${ctx.parsed.y} invoices`,
+                },
+              },
+            },
+            scales: {
+              x: {
+                ticks: {
+                  color: '#4A8FA0',
+                  font: { family: '"JetBrains Mono"', size: 10 },
+                  maxRotation: 0,
+                  callback: function(value, index) {
+                    return index % 2 === 0 ? `${labels[index]} ms` : '';
+                  },
+                },
+                grid: { display: false },
+                border: { color: 'rgba(125, 211, 224, 0.18)' },
+              },
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  color: '#4A8FA0',
+                  stepSize: 10,
+                  font: { family: '"JetBrains Mono"', size: 10 },
+                },
+                grid: { color: 'rgba(125, 211, 224, 0.08)' },
+                border: { color: 'rgba(125, 211, 224, 0.18)' },
+              },
+            },
+          }
+        });
+      }
+    }));
+  });
+</script>

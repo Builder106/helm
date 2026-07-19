@@ -1,0 +1,95 @@
+<%
+const trials = [
+  { id: 'invoice-ocr',       index: '01', label: 'invoice-ocr',       depth: 12, depthM: 15,   zone: 'sunlit',    active: true, shipped: true },
+  { id: 'payout-reconciler', index: '02', label: 'payout-reconciler', depth: 38, depthM: 80,   zone: 'twilight',                shipped: true },
+  { id: 'tier1-cs',          index: '03', label: 'tier1-cs',          depth: 64, depthM: 320,  zone: 'midnight',                shipped: false },
+  { id: 'kpi-qa',            index: '04', label: 'kpi-qa',            depth: 88, depthM: 1100, zone: 'abyssal',                 shipped: false },
+];
+
+const DEPTH_TICKS = [
+  { y: 0,   label: 'surface' },
+  { y: 18,  label: '20m'     },
+  { y: 32,  label: '50m'     },
+  { y: 50,  label: '200m'    },
+  { y: 68,  label: '500m'    },
+  { y: 84,  label: '1000m'   },
+  { y: 98,  label: 'hadal'   },
+];
+
+const shipped = trials.filter((t) => t.shipped).length;
+%>
+
+<nav class="relative flex h-full w-80 shrink-0 flex-col border-r border-helm-rule-2 bg-gradient-to-b from-helm-surface/40 via-helm-twilight/30 to-helm-abyssal/60">
+  <div class="px-7 pb-3 pt-7">
+    <div class="eyebrow">dive profile</div>
+    <div class="mt-1.5 font-mono text-[11px] text-helm-vellum-muted">
+      <span class="tabular text-helm-pass"><%= shipped %></span> measured &middot;
+      <span class="tabular text-helm-vellum"><%= trials.length - shipped %></span> pending descent
+    </div>
+  </div>
+
+  <div class="relative flex-1 min-h-[520px] px-4 pb-4">
+    <div aria-hidden class="pointer-events-none absolute inset-y-3 left-9 w-px bg-gradient-to-b from-helm-cyan/40 via-helm-cyan/15 to-helm-cyan/5">
+      <% DEPTH_TICKS.forEach((t) => { %>
+        <div class="absolute left-0 flex items-center gap-2" style="top: <%= t.y %>%; transform: translate(-50%, -50%);">
+          <span class="block h-px w-2 bg-helm-cyan/40"></span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.16em] text-helm-cyan-dim">
+            <%= t.label %>
+          </span>
+        </div>
+      <% }) %>
+    </div>
+    
+    <% trials.forEach((trial) => { 
+       const pinColor = trial.shipped ? 'bg-helm-pass border-helm-pass' : 'bg-transparent border-helm-cyan-dim';
+    %>
+      <button type="button" <%= !trial.shipped ? 'disabled' : '' %>
+        class="absolute left-4 right-4 flex items-center gap-3 rounded-sm px-3 py-2 transition-colors duration-200 <%= trial.active ? 'bg-helm-cyan/[0.06]' : (trial.shipped ? 'hover:bg-helm-cyan/[0.04]' : '') %>"
+        style="top: <%= trial.depth %>%; transform: translateY(-50%);">
+        
+        <% if (trial.active) { %>
+          <span aria-hidden class="absolute inset-y-1.5 left-0 w-px bg-helm-brass"></span>
+        <% } %>
+
+        <span aria-hidden class="absolute -left-px size-2.5 rounded-full border <%= pinColor %> <%= trial.shipped ? 'shadow-[0_0_10px_rgba(52,211,153,0.6)]' : '' %>"
+          style="left: 20px; transform: translate(-50%, -50%); top: 50%;"></span>
+
+        <div class="ml-8 flex flex-1 items-baseline justify-between gap-2">
+          <div class="flex flex-col items-start gap-0.5 leading-none">
+            <div class="flex items-baseline gap-2">
+              <span class="font-mono text-[10.5px] tabular <%= trial.active ? 'text-helm-brass-bright' : (trial.shipped ? 'text-helm-vellum-muted' : 'text-helm-vellum-faint') %>">
+                <%= trial.index %>
+              </span>
+              <span class="font-mono text-[13px] tracking-tight <%= trial.active ? 'text-helm-vellum' : (trial.shipped ? 'text-helm-vellum-muted' : 'text-helm-vellum-faint') %>">
+                <%= trial.label %>
+              </span>
+            </div>
+            <span class="font-mono text-[9.5px] uppercase tracking-[0.14em] <%= trial.active ? 'text-helm-cyan' : (trial.shipped ? 'text-helm-vellum-faint' : 'text-helm-faint') %>">
+              <%= trial.shipped ? `${trial.zone} · measured` : `${trial.zone} · unstarted` %>
+            </span>
+          </div>
+          <span class="font-mono text-[10px] tabular <%= trial.shipped ? 'text-helm-cyan' : 'text-helm-cyan-deep' %>">
+            ~<%= trial.depthM %>m
+          </span>
+        </div>
+      </button>
+    <% }) %>
+  </div>
+
+  <div class="border-t border-helm-rule-2 px-7 py-5">
+    <div class="eyebrow">stack</div>
+    <ul class="mt-2 space-y-1 font-mono text-[11px] text-helm-vellum-muted">
+      <li>
+        <span class="text-helm-vellum">gemini-3.1-flash-lite</span>
+        <span class="text-helm-vellum-faint"> · google ai studio</span>
+      </li>
+      <li>
+        <span class="text-helm-vellum">libsql</span>
+        <span class="text-helm-vellum-faint"> · mcp</span>
+      </li>
+      <li>
+        <span class="text-helm-vellum">node · htmx · alpine · chart.js</span>
+      </li>
+    </ul>
+  </div>
+</nav>

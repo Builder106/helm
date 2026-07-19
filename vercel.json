@@ -1,7 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm --filter @helm/front build",
-  "outputDirectory": "front/dist",
+  "buildCommand": "pnpm --filter @helm/back build",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": null,
   "github": {

@@ -1,0 +1,52 @@
+<%
+const EXTRACTOR_LABELS = {
+  gemini: 'gemini 3.1 flash lite',
+  groq: 'llama 4 scout',
+  mock: 'mock data',
+};
+%>
+<header class="relative z-20 flex items-center justify-between border-b border-helm-cyan/15 bg-helm-surface/85 px-8 py-4 backdrop-blur">
+  <div class="flex items-center gap-3.5">
+    <%- include('HelmMark', { size: 32 }) %>
+    <div class="flex flex-col leading-none">
+      <span
+        class="text-[22px] font-semibold tracking-tight text-helm-vellum"
+        style="font-family: var(--font-display); letter-spacing: -0.02em;"
+      >
+        Helm
+      </span>
+      <span class="mt-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-helm-cyan">
+        submersible · eval dive
+      </span>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <% if (isMock) { %>
+      <span class="inline-flex items-center gap-2 border border-helm-warn/40 bg-helm-warn/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-helm-warn">
+        <span class="relative flex size-2">
+          <span class="absolute inset-0 animate-ping rounded-full opacity-50 bg-helm-warn"></span>
+          <span class="relative inline-flex size-2 rounded-full bg-helm-warn"></span>
+        </span>
+        mock data
+      </span>
+    <% } else { %>
+      <% const label = EXTRACTOR_LABELS[report.extractor] || report.extractor; %>
+      <span class="inline-flex items-center gap-2 border border-helm-pass/40 bg-helm-pass/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-helm-pass">
+        <span class="relative flex size-2">
+          <span class="absolute inset-0 animate-ping rounded-full opacity-50 bg-helm-pass"></span>
+          <span class="relative inline-flex size-2 rounded-full bg-helm-pass"></span>
+        </span>
+        measured · <%= label %>
+      </span>
+    <% } %>
+
+    <span class="hidden items-center gap-2.5 border border-helm-cyan/20 bg-helm-twilight/50 px-3 py-1.5 font-mono text-[10.5px] text-helm-vellum-muted md:inline-flex">
+      <span class="text-helm-cyan-dim">seed</span>
+      <span class="tabular text-helm-vellum"><%= report.seed %></span>
+      <span class="text-helm-cyan-dim">·</span>
+      <span class="text-helm-cyan-dim">n</span>
+      <span class="tabular text-helm-vellum"><%= report.headline.invoices_processed %></span>
+    </span>
+  </div>
+</header>

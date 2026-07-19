@@ -1,0 +1,51 @@
+<!-- The main entry point replacing App.tsx -->
+<div class="relative flex h-full flex-col text-helm-text">
+  <!-- Drifting particulates layer — fixed across the whole viewport. -->
+  <%- include('partials/MarineSnow') %>
+
+  <%- include('partials/TopBar') %>
+
+  <div class="relative z-10 flex flex-1 overflow-hidden">
+    <%- include('partials/Sidebar') %>
+
+    <main class="relative flex-1 overflow-y-auto">
+      <!-- Wave shapes break against the top of the content area, just
+          below the top bar. This is the page's transition from sky
+          into water. -->
+      <%- include('partials/SurfaceWaves') %>
+
+      <!-- Margin-zone silhouettes: submarine, anchor, whale,
+          anglerfish — each placed at the depth it belongs to. -->
+      <%- include('partials/DepthDecorations') %>
+
+      <div class="caustics relative z-10 mx-auto max-w-[1280px] px-10 pb-16 pt-32">
+        <%- include('partials/InvoiceOCRPanel') %>
+        
+        <div class="my-20 flex items-center gap-4">
+          <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-helm-cyan">~80m</span>
+          <span class="h-px flex-1 bg-helm-cyan/15"></span>
+          <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-helm-cyan-dim">descending · twilight zone</span>
+          <span class="h-px flex-1 bg-helm-cyan/15"></span>
+        </div>
+
+        <%- include('partials/PayoutReconcilerPanel') %>
+        
+        <footer class="mt-16 flex flex-col gap-2 border-t border-helm-cyan/15 pt-6 text-[11px] text-helm-cyan-dim">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono uppercase tracking-[0.18em]">
+            <span>helm</span>
+            <span>·</span>
+            <span>submersible · eval dive</span>
+            <span>·</span>
+            <span>builder106/helm</span>
+            <span>·</span>
+            <a class="brass-underline text-helm-vellum-muted hover:text-helm-cyan" href="https://github.com/Builder106/Helm">source</a>
+          </div>
+          <div class="font-mono">
+            A portfolio sketch of an AI/automation team's first quarter of work.
+            Every README number traces to a measurement script.
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+</div>

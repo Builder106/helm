@@ -1,0 +1,73 @@
+<%
+const VISIBLE = 14;
+const recent = [...report.records].slice(-VISIBLE).reverse();
+%>
+
+<div
+  class="relative overflow-hidden border border-helm-cyan/15 backdrop-blur-md"
+  style="background: linear-gradient(180deg, rgba(125, 211, 224, 0.04) 0%, rgba(4, 27, 50, 0.7) 30%, rgba(2, 13, 29, 0.8) 100%);"
+>
+  <span aria-hidden class="pointer-events-none absolute right-0 top-0 size-2.5 border-r border-t border-helm-brass/70"></span>
+  <span aria-hidden class="pointer-events-none absolute bottom-0 left-0 size-2.5 border-b border-l border-helm-brass/70"></span>
+
+  <div class="flex items-end justify-between gap-6 border-b border-helm-cyan/15 px-7 py-5">
+    <div>
+      <div class="eyebrow">log · trial run</div>
+      <h3
+        class="mt-2 text-[22px] font-bold leading-tight tracking-tight text-helm-vellum"
+        style="font-family: var(--font-display); letter-spacing: -0.02em;"
+      >
+        Last <span class="tabular text-helm-cyan"><%= VISIBLE %></span> entries
+      </h3>
+    </div>
+    <div class="text-right font-mono text-[10.5px] uppercase tracking-[0.18em] text-helm-cyan-dim">
+      <%= report.records.length %> total · seed <%= report.seed %>
+    </div>
+  </div>
+
+  <ol class="divide-y divide-helm-cyan/[0.07]">
+    <% recent.forEach((r, i) => { 
+      const ordinal = recent.length - i;
+      const fields = `${r.extraction.field_correct}/${r.extraction.field_total}`;
+      const isFailed = !r.extraction.parsed;
+      const status = !r.extraction.parsed
+        ? 'failed'
+        : r.reconciliation.status === 'clean'
+          ? 'auto-approved'
+          : 'needs-review';
+
+      const statusColor = !r.extraction.parsed
+        ? 'text-helm-fail'
+        : r.reconciliation.status === 'clean'
+          ? 'text-helm-pass'
+          : 'text-helm-warn';
+    %>
+      <li
+        class="flex items-baseline gap-2 px-7 py-2 font-mono text-[12px] leading-snug transition-colors duration-150 hover:bg-helm-cyan/[0.05] <%= isFailed ? 'bg-helm-fail/[0.04]' : '' %>"
+      >
+        <span class="tabular text-[10.5px] text-helm-cyan-dim">
+          [<%= String(ordinal).padStart(3, '0') %>]
+        </span>
+        <span class="tabular text-helm-vellum"><%= r.file_id %></span>
+        <span class="text-helm-brass">▸</span>
+        <span class="tabular text-helm-vellum-muted">
+          parsed:<span class="text-helm-vellum"><%= r.extraction.parsed ? '1' : '0' %></span>{' '}
+          fields:<span class="text-helm-vellum"><%= fields %></span>{' '}
+          lat:<span class="text-helm-vellum"><%= formatMs(r.extraction.latency_ms) %></span>{' '}
+          cost:<span class="text-helm-vellum"><%= formatUsd(r.extraction.cost_usd) %></span>
+          <% if (r.extraction.parsed) { %>
+            {' '}acc:<span class="text-helm-vellum"><%= formatPercent(r.extraction.field_accuracy) %></span>
+          <% } %>
+        </span>
+        <% if (r.ground_truth_anomaly !== 'none') { %>
+          <span class="text-helm-brass">▸</span>
+          <span class="tabular text-helm-cyan-dim">
+            anomaly:<span class="text-helm-vellum-muted"><%= r.ground_truth_anomaly %></span>
+          </span>
+        <% } %>
+        <span class="text-helm-brass">▸</span>
+        <span class="tabular uppercase tracking-[0.08em] <%= statusColor %>"><%= status %></span>
+      </li>
+    <% }) %>
+  </ol>
+</div>
