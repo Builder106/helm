@@ -28,16 +28,16 @@ export default defineConfig({
   // Self-start the front so a demo run never silently records a blank page
   // when no dev server is up. Reuses an already-running server locally.
   webServer: {
-    command: 'pnpm --filter ./front dev',
+    command: 'pnpm --filter ./back dev',
     // webServer cwd defaults to this config's dir (e2e/); the workspace
     // filter only resolves from the repo root.
     cwd: path.resolve(__dirname, '..'),
-    url: process.env.HELM_BASE_URL ?? 'http://localhost:5173',
+    url: process.env.HELM_BASE_URL ?? 'http://127.0.0.1:3000',
     reuseExistingServer: true,
     timeout: 120_000,
   },
   use: {
-    baseURL: process.env.HELM_BASE_URL ?? 'http://localhost:5173',
+    baseURL: process.env.HELM_BASE_URL ?? 'http://127.0.0.1:3000',
     headless: true,
     viewport: { width: 2560, height: 1600 },
     video: { mode: 'on', size: { width: 2560, height: 1600 } },

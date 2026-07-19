@@ -26,16 +26,16 @@ export default defineConfig({
   // can run it). Reuses an already-running server locally so the inner-loop
   // `pnpm dev` + `test:e2e` workflow isn't disrupted.
   webServer: {
-    command: 'pnpm --filter ./front dev',
+    command: 'pnpm --filter ./back dev',
     // webServer cwd defaults to this config's dir (e2e/); the workspace
     // filter only resolves from the repo root.
     cwd: path.resolve(__dirname, '..'),
-    url: process.env.HELM_BASE_URL ?? 'http://localhost:5173',
+    url: process.env.HELM_BASE_URL ?? 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
   use: {
-    baseURL: process.env.HELM_BASE_URL ?? 'http://localhost:5173',
+    baseURL: process.env.HELM_BASE_URL ?? 'http://127.0.0.1:3000',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
