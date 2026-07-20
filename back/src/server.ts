@@ -19,6 +19,7 @@ server.register(fastifyView, {
     ejs: ejs
   },
   root: path.join(rootDir, 'views'),
+  layout: 'layout.ejs',
   viewExt: 'ejs',
   options: {
     filename: path.resolve('views')
