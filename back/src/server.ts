@@ -32,27 +32,29 @@ server.register(fastifyStatic, {
 
 // Assuming report.json is located in the data directory two levels up
 const reportPath = path.resolve(rootDir, '../data/measurements/output/seed-1/invoice-ocr/report.json');
+const payoutReportPath = path.resolve(rootDir, '../data/measurements/output/seed-1/payout-reconciler/report.json');
 
-async function getReportData() {
+async function getReportData(file: string) {
   try {
-    const raw = await fs.readFile(reportPath, 'utf-8');
+    const raw = await fs.readFile(file, 'utf-8');
     return JSON.parse(raw);
   } catch (err) {
-    server.log.error(err, 'Failed to read report.json');
+    server.log.error(err, `Failed to read ${file}`);
     return null;
   }
 }
 
 server.get('/', async (request, reply) => {
-  const reportData = await getReportData();
+  const reportData = await getReportData(reportPath);
+  const payoutReportData = await getReportData(payoutReportPath);
   
-  if (!reportData) {
+  if (!reportData || !payoutReportData) {
     return reply.status(500).send('Failed to load report data');
   }
 
-  // Define helpers similar to report.ts
   const helpers = {
     isMock: reportData.extractor === 'mock',
+    isPayoutMock: payoutReportData.extractor === 'mock',
     formatPercent: (v: number, digits = 1) => `${(v * 100).toFixed(digits)}%`,
     formatUsd: (v: number, digits = 6) => {
       const small = Math.abs(v) < 0.01;
@@ -66,7 +68,7 @@ server.get('/', async (request, reply) => {
     }
   };
 
-  return reply.view('index.ejs', { report: reportData, ...helpers });
+  return reply.view('index.ejs', { report: reportData, payoutReport: payoutReportData, ...helpers });
 });
 
 const start = async () => {
