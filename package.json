@@ -31,7 +31,7 @@
     "measure:payout-reconciler": "tsx --env-file-if-exists=.env data/measurements/payout-reconciler.ts"
   },
   "devDependencies": {
-    "@google/genai": "^2.11.0",
+    "@google/genai": "^2.12.0",
     "@libsql/client": "^0.17.4",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.1.1",
