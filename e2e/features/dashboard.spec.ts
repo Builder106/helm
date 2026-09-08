@@ -67,4 +67,14 @@ test.describe('Helm dashboard renders both shipped trials', () => {
     await flagged.scrollIntoViewIfNeeded();
     await expect(flagged).toBeVisible();
   });
+
+  test('dashboard keeps its deterministic report layout', async ({ page }) => {
+    await expect(page).toHaveScreenshot('dashboard.png', {
+      animations: 'disabled',
+      caret: 'hide',
+      mask: [page.locator('canvas')],
+      maskColor: '#0a1421',
+      maxDiffPixels: 120,
+    });
+  });
 });

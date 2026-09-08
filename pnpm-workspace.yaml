@@ -1,6 +1,7 @@
 packages:
   - "front"
   - "back"
+confirmModulesPurge: false
 allowBuilds:
   '@google/genai': true
   '@parcel/watcher': true
@@ -11,4 +12,3 @@ minimumReleaseAgeExclude:
 overrides:
   "fast-uri@3": "^3.1.6"
   "fast-uri@4": "^4.1.3"
-
