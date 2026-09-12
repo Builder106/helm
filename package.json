@@ -22,7 +22,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test --config=e2e/playwright.config.ts --pass-with-no-tests",
+    "test:e2e": "playwright test --config=e2e/playwright.config.ts",
     "test:demo": "DEMO=1 playwright test --config=e2e/playwright.demo.config.ts --pass-with-no-tests",
     "data:generate": "tsx --env-file-if-exists=.env data/generators/index.ts",
     "data:render-png": "tsx --env-file-if-exists=.env data/render-png/index.ts",

@@ -4,6 +4,10 @@
 > things happen — retrospectives need this raw material to land.
 > Reverse-chronological; one paragraph max per entry.
 
+## 2026-09-07 — Hardened dashboard QA and deterministic visual coverage #decision
+
+Removed the empty-suite escape hatch from the Playwright QA command and added a deterministic dashboard screenshot assertion with animations disabled and charts masked. The committed seed-1 report remains the data source; demo recording stays in its separate non-gating command and no live provider is used.
+
 ## 2026-08-29: Git deployment branches restricted #decision
 
 Git-triggered Vercel deployments now run only for `main` and `staging`. The project keeps `main` as its Production Branch, so `staging` is the only Preview branch. Replaced the old `ignoreCommand`, which created canceled deployment records for blocked branches, with `git.deploymentEnabled`.
