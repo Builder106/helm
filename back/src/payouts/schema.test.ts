@@ -69,7 +69,7 @@ describe('PayoutBreakdownSchema', () => {
     expect(() =>
       PayoutBreakdownSchema.parse({
         ...validPayout,
-        payout_status: 'pending' as any,
+        payout_status: 'pending' as never,
       })
     ).toThrow();
   });
