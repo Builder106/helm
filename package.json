@@ -37,7 +37,7 @@
     "@types/node": "^26.4.1",
     "@vitest/coverage-v8": "^5.0.0",
     "groq-sdk": "^1.6.0",
-    "playwright-bdd": "^9.2.0",
+    "playwright-bdd": "^9.2.1",
     "prettier": "^3.9.6",
     "tsx": "^4.23.13",
     "typescript": "~7.0.2",
