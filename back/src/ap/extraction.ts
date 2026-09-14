@@ -134,7 +134,26 @@ type NoiseOptions = {
   dueDateDrop: number;
 };
 
-function applyNoise(label: InvoiceLabel, rng: Rng, opts: NoiseOptions): Record<string, unknown> {
+export type NoisyApExtractionPayload = {
+  vendor_name: string;
+  vendor_address_street: string;
+  vendor_address_city_state_zip: string;
+  invoice_number: string;
+  invoice_date: string;
+  due_date: string | null;
+  line_items: Array<{
+    description: string;
+    quantity: number;
+    unit_price: number;
+    line_total: number;
+  }>;
+  subtotal: number;
+  tax_rate: number;
+  tax_amount: number;
+  total: number;
+};
+
+function applyNoise(label: InvoiceLabel, rng: Rng, opts: NoiseOptions): NoisyApExtractionPayload {
   let lineItems = label.lineItems.map((li) => ({
     description: li.description,
     quantity: li.quantity,

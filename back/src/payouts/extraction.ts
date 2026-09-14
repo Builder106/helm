@@ -122,11 +122,29 @@ type NoiseOptions = {
   statusFlip: number;
 };
 
+export type NoisyPayoutExtractionPayload = {
+  creator_id: string;
+  orders_counted: number;
+  orders_excluded: number;
+  gross_revenue: number;
+  total_refunds: number;
+  total_shipping: number;
+  total_platform_fees: number;
+  total_promo_credits: number;
+  commissionable_base: number;
+  commission_rate: number;
+  gross_commission: number;
+  net_payout_native: number;
+  net_payout_usd: number;
+  meets_minimum_threshold: boolean;
+  payout_status: 'paid_out' | 'carry_forward';
+};
+
 function applyNoise(
   truth: PayoutResult,
   rng: ReturnType<typeof createRng>,
   opts: NoiseOptions,
-): Record<string, unknown> {
+): NoisyPayoutExtractionPayload {
   let rate = truth.commission_rate;
   if (rng.bool(opts.wrongRate)) {
     // Off-by-one tier: standard ↔ plus, plus ↔ elite.
