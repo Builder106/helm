@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const ToolCallCitationSchema = z.object({
   mcp_server: z.enum(['erp', 'crm', 'ap', 'channel']),
   tool_name: z.string(),
-  query_params: z.record(z.unknown()),
+  query_params: z.record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.null()])),
   matched_records_count: z.number().nonnegative(),
   citation_label: z.string(),
 });

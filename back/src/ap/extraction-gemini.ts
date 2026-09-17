@@ -24,7 +24,7 @@
 import { readFile } from 'node:fs/promises';
 import { GoogleGenAI, Type } from '@google/genai';
 import { ExtractedInvoiceSchema } from './schema.js';
-import type { Extractor, ExtractionResult, ExtractionUsage } from './extraction.js';
+import type { Extractor, ExtractionResult, ExtractionUsage, ApRawResponse } from './extraction.js';
 
 export type GeminiExtractorOptions = {
   apiKey?: string;
@@ -149,7 +149,7 @@ export function createGeminiExtractor(options: GeminiExtractorOptions = {}): Ext
     const buf = await readFile(imagePath);
     const base64 = buf.toString('base64');
 
-    let lastRaw: unknown = null;
+    let lastRaw: ApRawResponse = null;
     let lastError: string | null = null;
     let totalUsage: ExtractionUsage = { input_tokens: 0, output_tokens: 0, cost_usd: 0 };
 
@@ -190,7 +190,7 @@ export function createGeminiExtractor(options: GeminiExtractorOptions = {}): Ext
         const text = response.text ?? '';
         lastRaw = { text, finishReason: response.candidates?.[0]?.finishReason };
 
-        let parsedJson: unknown;
+        let parsedJson: Record<string, string | number | boolean | null | Array<Record<string, string | number>>> | null;
         try {
           parsedJson = JSON.parse(text);
         } catch (err) {

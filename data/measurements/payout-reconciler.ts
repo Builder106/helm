@@ -189,7 +189,8 @@ function scoreOne(
   }
 
   const b = result.breakdown;
-  const comparisons: Array<[unknown, unknown]> = [
+  type ComparisonScalar = string | number | boolean;
+  const comparisons: Array<[ComparisonScalar, ComparisonScalar]> = [
     [b.orders_counted, truth.orders_counted],
     [b.orders_excluded, truth.orders_excluded],
     [closeEnough(b.gross_revenue, truth.gross_revenue), true],

@@ -9,6 +9,7 @@ import type {
   Reconciler,
   ReconciliationResult,
   ReconcilerUsage,
+  ReconcilerRawResponse,
 } from './extraction.js';
 import type { OrderRow } from '../../../data/generators/orders/policy.js';
 import type { Creator } from '../../../data/generators/corpus/creators.js';
@@ -95,7 +96,7 @@ export function createGeminiReconciler(options: GeminiReconcilerOptions = {}): R
     const userMessage = buildUserMessage(creator, orders);
 
     let lastError: string | null = null;
-    let lastRaw: unknown = null;
+    let lastRaw: ReconcilerRawResponse = null;
     let totalUsage: ReconcilerUsage = { input_tokens: 0, output_tokens: 0, cost_usd: 0 };
 
     for (let attempt = 0; attempt <= maxParseRetries; attempt++) {
@@ -124,7 +125,7 @@ export function createGeminiReconciler(options: GeminiReconcilerOptions = {}): R
         const text = response.text ?? '';
         lastRaw = { text, finishReason: response.candidates?.[0]?.finishReason };
 
-        let parsedJson: unknown;
+        let parsedJson: Record<string, string | number | boolean | null> | null;
         try {
           parsedJson = JSON.parse(text);
         } catch (err) {

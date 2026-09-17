@@ -23,10 +23,36 @@ export type ExtractionUsage = {
   cost_usd: number;
 };
 
+export type NoisyApExtractionPayload = {
+  vendor_name: string;
+  vendor_address_street: string;
+  vendor_address_city_state_zip: string;
+  invoice_number: string;
+  invoice_date: string;
+  due_date: string | null;
+  line_items: Array<{
+    description: string;
+    quantity: number;
+    unit_price: number;
+    line_total: number;
+  }>;
+  subtotal: number;
+  tax_rate: number;
+  tax_amount: number;
+  total: number;
+};
+
+export type ApRawResponse =
+  | NoisyApExtractionPayload
+  | { text: string; finishReason?: string }
+  | { content: string; finish_reason?: string }
+  | { error: string }
+  | null;
+
 export type ExtractionResult = {
   image_path: string;
   invoice: import('./schema.js').ExtractedInvoice | null;
-  raw_response: unknown;
+  raw_response: ApRawResponse;
   usage: ExtractionUsage;
   latency_ms: number;
   parse_error: string | null;
@@ -134,24 +160,6 @@ type NoiseOptions = {
   dueDateDrop: number;
 };
 
-export type NoisyApExtractionPayload = {
-  vendor_name: string;
-  vendor_address_street: string;
-  vendor_address_city_state_zip: string;
-  invoice_number: string;
-  invoice_date: string;
-  due_date: string | null;
-  line_items: Array<{
-    description: string;
-    quantity: number;
-    unit_price: number;
-    line_total: number;
-  }>;
-  subtotal: number;
-  tax_rate: number;
-  tax_amount: number;
-  total: number;
-};
 
 function applyNoise(label: InvoiceLabel, rng: Rng, opts: NoiseOptions): NoisyApExtractionPayload {
   let lineItems = label.lineItems.map((li) => ({

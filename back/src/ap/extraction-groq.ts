@@ -12,7 +12,7 @@
 import { readFile } from 'node:fs/promises';
 import Groq from 'groq-sdk';
 import { ExtractedInvoiceSchema } from './schema.js';
-import type { Extractor, ExtractionResult, ExtractionUsage } from './extraction.js';
+import type { Extractor, ExtractionResult, ExtractionUsage, ApRawResponse } from './extraction.js';
 
 export type GroqExtractorOptions = {
   apiKey?: string;
@@ -77,7 +77,7 @@ export function createGroqLlamaExtractor(options: GroqExtractorOptions = {}): Ex
     const buf = await readFile(imagePath);
     const dataUrl = `data:image/png;base64,${buf.toString('base64')}`;
 
-    let lastRaw: unknown = null;
+    let lastRaw: ApRawResponse = null;
     let lastError: string | null = null;
     let totalUsage: ExtractionUsage = { input_tokens: 0, output_tokens: 0, cost_usd: 0 };
 
@@ -118,7 +118,7 @@ export function createGroqLlamaExtractor(options: GroqExtractorOptions = {}): Ex
         const content = response.choices[0]?.message?.content ?? '';
         lastRaw = { content, finish_reason: response.choices[0]?.finish_reason };
 
-        let parsedJson: unknown;
+        let parsedJson: Record<string, string | number | boolean | null | Array<Record<string, string | number>>> | null;
         try {
           parsedJson = JSON.parse(content);
         } catch (err) {

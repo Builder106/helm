@@ -195,7 +195,8 @@ function scoreExtraction(label: InvoiceLabel, extracted: ExtractedInvoice): {
   let total = 0;
 
   // Top-level fields
-  const topComparisons: Array<[unknown, unknown]> = [
+  type FieldScalar = string | number | null;
+  const topComparisons: Array<[FieldScalar, FieldScalar]> = [
     [extracted.vendor_name, label.vendor.name],
     [extracted.vendor_address_street, label.vendor.addressStreet],
     [extracted.vendor_address_city_state_zip, label.vendor.addressCityStateZip],
