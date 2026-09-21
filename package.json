@@ -35,13 +35,13 @@
     "@libsql/client": "^0.18.0",
     "@playwright/test": "1.63.0",
     "@types/node": "^26.5.1",
-    "@vitest/coverage-v8": "^5.0.0",
+    "@vitest/coverage-v8": "^5.0.1",
     "groq-sdk": "^1.6.0",
     "playwright-bdd": "^9.2.1",
     "prettier": "^3.9.6",
     "tsx": "^4.23.13",
     "typescript": "~7.0.2",
-    "vitest": "^5.0.0",
+    "vitest": "^5.0.1",
     "zod": "^4.6.2"
   }
 }
